@@ -1,37 +1,37 @@
-var async = require('async'),
-    mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var Promise = require('bluebird');
+var chalk = require('chalk');
+var connectToDb = require('./server/db');
+var User = Promise.promisifyAll(mongoose.model('User'));
 
-var models = require('/server/db/models');
-var Product = models.Product;
+var seedProducts = function () {
 
-var data = {
-    Product: [
+    var products = [
         {name: "Metropolis Coffee", company: "Hipster Coffee Comp", description: "This unique cognac-like blend balances delicacy and elegance, with jasmine and orange notes giving way to buttery shortbread, and a mild caramel that ties it all together. A light and refreshing spring and summer brew with subtle yet astonishing nuances.", price: 15.30, photo: "/metropolis.jpg", rating: 3, category: "Coffee", roast: "Medium", region: "Africa"},
         {name: "Perc Coffee", company: "Koke Cooperative Ethiopia", description: "Koke hails from Chyalalcktu village in the Kochere District of Southern Oromia. This coffee is special to us because it marks the first hybrid process Ethiopia we’ve ever offered. It’s the perfect blend of a washed and natural processed coffee. ", price: 14, photo: "/perc.jpeg", rating: 3, category: "Coffee", roast: "Medium", region: "Africa"},
         {name: "San Jose OCAÑA", company: "Cuvee Coffee", description: "This is not a loud coffee, a fruit bomb, it’s something more. Few farms in the world, let alone Guatemala are able to produce coffee of this quality this consistently. ", price: 13.95, photo: "/sanJoseOcana.jpeg", rating: 3, category: "Coffee", roast: "Medium", region: "Central America"},
         {name: "Yum Coffee", company: "Coughfay Companty", description: "YUMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM ", price: 25, photo: "/sanJoseOcana.jpeg", rating: 3, category: "Coffee", roast: "Bold", region: "Mars"},
         {name: "Coffee Me", company: "KAKAKACoffee", description: "Great for kids!", price: 10, photo: "/sanJoseOcana.jpeg", rating: 3, category: "Coffee", roast: "Light", region: "Chucky Cheese"}
-    ]}
+    ];
+
+    return Product.createAsync(products);
+
+};
 
 
-
-mongoose.connection.on('open', function() {
-mongoose.connection.db.dropDatabase(function() {
-    
-    console.log("Dropped old data, now inserting data");
-    async.each(Object.keys(data),
-        function(modelName, outerDone) {
-            async.each(data[modelName],
-                function(d, innerDone) {
-                    models[modelName].create(d, innerDone);
-                },
-                outerDone
-            );
-        },
-        function(err) {
-            console.log("Finished inserting data");
-            console.log("Control-C to quit");
+connectToDb.then(function () {
+    Product.findAsync({}).then(function (products) {
+        if (users.length === 0) {
+            return seedProducts();
+        } else {
+            console.log(chalk.magenta('Seems to already be user data, exiting!'));
+            process.kill(0);
         }
-    );
-});
+    }).then(function () {
+        console.log(chalk.green('Seed successful!'));
+        process.kill(0);
+    }).catch(function (err) {
+        console.error(err);
+        process.kill(1);
+    });
 });
