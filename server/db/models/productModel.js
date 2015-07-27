@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');
 
-var schema = new mongoose.Schema({
+var product = new mongoose.Schema({
 	name: {
 		type: String,
 		required: true
+	},
+	company: {
+		type: String
 	},
 	description: {
 		type: String,
@@ -31,10 +34,13 @@ var schema = new mongoose.Schema({
 
 	region: {
 		type: String
+	},
+	price: {
+		type: Number
 	}
 
 
 })
 
 
-mongoose.model('Product', schema);
+mongoose.model('Product', product);

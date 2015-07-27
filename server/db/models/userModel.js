@@ -10,7 +10,7 @@ var userSchema = new mongoose.Schema({
 		required: true
 	},
 	password: {
-		type: string,
+		type: String,
 		required: true
 	},
 	email: {
