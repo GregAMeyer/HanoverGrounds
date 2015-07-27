@@ -20,7 +20,22 @@ var userSchema = new mongoose.Schema({
 	isAdmin: {
 		type: Boolean,
 		default: false
-	}
+	},
+    salt: {
+        type: String
+    },
+    twitter: {
+        id: String,
+        username: String,
+        token: String,
+        tokenSecret: String
+    },
+    facebook: {
+        id: String
+    },
+    google: {
+        id: String
+    }
 })
 
 module.exports = {
