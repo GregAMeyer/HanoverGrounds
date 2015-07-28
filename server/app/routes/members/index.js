@@ -11,9 +11,9 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
-router.post('/members/:id') //for signing up a new user
-router.put('/members/:id') //for editing exisiting user
-router.delete('/members/:id') //for deleting user
+// router.post('/members/:id') //for signing up a new user
+// router.put('/members/:id') //for editing exisiting user
+// router.delete('/members/:id') //for deleting user
 
 
 
