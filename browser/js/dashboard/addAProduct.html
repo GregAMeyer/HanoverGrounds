@@ -1,0 +1,30 @@
+<h1> Add a Product </h1>
+<form action="addProduct(product)">
+	<input ng-model='product.name'></input>
+	<input ng-model='product.price'></input>
+	<input ng-model='product.description'></input>
+	<input ng-model='product.company'></input>
+	<input ng-model='product.photo'></input>
+	<select ng-model='product.category'>
+		<option>Coffee</option>
+		<option>Coffee Machine</option>
+	</select>
+
+	<select ng-model='product.roast' ng-show='product.category==Coffee'>
+		<option>Extra Dark</option>
+		<option>Dark</option>
+		<option>Medium</option>
+		<option>Light</option>
+	</select>
+
+	<select ng-model='product.region' ng-show='product.category==Coffee'>
+		<option>Italian</option>
+		<option>Columbian</option>
+		<option>Ethiopian</option>
+		<option>Kenyan</option>
+		<option>Venezuelan</option>
+		<option>Chilean</option>
+	</select>
+
+	<button action='submit'></button>
+</form>

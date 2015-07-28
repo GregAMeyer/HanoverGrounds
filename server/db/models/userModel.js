@@ -16,11 +16,19 @@ var userSchema = new mongoose.Schema({
 	email: {
 		type: String
 	},
-	cart: [Schema.Types.ObjectId],
+	cart: {
+        [Schema.Types.ObjectId],
+        //ref:
+    }
 	isAdmin: {
 		type: Boolean,
 		default: false
 	},
+    productsForSale: {
+        //type: [Schema.Types.ObjectId],
+        //ref: i think these should just be products so its easier to access in the route
+        type: [Product]
+    }
     salt: {
         type: String
     },
