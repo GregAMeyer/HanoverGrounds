@@ -12,7 +12,6 @@ router.use('/products', require('./products'));
 
 //for getting products for sale in dashboard
 
-router.use('/products', require('./dashboard'));
 router.use('/dashboard', require('./dashboard'));
 
 

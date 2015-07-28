@@ -3,6 +3,7 @@ app.factory('mainProductFactory', function($http,$state){
 		getAll: function(){
 			return $http.get('/api/products')
 			.then(function(res){
+				console.log(res);
 				return res.data
 			})
 		},

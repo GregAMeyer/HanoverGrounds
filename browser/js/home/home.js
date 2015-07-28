@@ -10,6 +10,7 @@ app.config(function ($stateProvider) {
 app.controller('homeCtrl', function($scope, sliderPics, $state){
 	$scope.images = _.shuffle(sliderPics);
 	$scope.goToProducts = function(){
+		//console.log("im working")
 		$state.go('mainProductState');
 	}
 })

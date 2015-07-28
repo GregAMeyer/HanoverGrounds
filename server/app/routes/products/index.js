@@ -1,10 +1,10 @@
 var router = require('express').Router();
-module.exports = router;
-var Product = require('../../../db/models/productModel.js');
-var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var Product = mongoose.model('Product');
 
 
-router.get('/products', function(req, res, next){
+router.get('/', function(req, res, next){
+	console.log("hitting products route")
 	Product.find({}).exec()
 	.then(function(products){
 		res.json(products);
@@ -12,7 +12,7 @@ router.get('/products', function(req, res, next){
 	.then(null, next);
 });
 
-router.get('/products/:id', function(req, res, next){
+router.get('/:id', function(req, res, next){
 	Product.findById(req.params.id).exec()
 	.then(function(product){
 		res.json(product);
@@ -20,7 +20,7 @@ router.get('/products/:id', function(req, res, next){
 	.then(null, next);
 });
 
-router.post('/products', function(req, res, next){
+router.post('/', function(req, res, next){
 	Product.create(req.body)
 	.then(function(product){
 		res.json(product);
@@ -28,7 +28,7 @@ router.post('/products', function(req, res, next){
 	.then(null, next);
 });
 
-router.delete('/products/:id', function(req, res, next){
+router.delete('/:id', function(req, res, next){
 	//need to look at req.body and make sure we are removing the correct property
 	req.body.remove()
 	.then(function(product){
@@ -37,7 +37,7 @@ router.delete('/products/:id', function(req, res, next){
 	.then(null, next);
 });
 
-router.put('/products/:id', function(req, res, next){
+router.put('/:id', function(req, res, next){
 	Product.findById(req.params.id).exec()
 	.then(function(data){
 		//SET THE CHANGES HERE
@@ -46,3 +46,4 @@ router.put('/products/:id', function(req, res, next){
 	.then(null, next);
 });
 
+module.exports = router;
