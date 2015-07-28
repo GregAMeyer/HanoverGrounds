@@ -8,9 +8,7 @@ router.use('/members', require('./members'));
 router.use('/products', require('./products'));
 
 //for getting products for sale in dashboard
-
 router.use('/dashboard', require('./dashboard'));
-
 
 
 // Make sure this is after all of
