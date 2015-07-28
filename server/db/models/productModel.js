@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/HanoverGrounds');
+// mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
 var product = new mongoose.Schema({
 	name: {

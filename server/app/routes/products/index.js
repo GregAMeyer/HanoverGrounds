@@ -45,3 +45,4 @@ router.put('/products/:id', function(req, res, next){
 	})
 	.then(null, next);
 });
+
