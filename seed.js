@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
-var User = Promise.promisifyAll(mongoose.model('User'));
+var Product = Promise.promisifyAll(mongoose.model('Product'));
 
 var seedProducts = function () {
 
@@ -21,10 +21,10 @@ var seedProducts = function () {
 
 connectToDb.then(function () {
     Product.findAsync({}).then(function (products) {
-        if (users.length === 0) {
+        if (products.length === 0) {
             return seedProducts();
         } else {
-            console.log(chalk.magenta('Seems to already be user data, exiting!'));
+            console.log(chalk.magenta('Seems to already be product data, exiting!'));
             process.kill(0);
         }
     }).then(function () {
