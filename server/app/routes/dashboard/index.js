@@ -6,20 +6,13 @@ var User = mongoose.model('User');
 
 //for adding new products as seller in dashboard
 router.post('/products', function(req, res){
-
 	// console.log("USER: ", User)
  //    console.log("PRODUCT: ", Product)
 	Product.create(req.body).then(function(createdProduct){
-		console.log('createdProduct', createdProduct)
-		res.end()
+		User.findByIdAndUpdate(req.user._id, { $push: {'productsForSale': createdProduct} }, function(createdProduct){
+			res.end()
+		})
 	})
-
-	// User.findOne({
-	// 	user_name: req.body.user_name
-	// }).exec().then(function(seller){
-	// 	seller.productsForSale.push(req.body.data.product)
-	// 	res.status(201).send()
-	// })
 })
 
 // //from the signup page

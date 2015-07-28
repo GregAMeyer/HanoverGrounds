@@ -22,9 +22,9 @@ app.controller("dashboardCtrl", function($scope, $http, AuthService, $state) {
     	//product will be an object, as declared in html
         //////    also need a user to add to his productsForSale array   ////////
     	return $http.put('/api/products'+productToEdit.id, productToEdit)
-    	.then(function(){
-    		$state.go('dashboard.overview')
-    	}, console.log)
+    	// .then(function(){
+    	// 	$state.go('dashboard.overview')
+    	// }, console.log)
     };
 
     $scope.deleteProduct = function(productToDelete){
