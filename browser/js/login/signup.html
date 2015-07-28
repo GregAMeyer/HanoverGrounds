@@ -1,0 +1,40 @@
+<div class='col-lg-6'>
+    <form id="login-form" name="loginForm" ng-submit="sendSignup(login)">
+
+        <alert type="danger" ng-show="error">
+            {{ error }}
+        </alert>
+    <p>SIGN UPPPP AS USER</p>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="text" ng-model="login.email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" ng-model="login.password" class="form-control" id="login-password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+<div class='col-lg-6'>
+    <form id="login-form" name="loginForm" ng-submit="sendSignupSeller(loginAdmin)">
+
+        <alert type="danger" ng-show="error">
+            {{ error }}
+        </alert>
+    <p>SIGN UPPPP AS SELLER</p>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="text" ng-model="loginAdmin.email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" ng-model="loginAdmin.password" class="form-control" id="login-password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+
+<!-- loginForm.$valid &&  on lines 2 and 21-->

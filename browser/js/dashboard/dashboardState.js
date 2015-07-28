@@ -8,16 +8,16 @@ app.config(function($stateProvider) {
 	.state("dashboard.overview", {
 			url: "/overview",
 			templateUrl: "js/dashboard/dashboardOverview.html",
-			//contoller: "/dashboardController.js"
+			//controller: "/dashboardController.js"
 		})
 	.state("dashboard.addProduct", {
 			url: "/addProduct",
 			templateUrl: "js/dashboard/addAProduct.html",
-			//contoller: "/dashboardController.js"
+			controller: "dashboardCtrl"
 		})
 	.state("dashboard.editProduct", {
 			url: "/editProduct",
 			templateUrl: "js/dashboard/editAProduct.html",
-			//contoller: "/dashboardController.js"
+			//controller: "/dashboardController.js"
 		})
 });

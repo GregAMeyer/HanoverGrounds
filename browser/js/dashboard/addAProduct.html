@@ -1,30 +1,68 @@
 <h1> Add a Product </h1>
-<form action="addProduct(product)">
-	<input ng-model='product.name'></input>
-	<input ng-model='product.price'></input>
-	<input ng-model='product.description'></input>
-	<input ng-model='product.company'></input>
-	<input ng-model='product.photo'></input>
-	<select ng-model='product.category'>
+<form>
+
+	<div class="input-group">
+	    <span class="input-group-addon" id="basic-addon1">Name</span>
+	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.name'>
+	</div>
+	<div class="input-group">
+	    <span class="input-group-addon" id="basic-addon1">Price</span>
+	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.price'>
+	</div>
+	<div class="input-group">
+	    <span class="input-group-addon" id="basic-addon1">Description</span>
+	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.description'>
+	</div>
+	<div class="input-group">
+	    <span class="input-group-addon" id="basic-addon1">Company</span>
+	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.company'>
+	</div>
+	<div class="input-group">
+	    <span class="input-group-addon" id="basic-addon1">Photo</span>
+	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.photo'>
+	</div>
+	<div>
+    <div class="input-group">
+      <input type="text" class="form-control" aria-label="..." ng-model='product.category'>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+
+
+	<!-- <label>Name</label><input ng-model='product.name'></input> -->
+	<!-- <label>Price</label><input ng-model='product.price'></input>
+	<label>Desc</label><input ng-model='product.description'></input>
+	<label>Company</label><input ng-model='product.company'></input>
+	<label>Photo</label><input ng-model='product.photo'></input>
+	<label>Category</label><select>
 		<option>Coffee</option>
-		<option>Coffee Machine</option>
+		<option ng-model='product.category'>Coffee Machine</option>
 	</select>
 
-	<select ng-model='product.roast' ng-show='product.category==Coffee'>
+	<label>Roast</label><select ng-model='product.roast'>
 		<option>Extra Dark</option>
 		<option>Dark</option>
 		<option>Medium</option>
 		<option>Light</option>
 	</select>
 
-	<select ng-model='product.region' ng-show='product.category==Coffee'>
+	<label>Region</label><select ng-model='product.region'>
 		<option>Italian</option>
 		<option>Columbian</option>
 		<option>Ethiopian</option>
 		<option>Kenyan</option>
 		<option>Venezuelan</option>
 		<option>Chilean</option>
-	</select>
+	</select> -->
 
-	<button action='submit'></button>
+	<button ng-click="addProduct(product)">Add</button>
 </form>
