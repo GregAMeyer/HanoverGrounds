@@ -1,9 +1,6 @@
 'use strict';
 var router = require('express').Router();
 module.exports = router;
-//var Product = require('../../db/models/productModel.js');
-//var User = require('../../db/models/userModel.js');
-
 
 router.use('/members', require('./members'));
 

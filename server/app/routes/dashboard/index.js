@@ -6,11 +6,15 @@ var User = require('../../../db/models/userModel.js');
 //for adding new products as seller in dashboard
 router.post('/products', function(req, res){
 	console.log('adding product')
-	console.log(req.body.data)
+	console.log('stuffffff', req.body)
+
+	Product.create(req.body)
+
 	User.findOne({
 		user_name: req.body.data.user_name
 	}).exec().then(function(seller){
 		seller.productsForSale.push(req.body.data.product)
+		res.status(201).send()
 	})
 })
 
@@ -24,6 +28,7 @@ router.put('/products', function(req, res){
 	// },{
 	// 	//seller.productsForSale[productId] = req.body.data.product)
 	// })
+	res.status(201).send()
 }) 
 
 // //for deleting products as seller in dashboard

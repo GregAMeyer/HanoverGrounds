@@ -1,6 +1,4 @@
 var mongoose = require("mongoose");
-// mongoose.connect('mongodb://localhost/HanoverGrounds');
-// mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
 var userSchema = new mongoose.Schema({
 	user_name: {
@@ -15,9 +13,9 @@ var userSchema = new mongoose.Schema({
 		type: String
 	},
 	cart: {
-        // type: [Schema.Types.ObjectId],
-        // ref: "Product"
-        type: String
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "Product"
+        //type: String
     },
 	isAdmin: {
 		type: Boolean,
@@ -25,9 +23,9 @@ var userSchema = new mongoose.Schema({
 	},
     productsForSale: {
         //in dashboard, this is the array we need to edit
-        // type: [Schema.Types.ObjectId],
-        // ref: "Product"
-        type: String
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "Product"
+        //type: String
     },
     salt: {
         type: String

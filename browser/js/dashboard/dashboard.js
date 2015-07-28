@@ -1,10 +1,9 @@
-app.directive('dashboard', function (dashboardCtrl) {
+// app.directive('dashboard', function () {
 
-    return {
-        restrict: 'E',
-        scope: {},
-        controller: "dashboardCtrl.js",
+//     return {
+//         restrict: 'E',
+//         scope: {},
+//         controller: "dashboardCtrl",
+//     };
 
-    };
-
-});
+// });
