@@ -15,10 +15,6 @@ var User = mongoose.model('User');
 //     }
 // };
 
-// router.post('/members/:id') //for signing up a new user
-// router.put('/members/:id') //for editing exisiting user
-// router.delete('/members/:id') //for deleting user
-
 //from the signup page
 router.post('/', function(req, res, next){
     console.log("USER: ", User)
@@ -28,11 +24,7 @@ router.post('/', function(req, res, next){
         console.log("hitting users route: ", createdUser)
         res.end()
     })
-    // .then(function(createdUser){
-    //     console.log("hitting users route")
-    //     res.json(createdUser);
-    // })
-    // .then(null, next);
+    .then(null, next);
 });
 
 

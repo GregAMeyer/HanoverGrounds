@@ -2,7 +2,10 @@
 var path = require('path');
 var express = require('express');
 var app = express();
-
+//for sessions, added/////
+// var session = require('express-session')
+// app.use(session({secret: "abc"}))
+////////////
 
 // Pass our express application pipeline into the configuration
 // function located at server/app/configure/index.js

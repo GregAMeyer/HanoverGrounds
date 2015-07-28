@@ -20,17 +20,13 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
     $scope.error = null;
 
     $scope.sendLogin = function (loginInfo) {
-
         $scope.error = null;
-
         AuthService.login(loginInfo).then(function () {
             $state.go('home');
         }).catch(function () {
             $scope.error = 'Invalid login credentials.';
         });
-
     };
-
 });
 
 app.controller('SignupCtrl', function ($scope, AuthService, $state, $http) {
@@ -38,32 +34,30 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state, $http) {
     $scope.loginAdmin = {};
     $scope.login = {};
     $scope.error = null;
+
     $scope.sendSignup = function (loginInfo) {
         //make a new user
-        console.log("SEND SIGNUP LOGIN.JS LINE 43")
-        $http.post('/members', loginInfo)
+        $http.post('/api/members', loginInfo).then(function(createdUser){
+            //$state.go('home');
 
-        // $scope.error = null;
-
-        // AuthService.login(loginInfo).then(function () {
-        //     $state.go('home');
-        // }).catch(function () {
-        //     $scope.error = 'Invalid login credentials.';
-        // });
+            AuthService.login(adminLoginInfo).then(function () {
+                $state.go('home');
+            }).catch(function () {
+                $scope.error = 'Invalid login credentials.';
+            });
+        })
     };
     $scope.sendSignupSeller = function (loginInfo) {
         //make a new user
         var adminLoginInfo = loginInfo
         adminLoginInfo.isAdmin = true;
-
         $http.post('/api/members', adminLoginInfo).then(function(createdUser){
-            $scope.error = null;
-            $state.go('dashboard.overview');
-            // AuthService.login(adminLoginInfo).then(function () {
-            //     $state.go('dashboard.overview');
-            // }).catch(function () {
-            //     $scope.error = 'Invalid login credentials.';
-            // });
+            //$state.go('dashboard.overview');
+            AuthService.login(adminLoginInfo).then(function () {
+                $state.go('dashboard.overview');
+            }).catch(function () {
+                $scope.error = 'Invalid login credentials.';
+            });
         })
 
         
