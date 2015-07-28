@@ -1,7 +1,10 @@
 <section id="mainProduct">
 
-<div class="row" ng-repeat="product in products">
-  <div class="col-xs-6 .col-sm-3">{{product}}</div>
+<div class="row" >
+  <div ng-click="getDetail()" id="products" class="col-xs-4 .col-sm-3" ng-repeat="product in products" >
+  	<h4>{{product.name}}</h4>
+  	<img ng-src="{{'/images/'+product.photo}}"> 
+  </div>
 </div>
 
 </section>
