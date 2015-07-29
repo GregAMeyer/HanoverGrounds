@@ -1,4 +1,4 @@
-app.controller('detailCtrl', function($scope){
-
+app.controller('detailCtrl', function($scope, product) {
+	$scope.product = product;
 
 })
