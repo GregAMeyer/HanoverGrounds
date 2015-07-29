@@ -1,0 +1,10 @@
+<h1> Edit A user </h1>
+
+<div class='col-lg-10' ng-repeat='user in users'>
+	email<input type="text" ng-model='user.email'></input>
+	pw<input type="text" ng-model='user.password'></input>
+	seller<input type="text" ng-model='user.isSeller'></input>
+	super<input type="text" ng-model='user.isSuperUser'></input>
+	<button ng-click='editUser(user)'>Save</button>
+	<button ng-click='deleteUser(user)'>!!!!!DELETEEEEE!!!</button>
+</div>

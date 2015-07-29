@@ -12,7 +12,7 @@ router.post('/products', function(req, res){
  	productToAdd.company = req.user.company;
 
 	Product.create(productToAdd).then(function(createdProduct){
-		User.findByIdAndUpdate(req.user._id, { $push: {'productsForSale': createdProduct} }, function(createdProduct){
+		User.findByIdAndUpdate(req.user._id, { $push: {'productsForSale': createdProduct} }, function(){
 			res.end()
 		})
 	})
