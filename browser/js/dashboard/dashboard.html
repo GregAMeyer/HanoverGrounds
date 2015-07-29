@@ -2,17 +2,20 @@
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<br>
 		<ul class="nav menu dashboard">
-			<li ui-sref-active="active"><a ui-sref="dashboard.overview"><span class="glyphicon glyphicon-heart"></span> Overview</a></li>
-			<li ui-sref-active="active"><a ui-sref="dashboard.addProduct"><span class="glyphicon glyphicon-gift"></span> Add A Product</a></li>
-			<li ui-sref-active="active"><a ui-sref="dashboard.editProduct"><span class="glyphicon glyphicon-gift"></span> Edit A Product</a></li>
-			<li ui-sref-active="active"><a ui-sref="dashboard.updateProduct"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
-			<li role="presentation" class="divider"></li>
-			<li ui-sref-active="active"><a ui-sref="logout"><span class="glyphicon glyphicon-flash"></span> Log Out</a></li>
+			<li ui-sref-active="active"><a ui-sref="dashboard.overview">
+				<span class="glyphicon glyphicon-heart"></span> Overview</a>
+			</li>
+			<li ui-sref-active="active"><a ui-sref="dashboard.addProduct">
+				<span class="glyphicon glyphicon-gift"></span> Add A Product</a>
+			</li>
+			<li ui-sref-active="active"><a ui-sref="dashboard.editProduct">
+				<span class="glyphicon glyphicon-gift"></span> Edit A Product</a>
+			</li>
 		</ul>
 	</div>
 <!--/.sidebar		-->
 		<div >
-			<div ui-view></div>
+			<div ui-view class='col-lg-10 col-sm-9'></div>
 		</div>
 </div>
 

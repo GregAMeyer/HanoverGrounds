@@ -1,7 +1,13 @@
 <h1> Edit A Product </h1>
 
-<div ng-repeat='product in productsForSale'>
+<div class='col-lg-10' ng-repeat='product in productsForSale'>
 	<input type="text" ng-value='{{product.name}}' ng-model='product.name'></input>
+	<input type="text" ng-value='{{product.description}}' ng-model='product.description'></input>
 	<input type="text" ng-value='{{product.price}}' ng-model='product.price'></input>
+	<input type="text" ng-value='{{product.quantity}}' ng-model='product.quantity'></input>
+	<input type="text" ng-value='{{product.photo}}' ng-model='product.photo'></input>
+	<input type="text" ng-value='{{product.category}}' ng-model='product.category'></input>
+	<input type="text" ng-value='{{product.roast}}' ng-model='product.roast'></input>
+	<input type="text" ng-value='{{product.region}}' ng-model='product.region'></input>
 	<button ng-click='editProduct(product)'>Save</button>
 </div>
