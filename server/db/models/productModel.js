@@ -25,24 +25,19 @@ var product = new mongoose.Schema({
 		min: 1,
 		max: 5
 	},
-
 	category: {
 		type: String,
 		required: true
 	},
-
 	roast: {
 		type: String
 	},
-
 	region: {
 		type: String
 	},
 	price: {
 		type: Number
 	}
-
-
 })
 
 
