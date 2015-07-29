@@ -24,13 +24,11 @@ app.config(function($stateProvider) {
 
 app.factory('dashboardFactory', function($http){
 	return{
-
 		getProductsForSale: function(){
-	        return $http.get('/api/dashboard/products')
+	    	return $http.get('/api/dashboard/products')
 	        	.then(function(products){
 	            	return products.data
         		})
 			}
-
 	}
 })

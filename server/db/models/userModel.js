@@ -15,10 +15,14 @@ var userSchema = new mongoose.Schema({
         ref: "Product"
         //type: String
     },
-	isAdmin: {
+	isSeller: {
 		type: Boolean,
 		default: false
 	},
+    isSuperUser: {
+        type: Boolean,
+        default: false
+    },
     company: {
         type: String
     },

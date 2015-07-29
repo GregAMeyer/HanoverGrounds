@@ -41,3 +41,9 @@ var product = new mongoose.Schema({
 
 
 mongoose.model('Product', product);
+
+//photo must be an array or strings
+//in the back-end when a photo is added to a product,
+//the photo's name will be normalized to photo-1, based on length of photo array
+
+//category must be an array of strings

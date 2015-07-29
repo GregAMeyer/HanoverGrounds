@@ -50,7 +50,7 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state, $http) {
     $scope.sendSignupSeller = function (loginInfo) {
         //make a new user
         var adminLoginInfo = loginInfo
-        adminLoginInfo.isAdmin = true;
+        adminLoginInfo.isSeller = true;
         $http.post('/api/members', adminLoginInfo).then(function(createdUser){
             //$state.go('dashboard.overview');
             AuthService.login(adminLoginInfo).then(function () {

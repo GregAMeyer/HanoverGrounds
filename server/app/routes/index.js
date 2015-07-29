@@ -10,6 +10,9 @@ router.use('/products', require('./products'));
 //for getting products for sale in dashboard
 router.use('/dashboard', require('./dashboard'));
 
+//for getting products for sale in dashboard
+router.use('/admin', require('./superUser'));
+
 
 // Make sure this is after all of
 // the registered routes!
