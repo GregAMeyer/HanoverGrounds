@@ -23,6 +23,15 @@ router.get('/:id', function(req, res, next) {
 		.then(null, next);
 });
 
+router.put('/:id/reviews', function(req,res,next){
+
+	Product.findByIdAndUpdate(req.params.id, {reviews: req.body}, {new: true})
+	.then(function(data){
+		res.json(data);
+	})
+	.then(null, next);
+})
+
 // router.post('/', function(req, res, next){
 // 	Product.create(req.body)
 // 	.then(function(product){

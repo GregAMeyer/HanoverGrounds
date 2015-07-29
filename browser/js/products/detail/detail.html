@@ -3,4 +3,21 @@
 {{ product.name }}
 {{ product.company }}
 {{ product.description }}
+
+<div>
+<h1>Reviews</h1>
+{{product.reviews[0].userId}}
+{{product.reviews[0].review}}
+</div>
+
+
+<!-- WE ARE GOING TO HIDE THIS FORM FOR UNAUTHENTICATED USERS -->
+
+<form>
+
+<textarea ng-model="reviewData"></textarea>
+<button ng-click="storeData()" >Submit</button>
+
+</form>
+
 </section>
