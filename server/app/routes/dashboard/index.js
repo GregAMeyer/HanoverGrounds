@@ -8,36 +8,44 @@ var User = mongoose.model('User');
 router.post('/products', function(req, res){
 	// console.log("USER: ", User)
  //    console.log("PRODUCT: ", Product)
-	Product.create(req.body).then(function(createdProduct){
+ 	var productToAdd = req.body;
+ 	productToAdd.company = req.user.company;
+
+	Product.create(productToAdd).then(function(createdProduct){
 		User.findByIdAndUpdate(req.user._id, { $push: {'productsForSale': createdProduct} }, function(createdProduct){
 			res.end()
 		})
 	})
 })
 
-// //from the signup page
-// router.post(function(req, res, next){
-// 	console.log("hitting users route")
-// 	User.create(req.body)
-// 	.then(function(createdUser){
-// 		res.json(createdUser);
-// 	})
-// 	.then(null, next);
-// });
-
+//for showing products for sale by seller in dashboard
+router.get('/products', function(req, res){
+	User.findById(req.user._id).exec()
+		.then(function(user){
+			//return Promise.all(user.productsForSale)
+			return Product.find({
+				'_id': {
+					$in: user.productsForSale
+				}
+			}).exec()
+		})
+		.then(function(products){
+			res.send(products)
+		})
+})
 
 
 //for editing exisiting products as seller in dashboard
-router.put('/products', function(req, res){
+router.put('/products/:id', function(req, res){
+
 	console.log('updating product')
-	console.log(req.body)
-	// User.findOneAndUpdate({
-	// 	user_name: req.body.data.user_name,
-	// 	//productsForSale[productId]: req.body.data.productId
-	// },{
-	// 	//seller.productsForSale[productId] = req.body.data.product)
-	// })
-	res.status(201).send()
+	console.log('req.user: ', req.user)
+	console.log('req.body: ', req.body)
+	
+	Product.findOneAndUpdate({_id: req.params.id}, req.body).exec()
+		.then(function(updatedProduct){
+			res.send(updatedProduct)
+		})
 }) 
 
 // //for deleting products as seller in dashboard

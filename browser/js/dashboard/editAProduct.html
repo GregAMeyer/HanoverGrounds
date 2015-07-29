@@ -1,1 +1,7 @@
 <h1> Edit A Product </h1>
+
+<div ng-repeat='product in productsForSale'>
+	<input type="text" ng-value='{{product.name}}' ng-model='product.name'></input>
+	<input type="text" ng-value='{{product.price}}' ng-model='product.price'></input>
+	<button ng-click='editProduct(product)'>Save</button>
+</div>

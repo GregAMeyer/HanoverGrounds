@@ -16,7 +16,10 @@ var product = new mongoose.Schema({
 		data: Buffer,
 		contentType: String
 	},
-
+	quantity: {
+		type: Number,
+		//default: 1
+	},
 	rating: {
 		type: Number,
 		min: 1,
