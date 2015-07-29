@@ -5,21 +5,22 @@ var Product = mongoose.model('Product');
 
 //var imagePath = '../../views/images';
 
-router.get('/', function(req, res, next){
+router.get('/', function(req, res, next) {
 	console.log("hitting products route")
 	Product.find({}).exec()
-	.then(function(products){
-		res.json(products);
-	})
-	.then(null, next);
+		.then(function(products) {
+			res.json(products);
+		})
+		.then(null, next);
 });
 
-router.get('/:id', function(req, res, next){
+router.get('/:id', function(req, res, next) {
+	//console.log(req.params)
 	Product.findById(req.params.id).exec()
-	.then(function(product){
-		res.json(product);
-	})
-	.then(null, next);
+		.then(function(product) {
+			res.json(product);
+		})
+		.then(null, next);
 });
 
 // router.post('/', function(req, res, next){

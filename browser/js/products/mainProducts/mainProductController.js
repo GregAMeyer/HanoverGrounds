@@ -1,10 +1,12 @@
-app.controller('mainProductCtrl', function($scope, $state, mainProductFactory){
+app.controller('mainProductCtrl', function($scope, $state, mainProductFactory) {
 	mainProductFactory.getAll()
-	.then(function(data){
-		$scope.products = data
-	})
+		.then(function(data) {
+			$scope.products = data
+		})
 
-	$scope.getDetail = function(){
-		$state.go('detailState');
-	}
-})
+	$scope.getDetail = function(product) {
+		$state.go('detailState', {
+			id: product._id
+		});
+	};
+});
