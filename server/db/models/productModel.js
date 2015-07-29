@@ -10,11 +10,10 @@ var product = new mongoose.Schema({
 	},
 	description: {
 		type: String,
-		required: true
+		//required: true
 	},
 	photo: {
-		data: Buffer,
-		contentType: String
+		type: String,
 	},
 	quantity: {
 		type: Number,
@@ -27,7 +26,7 @@ var product = new mongoose.Schema({
 	},
 	category: {
 		type: String,
-		required: true
+		//required: true
 	},
 	roast: {
 		type: String

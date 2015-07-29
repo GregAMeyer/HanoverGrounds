@@ -1,7 +1,9 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
+require('../../../db/models');
 var Product = mongoose.model('Product');
 
+//var imagePath = '../../views/images';
 
 router.get('/', function(req, res, next){
 	console.log("hitting products route")
