@@ -1,2 +1,5 @@
 <h1> Overview </h1>
 <p ng-repeat='user in users'>{{user.email}}, Seller?: {{user.isSeller}}</p>
+
+<h1> ALL THE PRODUCTS </h1>
+<p ng-repeat='product in allProducts'>{{product.name}}, HOW MUCH?: {{product.price | currency}} {{product.category}}</p>

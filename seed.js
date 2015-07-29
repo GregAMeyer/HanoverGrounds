@@ -3,6 +3,8 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var Product = Promise.promisifyAll(mongoose.model('Product'));
+var User = Promise.promisifyAll(mongoose.model('User'));
+
 
 var seedProducts = function () {
 
@@ -19,6 +21,15 @@ var seedProducts = function () {
 };
 
 
+var seedUsers = function(){
+    var users = [
+        {password: "admin", email: 'admin@admin.admin', isSuperUser: true},
+        {password: 'sell', email: 'sell@sell.sell', isSeller: true},
+        {password: 'user', email: 'user@user.user'}
+    ]
+     return User.createAsync(users);
+}
+
 connectToDb.then(function () {
     Product.findAsync({}).then(function (products) {
         if (products.length === 0) {
@@ -27,11 +38,26 @@ connectToDb.then(function () {
             console.log(chalk.magenta('Seems to already be product data, exiting!'));
             process.kill(0);
         }
-    }).then(function () {
-        console.log(chalk.green('Seed successful!'));
-        process.kill(0);
-    }).catch(function (err) {
-        console.error(err);
-        process.kill(1);
-    });
+    })
+    // .then(function () {
+    //     console.log(chalk.green('Seed successful!'));
+    //     process.kill(0);
+    // })
+    .then(function(){
+        User.findAsync({}).then(function (users) {
+            if (users.length === 0) {
+                return seedUsers();
+            } else {
+                console.log(chalk.magenta('Seems to already be product data, exiting!'));
+                process.kill(0);
+            }
+        }).then(function () {
+            console.log(chalk.green('Seed successful!'));
+            process.kill(0);
+        }).catch(function (err) {
+            console.error(err);
+            process.kill(1);
+        });
+    })
+
 });
