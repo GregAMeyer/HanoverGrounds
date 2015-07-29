@@ -1,7 +1,7 @@
 'use strict';
 var router = require('express').Router();
 module.exports = router;
-var _ = require('lodash');
+//var _ = require('lodash');
 //added for signing up line 20
 var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
