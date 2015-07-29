@@ -1,6 +1,4 @@
-app.controller("dashboardCtrl", function($scope, $http, AuthService, $state) {
-
-    console.log('hits the controller - dashboardCtrl line 3')
+app.controller("dashboardCtrl", function($scope, $http, AuthService, $state, dashboardFactory) {
 
     $scope.logout = function () {
         AuthService.logout().then(function () {
@@ -8,9 +6,12 @@ app.controller("dashboardCtrl", function($scope, $http, AuthService, $state) {
         });
     };
 
+    dashboardFactory.getProductsForSale().then(function(prods){
+        $scope.productsForSale = prods
+    });
+
     $scope.addProduct = function(productToAdd){
-    	//product will be an object, as declared in html, 
-        //////    also need a user to add to his productsForSale array   ////////
+    	//product will be an object, as declared in html
 
     	return $http.post('/api/dashboard/products', productToAdd)
     	//.then(function(){
@@ -21,7 +22,7 @@ app.controller("dashboardCtrl", function($scope, $http, AuthService, $state) {
     $scope.editProduct = function(productToEdit){
     	//product will be an object, as declared in html
         //////    also need a user to add to his productsForSale array   ////////
-    	return $http.put('/api/products'+productToEdit.id, productToEdit)
+    	return $http.put('/api/dashboard/products/'+productToEdit._id, productToEdit)
     	// .then(function(){
     	// 	$state.go('dashboard.overview')
     	// }, console.log)

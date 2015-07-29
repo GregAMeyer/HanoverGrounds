@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
 	.state("dashboard.overview", {
 			url: "/overview",
 			templateUrl: "js/dashboard/dashboardOverview.html",
-			//controller: "/dashboardController.js"
+			controller: "dashboardCtrl"
 		})
 	.state("dashboard.addProduct", {
 			url: "/addProduct",
@@ -18,6 +18,19 @@ app.config(function($stateProvider) {
 	.state("dashboard.editProduct", {
 			url: "/editProduct",
 			templateUrl: "js/dashboard/editAProduct.html",
-			//controller: "/dashboardController.js"
+			controller: "dashboardCtrl"
 		})
 });
+
+app.factory('dashboardFactory', function($http){
+	return{
+
+		getProductsForSale: function(){
+	        return $http.get('/api/dashboard/products')
+	        	.then(function(products){
+	            	return products.data
+        		})
+			}
+
+	}
+})

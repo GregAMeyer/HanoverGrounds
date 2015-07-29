@@ -19,6 +19,9 @@ var userSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+    company: {
+        type: String
+    },
     productsForSale: {
         //in dashboard, this is the array we need to edit
         type: [mongoose.Schema.Types.ObjectId],
