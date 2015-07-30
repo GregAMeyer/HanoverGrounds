@@ -9,10 +9,13 @@
 {{ product.description }}
 
 
-<div>
 <h1>Reviews</h1>
-{{product.reviews[0].userId}}
-{{product.reviews[0].review}}
+<div ng-repeat="review in reviews">
+	<div>
+		{{review.user}}
+		{{review.review}}
+		{{product.rating}}
+	</div>
 </div>
 
 

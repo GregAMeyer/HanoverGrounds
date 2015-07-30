@@ -15,7 +15,11 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             }, {
                 label: 'About',
                 state: 'about'
-            }, {
+            },{
+                label: 'Products',
+                state: 'mainProductState'
+            }, 
+            {
                 label: 'Seller Dashboard',
                 state: 'dashboard.overview'
             }, {

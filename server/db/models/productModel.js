@@ -38,8 +38,8 @@ var product = new mongoose.Schema({
 		type: Number
 	},
 	reviews: [{
-		userId: Number,
-		review: String
+		review: String,
+		user: String
 	}]
 })
 
