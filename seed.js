@@ -64,6 +64,15 @@ var seedProducts = function() {
 
 };
 
+var seedUsers = function(){
+    var users = [
+        {password: "admin", email: 'admin@admin.admin', isSuperUser: true},
+        {password: 'sell', email: 'sell@sell.sell', isSeller: true},
+        {password: 'user', email: 'user@user.user'}
+    ]
+     return User.createAsync(users);
+}
+
 connectToDb.then(function() {
     Product.findAsync({}).then(function(products) {
 
