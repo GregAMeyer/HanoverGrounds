@@ -3,7 +3,8 @@
 }
 
 body {
-  background: #fdfdfd;
+  /* background: #fdfdfd; */
+  background: #D8D5CC
 }
 
 @mixin clearfix {
@@ -27,4 +28,4 @@ body {
 @import 'login/main';
 
 
-@import 'directives/sidebar';
+@import 'directives/dashboard';

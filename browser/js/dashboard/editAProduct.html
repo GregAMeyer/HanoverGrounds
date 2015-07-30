@@ -1,13 +1,23 @@
 <h1> Edit A Product </h1>
 
-<div class='col-lg-10' ng-repeat='product in productsForSale'>
-	<input type="text" ng-model='product.name'></input>
-	<input type="text" ng-model='product.description'></input>
-	<input type="text" ng-model='product.price'></input>
-	<input type="text" ng-model='product.quantity'></input>
-	<input type="text" ng-model='product.photo'></input>
-	<input type="text" ng-model='product.category'></input>
-	<input type="text" ng-model='product.roast'></input>
-	<input type="text" ng-model='product.region'></input>
-	<button ng-click='editProduct(product)'>Save</button>
+<div class="panel panel-default">
+  <div class="panel-heading">Your Products (Currently for Sale)</div>
+  <table class="table">
+  	<thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='product in productsForSale'>
+        <td><input type="text" ng-model='product.name'></input></td>
+        <td><input type="text" ng-model='product.price'></input></td>
+        <td><input type="text" ng-model='product.quantity'></input></td>
+        <td><input type="text" ng-model='product.category'></input></td>
+      </tr>
+    </tbody>  
+  </table>
 </div>
