@@ -6,6 +6,7 @@ var Product = Promise.promisifyAll(mongoose.model('Product'));
 var User = Promise.promisifyAll(mongoose.model('User'));
 
 
+
 var seedProducts = function() {
 
     var products = [{

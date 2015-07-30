@@ -7,5 +7,26 @@
 {{ product.name }}
 {{ product.company }}
 {{ product.description }}
-<button ng-click='toProducts()'>back</button>
+
+
+<h1>Reviews</h1>
+<div ng-repeat="review in reviews">
+	<div>
+		{{review.user}}
+		{{review.review}}
+		{{product.rating}}
+	</div>
+</div>
+
+
+<!-- WE ARE GOING TO HIDE THIS FORM FOR UNAUTHENTICATED USERS -->
+
+<form>
+
+<textarea ng-model="reviewData"></textarea>
+<button ng-click="storeData()" >Submit</button>
+
+</form>
+
+
 </section>
