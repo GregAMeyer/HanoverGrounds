@@ -12,7 +12,7 @@ app.controller("dashboardCtrl", function($scope, $http, AuthService, $state, das
 
     $scope.addProduct = function(productToAdd){
     	//product will be an object, as declared in addAProduct.html
-    	return $http.post('/api/dashboard/products', productToAdd)
+    	return $http.post('/api/products', productToAdd)
     	.then(function(){
     		$state.go('dashboard.overview')
     	}, console.log)
@@ -20,7 +20,7 @@ app.controller("dashboardCtrl", function($scope, $http, AuthService, $state, das
 
     $scope.editProduct = function(productToEdit){
     	//product will be an object, as declared in editAProduct.html
-    	return $http.put('/api/dashboard/products/'+productToEdit._id, productToEdit)
+    	return $http.put('/api/products/seller/'+productToEdit._id, productToEdit)
         //want to display an alert that the product was saved (prob a front end thing)
     };
 

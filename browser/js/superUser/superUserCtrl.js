@@ -11,7 +11,7 @@ app.controller("superUserCtrl", function($scope, $http, AuthService, $state, sup
     });
     //display all the products
     superUserFactory.getAllProducts().then(function(products){
-        $scope.allProducts = products 
+        $scope.allProducts = products
     });
 
     $scope.editUser = function(userToEdit){
