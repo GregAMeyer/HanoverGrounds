@@ -26,7 +26,7 @@ router.get('/:id', function(req, res, next) {
 router.put('/:id/reviews', function(req,res,next){
 	//assuming only logged in users can use this
 	//if (req.user){}
-	Product.findByIdAndUpdate(req.params.id, {reviews: {review: req.body}}, {new: true})
+	Product.findByIdAndUpdate(req.params.id, {reviews: {review: req.body, user: req.user.name}}, {new: true})
 	.then(function(data){
 		res.json(data);
 	})
