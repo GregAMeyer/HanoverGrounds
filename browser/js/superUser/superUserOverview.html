@@ -26,9 +26,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='user in users'>
-        <td>{{user.email}}</td>
-        <td>{{user.password}}</td>
+      <tr ng-repeat='product in allProducts'>
+        <td>{{product.name}}</td>
+        <td>{{product.price | currency}}</td>
       </tr>
     </tbody>  
   </table>
