@@ -5,16 +5,17 @@
         </slide>
     </carousel>
 {{ product.name }}
-{{ product.company }}
 {{ product.description }}
-
+<p>Categories:{{categories}}</p>
 
 <h1>Reviews</h1>
 <div ng-repeat="review in reviews">
 	<div>
 		{{review.user}}
 		{{review.review}}
-		{{product.rating}}
+		{{review.rating}}
+		<!-- <button ng-click="editData(review.id)">EDIT</button> -->
+		<button ng-click="deleteData(review._id)">DELETE</button>
 	</div>
 </div>
 
