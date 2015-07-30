@@ -14,6 +14,7 @@ app.controller("dashboardCtrl", function($scope, $http, AuthService, $state, das
     	//product will be an object, as declared in addAProduct.html
     	return $http.post('/api/products', productToAdd)
     	.then(function(){
+            console.log('!!Product to Add',productToAdd)
     		$state.go('dashboard.overview')
     	}, console.log)
     };

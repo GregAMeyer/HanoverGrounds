@@ -1,17 +1,46 @@
 
-app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory) {
+app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory, mainProductFactory) {
 	$scope.product = product;
-	$scope.reviews = product.reviews;
 	$scope.reviewData = "";
+	
+	
+
+	mainProductFactory.getCategories($scope.product._id)
+		.then(function(categories){
+			$scope.categories = categories;
+		})
+
+	$scope.getCurrentReviews = function(){
+		detailFactory.getReviews($scope.product._id)
+			.then(function(reviews){
+				$scope.reviews = reviews
+			})
+	}	
+
+	$scope.getCurrentReviews();
+
 	$scope.resetReview = function(){
 		$scope.reviewData = ""
 	}
 	$scope.storeData = function(){
-		//other team: what is userID in this context?
 		detailFactory.submitReview($scope.product._id, $scope.reviewData)
 		.then(function(reviews){
-			$scope.reviews = reviews;
+			$scope.reviews = $scope.getCurrentReviews()
+
 			$scope.resetReview();
 		})
 	}
+
+	$scope.deleteData = function(id){
+		console.log('THE ID DELETE',id)
+		detailFactory.deleteReview(id)
+			.then(function(){
+				$scope.reviews = $scope.getCurrentReviews();
+			})
+
+	}	
+
 })
+	// $scope.editData = function(id){
+	// 	detailFactory.editReview(id)
+	// }

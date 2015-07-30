@@ -5,7 +5,6 @@ app.config(function($stateProvider) {
 		controller: 'detailCtrl',
 		resolve: {
 			product: function($stateParams, mainProductFactory) {
-				console.log($stateParams)
 				return mainProductFactory.getOne($stateParams.id)
 			}
 		}
