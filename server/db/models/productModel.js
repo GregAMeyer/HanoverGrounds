@@ -5,8 +5,9 @@ var product = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	company: {
-		type: String
+	seller: {
+		type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
 	},
 	description: {
 		type: String,
@@ -19,28 +20,9 @@ var product = new mongoose.Schema({
 		type: Number,
 		//default: 1
 	},
-	rating: {
-		type: Number,
-		min: 1,
-		max: 5
-	},
-	category: {
-		type: String,
-		//required: true
-	},
-	roast: {
-		type: String
-	},
-	region: {
-		type: String
-	},
 	price: {
 		type: Number
-	},
-	reviews: [{
-		review: String,
-		user: String
-	}]
+	}
 })
 
 

@@ -1,7 +1,14 @@
 app.factory('detailFactory', function($http, $state){
 	return {
+		getReviews: function(id){
+			return $http.get('api/products/reviews/'+ id)
+				.then(function(res){
+					return res.data;
+				})
+		},
+
 		submitReview: function(id, review){
-			return $http.put('api/products/'+id+'/reviews', {review: review})
+			return $http.post('api/products/reviews/'+id, {review: review})
 			.then(function(res){
 				return res.data;
 			})
@@ -13,6 +20,11 @@ app.factory('detailFactory', function($http, $state){
 				$state.go('cart')
 				return product.data;
 			})
+		deleteReview: function(id){
+			return $http.delete('api/products/reviews/'+id)
+				.then(function(res){
+					return 
+				})
 		}
 	}
 })

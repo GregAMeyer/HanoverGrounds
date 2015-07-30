@@ -3,32 +3,29 @@ var mongoose = require('mongoose');
 require('../../../db/models');
 var Product = mongoose.model('Product');
 var User = mongoose.model('User');
+var Reviews = mongoose.model('Reviews');
+var Categories =  mongoose.model('Categories');
 //for dashboard-side products routing/////////////////////////////////
 
 //for adding new products as seller in dashboard
 router.post('/', function(req, res){
+	//should authenticate here based on isSeller before making post to DB
  	var productToAdd = req.body;
- 	productToAdd.company = req.user.company;
+ 	console.log('ROUTER USER',req.user)
+ 	productToAdd.seller = req.user._id
 	Product.create(productToAdd).then(function(createdProduct){
-		User.findByIdAndUpdate(req.user._id, { $push: {'productsForSale': createdProduct} }, function(){
-			res.end()
+			res.json(createdProduct)
 		})
-	})
 })
 //for showing products for sale by seller in dashboard
 router.get('/seller', function(req, res){
-	User.findById(req.user._id).exec()
-		.then(function(user){
-			return Product.find({
-				'_id': {
-					$in: user.productsForSale
-				}
-			}).exec()
-		}).then(function(products){
-			res.send(products)
+	Product.find({seller:req.user._id})
+		.then(function(products){
+			res.json(products);
 		})
 })
 //for editing exisiting products as seller in dashboard
+//should authenticate here based on isSeller before making post to DB
 router.put('/seller/:id', function(req, res){
 	Product.findOneAndUpdate({_id: req.params.id}, req.body).exec()
 		.then(function(updatedProduct){
@@ -43,7 +40,6 @@ router.put('/seller/:id', function(req, res){
 router.get('/', function(req, res, next) {
 	Product.find({}).exec()
 		.then(function(products) {
-			console.log(products)
 			res.json(products);
 		})
 		.then(null, next);
@@ -57,21 +53,51 @@ router.get('/:id', function(req, res, next) {
 		.then(null, next);
 });
 
-router.put('/:id/reviews', function(req,res,next){
-	//assuming only logged in users can use this
-	//if (req.user){}
-	Product.findById(req.params.id).exec()
-	.then(function(product){
-		product.reviews.push({review: req.body.review, user: req.user.email});
-		product.save(function(err, product){
-			if (err) console.log(err);
-			res.json(product.reviews)
+router.get('/reviews/:id', function(req,res,next){
+	Reviews.find({product:req.params.id}).exec()
+		.then(function(reviews){
+			res.json(reviews)
 		})
-	}) 
-	.then(null, next);
+})
+
+router.post('/reviews/:id', function(req,res,next){
+	Reviews.create({
+		product: req.params.id,
+		review: req.body.review
+	})
+	.then(function(review){
+		res.json(review)
+	})
+		
+})
+
+router.delete('/reviews/:id', function(req,res,next){
+	Reviews.remove({_id: req.params.id})
+		.then(function(){
+			res.end()
+		})
+})
+
+router.get('/categories/:id',function(req,res,next){
+	Categories.find({product: req.params.id})
+		.then(function(categories){
+			res.json(categories)
+		})
 })
 
 ////////////////////////////////////////////////////////////////////////
 
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
