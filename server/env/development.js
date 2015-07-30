@@ -12,8 +12,11 @@ module.exports = {
     "callbackURL": "INSERT_FACEBOOK_CALLBACK_HERE"
   },
   "GOOGLE": {
-    "clientID": "INSERT_GOOGLE_CLIENTID_HERE",
-    "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
-    "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
+    "clientID": "896220167912-lkogch2kf49715dq1mrunc503t5fu6d2.apps.googleusercontent.com",
+    "clientSecret": "L7elJ4m7POvhM7Yf55rTGZwk",
+    "callbackURL": "http://localhost:1337/auth/google/callback"
   }
 };
+
+
+//http://localhost:1337/auth/google/callback - google oauth doesn't work until deployed

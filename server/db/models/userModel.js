@@ -4,11 +4,11 @@ var crypto = require('crypto')
 var userSchema = new mongoose.Schema({
 	password: {
 		type: String,
-        required: true
+        //required: true
 	},
 	email: {
 		type: String,
-        required: true
+        //required: true
 	},
 	cart: {
         type: [mongoose.Schema.Types.ObjectId],
@@ -25,6 +25,10 @@ var userSchema = new mongoose.Schema({
     },
     company: {
         type: String
+    },
+    orders: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "Product"
     },
     productsForSale: {
         //in dashboard, this is the array we need to edit
@@ -45,7 +49,7 @@ var userSchema = new mongoose.Schema({
         id: String
     },
     google: {
-        id: String
+        id: String,
     }
 })
 
