@@ -3,6 +3,6 @@ app.controller('detailCtrl', function($scope, product, detailFactory) {
 	$scope.reviewData = "";
 	$scope.storeData = function(){
 		//other team: what is userID in this context?
-		detailFactory.submitReview($scope.product._id, $scope.reviewData, 123)
+		detailFactory.submitReview($scope.product._id, $scope.reviewData)
 	}
 })
