@@ -1,2 +1,21 @@
 <h1> Overview </h1>
-<p ng-repeat='product in productsForSale'>{{product.name}}, ${{product.price}}</p>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Your Products (Currently for Sale)</div>
+  <!-- Table -->
+  <table class="table">
+  	<thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='product in productsForSale'>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </tbody>  
+  </table>
+</div>
+

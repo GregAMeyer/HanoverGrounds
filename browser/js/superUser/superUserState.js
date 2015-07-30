@@ -21,12 +21,10 @@ app.config(function($stateProvider) {
 			templateUrl: "js/superUser/allProducts.html",
 			controller: "superUserCtrl"
 		})
-
 });
 
 app.factory('superUserFactory', function($http){
 	return{
-
 		getAllUsers: function(){
 	    	return $http.get('/api/admin/users')
 	        	.then(function(users){
@@ -34,7 +32,6 @@ app.factory('superUserFactory', function($http){
         		})
 			},
 		getAllProducts: function(){
-			console.log('FACTORY RUNS?')
 	    	return $http.get('/api/admin/products')
 	        	.then(function(products){
 	            	return products.data
