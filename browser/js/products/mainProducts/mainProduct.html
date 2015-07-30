@@ -3,7 +3,7 @@
 <div class="row" >
   <div ng-click="getDetail(product)" id="products" class="col-xs-4 .col-sm-3" ng-repeat="product in products" >
   	<h4>{{product.name}}</h4>
-  	<img ng-src="{{'/images/'+product.photo}}"> 
+  	<img ng-src="{{'/images/'+product.photo[0]}}"> 
   </div>
 </div>
 

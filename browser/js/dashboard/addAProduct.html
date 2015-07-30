@@ -1,41 +1,29 @@
 <h1> Add a Product </h1>
 <form>
-
 	<div class="input-group">
 	    <span class="input-group-addon" id="basic-addon1">Name</span>
-	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.name'>
+	    <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model='product.name'>
 	</div>
 	<div class="input-group">
 	    <span class="input-group-addon" id="basic-addon1">Price</span>
-	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.price'>
+	    <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model='product.price'>
 	</div>
 	<div class="input-group">
 	    <span class="input-group-addon" id="basic-addon1">Description</span>
-	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.description'>
+	    <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model='product.description'>
 	</div>
 	<div class="input-group">
-	    <span class="input-group-addon" id="basic-addon1">Company</span>
-	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.company'>
+	    <span class="input-group-addon" id="basic-addon1">Quantity</span>
+	    <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model='product.quantity'>
 	</div>
 	<div class="input-group">
 	    <span class="input-group-addon" id="basic-addon1">Photo</span>
-	    <input type="text" class="form-control" placeholder="Product Name" aria-describedby="basic-addon1" ng-model='product.photo'>
+	    <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model='product.photo'>
 	</div>
-	<div>
     <div class="input-group">
-      <input type="text" class="form-control" aria-label="..." ng-model='product.category'>
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li>Kenyan</li>
-          <li>Ethiopian</li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link HUH?</a></li>
-        </ul>
-      </div><!-- /btn-group -->
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-
-
+	    <span class="input-group-addon" id="basic-addon1">Category</span>
+	    <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model='product.category'>
+	</div>
+  </div>
 	<button ng-click="addProduct(product)">Add</button>
 </form>

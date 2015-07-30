@@ -1,0 +1,35 @@
+<h1> Edit A Product </h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">All Products (Currently for Sale)</div>
+  <table class="table">
+  	<thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='product in allProducts'>
+        <td><input type="text" ng-model='product.name'></input></td>
+        <td><input type="text" ng-model='product.price'></input></td>
+        <td><input type="text" ng-model='product.quantity'></input></td>
+        <td><button ng-click='editProduct(product)'>Save</button></td>
+		<td><button ng-click='deleteProduct(product)'>Delete</button></td>
+      </tr>
+    </tbody>  
+  </table>
+</div>
+
+<!-- <h1> Edit A PRODUCT </h1>
+
+<div class='col-lg-10' ng-repeat='product in allProducts'>
+	name<input type="text" ng-model='product.name'></input>
+	price<input type="text" ng-model='product.price'></input>
+	company<input type="text" ng-model='product.company'></input>
+	quantity<input type="text" ng-model='product.quantity'></input>
+
+	<button ng-click='editProduct(product)'>Save</button>
+	<button ng-click='deleteProduct(product)'>!!!!!DELETEEEEE!!!</button>
+</div> -->

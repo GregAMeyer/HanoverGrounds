@@ -1,10 +1,22 @@
-<h1> Edit A user </h1>
-
-<div class='col-lg-10' ng-repeat='user in users'>
-	email<input type="text" ng-model='user.email'></input>
-	pw<input type="text" ng-model='user.password'></input>
-	seller<input type="text" ng-model='user.isSeller'></input>
-	super<input type="text" ng-model='user.isSuperUser'></input>
-	<button ng-click='editUser(user)'>Save</button>
-	<button ng-click='deleteUser(user)'>!!!!!DELETEEEEE!!!</button>
+<h1> Edit A User </h1>
+<div class="panel panel-default">
+  <div class="panel-heading">User Accounts</div>
+  <table class="table">
+  	<thead>
+      <tr>
+        <th>Email</th>
+        <th>Seller?</th>
+        <th>Admin?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='user in users'>
+        <td><input type="text" ng-model='user.email'></input></td>
+        <td><input type="text" ng-model='user.isSeller'></input></td>
+        <td><input type="text" ng-model='user.isSuperUser'></input></td>
+         <td><button ng-click='editUser(user)'>Save</button></td>
+		 <td><button ng-click='deleteUser(user)'>Delete</button></td>
+      </tr>
+    </tbody>  
+  </table>
 </div>

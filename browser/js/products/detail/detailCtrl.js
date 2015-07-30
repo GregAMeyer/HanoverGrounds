@@ -1,3 +1,4 @@
+
 app.controller('detailCtrl', function($scope, product, detailFactory) {
 	$scope.product = product;
 	$scope.reviewData = "";
