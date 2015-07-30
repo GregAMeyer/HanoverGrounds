@@ -26,13 +26,13 @@ app.config(function($stateProvider) {
 app.factory('superUserFactory', function($http){
 	return{
 		getAllUsers: function(){
-	    	return $http.get('/api/admin/users')
+	    	return $http.get('/api/members')
 	        	.then(function(users){
 	            	return users.data
         		})
 			},
 		getAllProducts: function(){
-	    	return $http.get('/api/admin/products')
+	    	return $http.get('/api/products')
 	        	.then(function(products){
 	            	return products.data
         		})
