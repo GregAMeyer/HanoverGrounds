@@ -1,9 +1,9 @@
 navbar {
 
-  display: block;
-  background: white;
-  border-bottom: 1px solid black;
-  box-shadow: 1px 1px 14px -3px black;
+  /*display: block;*/
+  /*background: white;*/
+  /*border: 0px;*/
+  /*box-shadow: 1px 1px 14px -3px black;*/
 
   .container {
     width: 91%;
@@ -57,4 +57,9 @@ navbar {
     }
   }
 
+}
+#grad {
+  border-bottom: none;
+  margin-bottom: 0px;
+  background: linear-gradient(to top, rgba(255,0,0,0), rgba(71,36,0,1)); /*Standard*/
 }
