@@ -13,7 +13,7 @@ var product = new mongoose.Schema({
 		//required: true
 	},
 	photo: {
-		type: String,
+		type: [String],
 	},
 	quantity: {
 		type: Number,

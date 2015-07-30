@@ -1,6 +1,11 @@
 <section id="detail">
-<img ng-src="{{'/images/'+product.photo}}"> 
+ <carousel style="padding: 0px;" interval="3000">
+        <slide ng-repeat="photo in product.photo">
+            <img ng-src="{{'/images/'+photo}}" />
+        </slide>
+    </carousel>
 {{ product.name }}
 {{ product.company }}
 {{ product.description }}
+<button ng-click='toProducts()'>back</button>
 </section>
