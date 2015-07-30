@@ -20,6 +20,7 @@ app.factory('detailFactory', function($http, $state){
 				$state.go('cart')
 				return product.data;
 			})
+		},
 		deleteReview: function(id){
 			return $http.delete('api/products/reviews/'+id)
 				.then(function(res){

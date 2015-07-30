@@ -29,7 +29,7 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 		})
 	}	
 	$scope.addProductToCart = detailFactory.addProductToCart;
-	}
+
 	$scope.deleteData = function(id){
 		console.log('THE ID DELETE',id)
 		detailFactory.deleteReview(id)

@@ -19,14 +19,15 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 label: 'Products',
                 state: 'mainProductState'
             }, 
-            {
-                label: 'Seller Dashboard',
-                state: 'dashboard.overview'
-            }, {
-                label: 'Admin Dashboard',
-                state: 'superUser.overview',
-                auth: true
-            }];
+            // {
+            //     label: 'Seller Dashboard',
+            //     state: 'dashboard.overview'
+            // }, {
+            //     label: 'Admin Dashboard',
+            //     state: 'superUser.overview',
+            //     auth: true
+            // }
+            ];
 
 
             scope.user = null;
