@@ -13,5 +13,7 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 			$scope.reviews = reviews;
 			$scope.resetReview();
 		})
-	}
+	}	
+	$scope.addProductToCart = detailFactory.addProductToCart;
+
 })

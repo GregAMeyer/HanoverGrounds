@@ -1,0 +1,47 @@
+<nav class="navbar">
+	<div class="container">
+		<a class="navbar-brand" href="#">Your online store</a>
+		<div class="navbar-right">
+			<div class="container minicart"></div>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid breadcrumbBox text-center">
+	<ol class="breadcrumb">
+		<li><a href="#">Review</a></li>
+		<li class="active"><a href="#">Order</a></li>
+		<li><a href="#">Payment</a></li>
+	</ol>
+</div>
+
+<div class="container text-center">
+
+	<div class="col-md-5 col-sm-12">
+		<div class="bigcart"></div>
+		<h1>Your shopping cart</h1>
+	</div>
+	
+	<div class="col-md-7 col-sm-12 text-left">
+		<ul>
+			<li ng-repeat='product in productsInCart' class="row list-inline columnCaptions">
+				<span>{{product.name}}</span>
+				<span>{{product.price | currency}}</span>
+			</li>
+		</ul>
+	</div>
+
+</div>
+
+<!-- The popover content -->
+
+<div id="popover" style="display: none">
+	<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+	<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+</div>
+
+<!-- JavaScript includes -->
+
+<!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
+// <script src="assets/js/bootstrap.min.js"></script>
+// <script src="assets/js/customjs.js"></script> -->

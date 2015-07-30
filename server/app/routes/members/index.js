@@ -16,13 +16,34 @@ router.get('/', function(req, res){
             res.json(users)
         })
 })
+//for displaying the items in the user's cart
+router.get('/cart', function(req, res){
+    console.log('in the get request route', req.user._id)
+    User.findById(req.user._id).exec()
+        .then(function(user){
+            //user.cart is an array of ids
+            //Product.find each id
+            return Product.find({
+                '_id': {
+                    $in: user.cart
+                }
+            }).exec()
+        }).then(function(productsInUsersCart){
+            res.send(productsInUsersCart)
+        })
+})
+//for displaying the items in the user's cart
+router.post('/cart', function(req, res){
+    var productToAddToCart = req.body;
+    console.log('adding this product ID?: ', productToAddToCart)
+    User.findByIdAndUpdate(req.user._id, { $push: {'cart': productToAddToCart} }, function(){
+            res.end()
+        })
+})
+
 //from the signup page
 router.post('/', function(req, res, next){
-    console.log("USER: ", User)
-    console.log("PRODUCT: ", Product)
-    console.log('body: ', req.body)
     User.create(req.body).then(function(createdUser){
-        console.log("hitting users route: ", createdUser)
         res.end()
     })
     .then(null, next);
@@ -44,3 +65,10 @@ router.post('/loggedInUser', function(req,res,next){
 //         res.status(401).end();
 //     }
 // };
+//////////////////////example to follow/////////////////////
+
+
+
+
+
+
