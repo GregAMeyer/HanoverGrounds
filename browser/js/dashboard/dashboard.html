@@ -1,14 +1,14 @@
 <!--.sidebar -->
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<br>
-		<ul class="nav menu dashboard">
-			<li ui-sref-active="active"><a ui-sref="dashboard.overview">
+		<ul class="nav menu dashboard row">
+			<li ui-sref-active="active"><a class='dashButton' ui-sref="dashboard.overview">
 				<span class="glyphicon glyphicon-heart"></span> Overview</a>
 			</li>
-			<li ui-sref-active="active"><a ui-sref="dashboard.addProduct">
+			<li ui-sref-active="active"><a class='dashButton' ui-sref="dashboard.addProduct">
 				<span class="glyphicon glyphicon-gift"></span> Add A Product</a>
 			</li>
-			<li ui-sref-active="active"><a ui-sref="dashboard.editProduct">
+			<li ui-sref-active="active"><a class='dashButton' ui-sref="dashboard.editProduct">
 				<span class="glyphicon glyphicon-gift"></span> Edit A Product</a>
 			</li>
 		</ul>
@@ -18,10 +18,3 @@
 			<div ui-view class='col-lg-10 col-sm-9'></div>
 		</div>
 </div>
-
-<script src="/scripts/jquery.min.js"></script>
-<!-- <script src="/js/dashboard/dashboard.js"></script> -->
-
-</body>
-<!-- 
-</html> -->

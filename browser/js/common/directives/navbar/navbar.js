@@ -4,6 +4,9 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
         restrict: 'E',
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
+
+
+
         link: function(scope) {
 
             scope.items = [{
@@ -13,16 +16,14 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 label: 'About',
                 state: 'about'
             }, {
-                label: 'Products',
-                state: 'mainProductState'
+                label: 'Seller Dashboard',
+                state: 'dashboard.overview'
             }, {
-                label: 'Documentation',
-                state: 'docs'
-            }, {
-                label: 'Members Only',
-                state: 'membersOnly',
+                label: 'Admin Dashboard',
+                state: 'superUser.overview',
                 auth: true
             }];
+
 
             scope.user = null;
 

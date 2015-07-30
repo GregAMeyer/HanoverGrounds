@@ -14,15 +14,34 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state) {
+app.controller('LoginCtrl', function ($scope, AuthService, $state,$http) {
 
     $scope.login = {};
     $scope.error = null;
 
     $scope.sendLogin = function (loginInfo) {
         $scope.error = null;
-        AuthService.login(loginInfo).then(function () {
-            $state.go('home');
+        $http.post('/api/members/loggedInUser',loginInfo).then(function(user){
+            console.log('FURST: ',user)
+            if(user.data.isSeller){
+                console.log('@#@#loginInfo@#@#: ',loginInfo)
+                AuthService.login(loginInfo).then(function () {
+                    $state.go('dashboard.overview');  
+                })
+            }
+            else if(user.data.isSuperUser){
+                console.log('ELIF ELIF ELIFloginInfo@#@#: ',loginInfo)
+                AuthService.login(loginInfo).then(function () {
+                    $state.go('superUser.overview');
+                })  
+            }
+            else{
+                console.log('ELSEELSEELSEloginInfo@#@#: ',loginInfo)
+                 AuthService.login(loginInfo).then(function () {
+                    $state.go('home');
+                })
+            }  
+       
         }).catch(function () {
             $scope.error = 'Invalid login credentials.';
         });

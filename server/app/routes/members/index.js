@@ -27,6 +27,15 @@ router.post('/', function(req, res, next){
     .then(null, next);
 });
 
+router.post('/loggedInUser', function(req,res,next){
+	console.log('BODY%%%',req.body)
+	User.findOne({email: req.body.email}).exec()
+		.then(function(user){
+			console.log('UESR', user)
+			res.send(user)
+		})
+})
+
 
 
 // router.get('/secret-stash', ensureAuthenticated, function (req, res) {
