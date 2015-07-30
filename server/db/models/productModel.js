@@ -36,7 +36,11 @@ var product = new mongoose.Schema({
 	},
 	price: {
 		type: Number
-	}
+	},
+	reviews: [{
+		review: String,
+		user: String
+	}]
 })
 
 
