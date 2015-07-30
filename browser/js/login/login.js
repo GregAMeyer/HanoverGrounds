@@ -50,9 +50,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state,$http) {
             }
             else {
                 $state.go('home');
-            }
-        })
-       
+            }   
         }).catch(function () {
             $scope.error = 'Invalid login credentials.';
         });

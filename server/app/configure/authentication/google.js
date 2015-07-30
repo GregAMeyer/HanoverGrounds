@@ -26,7 +26,9 @@ module.exports = function (app) {
                     return UserModel.create({
                         google: {
                             id: profile.id
-                        }
+                        },
+                        email: profile.email,
+                        //now you can make email required in the schema
                     });
                 }
 
