@@ -4,6 +4,8 @@ var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var Product = Promise.promisifyAll(mongoose.model('Product'));
 var User = Promise.promisifyAll(mongoose.model('User'));
+var Categories = Promise.promisifyAll(mongoose.model('Categories'));
+
 
 
 
@@ -11,54 +13,40 @@ var seedProducts = function() {
 
     var products = [{
         name: "Metropolis Coffee",
-        company: "Hipster Coffee Comp",
+        seller: "Hipster Coffee Comp",
         description: "This unique cognac-like blend balances delicacy and elegance, with jasmine and orange notes giving way to buttery shortbread, and a mild caramel that ties it all together. A light and refreshing spring and summer brew with subtle yet astonishing nuances.",
         price: 15.30,
-        photo: ["metropolis.jpg"],
-        rating: 3,
-        category: "Coffee",
-        roast: "Medium",
-        region: "Africa"
+        quantity: 3,
+        photo: ["metropolis.jpg"]
     }, {
         name: "Perc Coffee",
-        company: "Koke Cooperative Ethiopia",
+        seller: "Koke Cooperative Ethiopia",
         description: "Koke hails from Chyalalcktu village in the Kochere District of Southern Oromia. This coffee is special to us because it marks the first hybrid process Ethiopia we’ve ever offered. It’s the perfect blend of a washed and natural processed coffee. ",
         price: 14,
-        photo: ["perc.jpeg"],
-        rating: 3,
-        category: "Coffee",
-        roast: "Medium",
-        region: "Africa"
+        quantity: 3,
+        photo: ["perc.jpeg"]
     }, {
         name: "San Jose OCAÑA",
-        company: "Cuvee Coffee",
+        seller: "Cuvee Coffee",
         description: "This is not a loud coffee, a fruit bomb, it’s something more. Few farms in the world, let alone Guatemala are able to produce coffee of this quality this consistently. ",
         price: 13.95,
-        photo: ["sanJoseOcana.jpeg"],
-        rating: 3,
-        category: "Coffee",
-        roast: "Medium",
-        region: "Central America"
+        quantity: 3,
+        photo: ["sanJoseOcana.jpeg"]
     }, {
         name: "Yum Coffee",
-        company: "Coughfay Companty",
+        seller: "Coughfay Companty",
         description: "YUMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM ",
         price: 25,
-        photo: ["sanJoseOcana.jpeg"],
-        rating: 3,
-        category: "Coffee",
-        roast: "Bold",
-        region: "Mars"
+        quantity: 3,
+        photo: ["sanJoseOcana.jpeg"]
+      
     }, {
         name: "Coffee Me",
-        company: "KAKAKACoffee",
+        seller: "KAKAKACoffee",
         description: "Great for kids!",
         price: 10,
-        photo: ["sanJoseOcana.jpeg", "metropolis.jpg"],
-        rating: 3,
-        category: "Coffee",
-        roast: "Light",
-        region: "Chucky Cheese"
+        quantity: 3,
+        photo: ["sanJoseOcana.jpeg", "metropolis.jpg"]
     }];
 
     return Product.createAsync(products);
@@ -73,6 +61,8 @@ var seedUsers = function(){
     ]
      return User.createAsync(users);
 }
+
+
 
 connectToDb.then(function() {
     Product.findAsync({}).then(function(products) {
