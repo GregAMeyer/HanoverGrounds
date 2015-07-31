@@ -3,20 +3,22 @@
 <input type="text" placeholder="Search" ng-model='searchText'>
 
 <select ng-repeat="category in categories">
-	<option>{{category}}</option>
+	<option>{{ category }}</option>
 </select>
 
+<button ng-click="allCategories()">click me</button>
 <div class="row" >
-  <div ng-click="getDetail(product)" id="products" class="col-xs-4 .col-sm-3" ng-repeat="product in products | filter: searchText:strict" >
-  	<h4>{{product.name}}</h4>
+  <div ng-click="getDetail(product)" id="products" class="col-xs-4 .col-sm-3" ng-repeat="product in productList | filter: searchText:strict">
+  	<h4>{{ product.name }}</h4>
   	<img ng-src="{{'/images/'+product.photo[0]}}"> 
-  	{{categories}}
-  	
-  	<p>{{categories.roast}}</p>
+  	<p>{{ product.categories }}</p>	
+  	<!-- <p>{{categories.roast}}</p>
   	<p>{{categories.region}}</p>
   	<p>{{categories.itemCategory}}</p>
-  	<p>{{categories.machine}}</p>
-  </div>
+  	<p>{{categories.machine}}</p> -->
+ 
 </div>
+</div>
+
 
 </section>

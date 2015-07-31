@@ -44,6 +44,7 @@ router.get('/', function(req, res, next) {
 		})
 		.then(null, next);
 });
+
 router.get('/:id', function(req, res, next) {
 	//console.log(req.params)
 	Product.findById(req.params.id).exec()
@@ -77,6 +78,8 @@ router.delete('/reviews/:id', function(req,res,next){
 			res.end()
 		})
 })
+
+
 
 router.get('/categories/:id',function(req,res,next){
 	Product.findById(req.params.id)

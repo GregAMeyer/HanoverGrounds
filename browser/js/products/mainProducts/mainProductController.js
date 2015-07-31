@@ -1,35 +1,48 @@
 app.controller('mainProductCtrl', function($scope, $state, mainProductFactory) {
-	mainProductFactory.getAll()
-		.then(function(products) {
-			$scope.products = products
-			return products
-		})
-		.then(function(products){
-			products.forEach(function(product){
-				mainProductFactory.getCategories(product._id)
-					.then(function(categories){
-						//this isn't going to work. is getting the cats for one product and applying to all
-						// var cats = {};
-						// for (var key in categories){
-						// 	if (key !== "_id" && key !== "__v"){
-						// 		cats[key] = categories[key];
-						// 	}
-						// }
-						// $scope.categories = cats;
-						$scope.categories = categories;
-						console.log($scope.categories)
-			})
-		})
-	})
-	
+    $scope.categories=[];
+    mainProductFactory.getAll()
+        .then(function(products) {
+            $scope.products = products
+            return products
+        })
 
 
-	$scope.getDetail = function(product) {
-		$state.go('detailState', {
-			id: product._id
-		});
-	};
+    .then(function(products) {
+        $scope.productList = [];
+        products.forEach(function(product) {
+            mainProductFactory.getCategories(product._id)
+                .then(function(categories) {
+                    var cats = {};
+                    for (var key in categories){
+                    	if (key !== "_id" && key !== "__v"){
+                    		cats[key] = categories[key];
+                    	}
+                    }
+                    product.categories = cats;
+                    $scope.productList.push(product);
+                })
+        })
 
+    })
 
+    $scope.getDetail = function(product) {
+        $state.go('detailState', {
+            id: product._id
+        });
+    };
 
 });
+
+
+
+
+/*
+
+
+get all products - forEach over all the products to get respective categories
+
+attach correct product to correct category
+
+render
+
+*/
