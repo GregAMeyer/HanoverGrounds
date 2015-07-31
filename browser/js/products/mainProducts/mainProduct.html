@@ -1,7 +1,22 @@
 <section id="mainProduct">
 
+<input type="text" placeholder="Search" ng-model='searchText'>
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a>Action</a></li>
+    <li><a>Another action</a></li>
+    <li><a>Something else here</a></li>
+    <li><a>Separated link</a></li>
+  </ul>
+</div>
+
+
 <div class="row" >
-  <div ng-click="getDetail(product)" id="products" class="col-xs-4 .col-sm-3" ng-repeat="product in products" >
+  <div ng-click="getDetail(product)" id="products" class="col-xs-4 .col-sm-3" ng-repeat="product in products | filter: searchText:strict" >
   	<h4>{{product.name}}</h4>
   	<img ng-src="{{'/images/'+product.photo[0]}}"> 
   	<p>Categories:{{categories}}</p>

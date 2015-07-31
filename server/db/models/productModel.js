@@ -22,6 +22,10 @@ var product = new mongoose.Schema({
 	},
 	price: {
 		type: Number
+	},
+	categories: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Categories'
 	}
 })
 

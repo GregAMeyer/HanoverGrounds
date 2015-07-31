@@ -79,9 +79,10 @@ router.delete('/reviews/:id', function(req,res,next){
 })
 
 router.get('/categories/:id',function(req,res,next){
-	Categories.find({product: req.params.id})
-		.then(function(categories){
-			res.json(categories)
+	Product.findById(req.params.id)
+		.populate('categories')
+		.exec(function(err, products){
+			res.json(products.categories);
 		})
 })
 
