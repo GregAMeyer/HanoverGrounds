@@ -6,6 +6,7 @@ var Product = Promise.promisifyAll(mongoose.model('Product'));
 var User = Promise.promisifyAll(mongoose.model('User'));
 var Categories = Promise.promisifyAll(mongoose.model('Categories'));
 
+
 var seedUsers = function() {
 var users = [{
         password: "admin",
@@ -49,6 +50,7 @@ var seedProducts = function(users, categories) {
 
     var products = [{
         name: "Metropolis Coffee",
+
         seller: users[0]._id,
         description: "This unique cognac-like blend balances delicacy and elegance, with jasmine and orange notes giving way to buttery shortbread, and a mild caramel that ties it all together. A light and refreshing spring and summer brew with subtle yet astonishing nuances.",
         price: 15.30,
@@ -82,12 +84,15 @@ var seedProducts = function(users, categories) {
         price: 10,
         photo: ["sanJoseOcana.jpeg", "metropolis.jpg"],
         categories: categories[1]._id
+
     }];
 
 
     return Product.createAsync(products);
 
 };
+
+
 
 
 connectToDb.then(function() {
