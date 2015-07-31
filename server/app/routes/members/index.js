@@ -36,13 +36,22 @@ router.get('/cart', function(req, res){
 router.post('/cart', function(req, res){
     var productToAddToCart = req.body;
     console.log('adding this product ID?: ', productToAddToCart)
+    console.log('adding to this user iD?: ', req.user._id)
     User.findByIdAndUpdate(req.user._id, { $push: {'cart': productToAddToCart} }, function(){
+            res.end()
+        })
+})
+//for deleting an item in the user's cart
+router.delete('/cart', function(req, res){
+    var productToRemoveFromCart = req.body;
+    console.log('removing this product ID?: ', productToRemoveFromCart)
+    User.findByIdAndRemove(req.user._id, { $pullAll: {'cart': productToRemoveFromCart} }, function(){
             res.end()
         })
 })
 
 //from the signup page
-router.post('/', function(req, res, next){
+router.post('/', function(req, res){
     User.create(req.body).then(function(createdUser){
         res.end()
     })

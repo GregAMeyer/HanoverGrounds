@@ -1,24 +1,26 @@
 <section id="home">
-    
-    <!-- <carousel style="padding: 0px;" interval="3000">
-        <slide ng-repeat="image in images">
-            <img ng-src="{{ image }}" />
-        </slide>
-    </carousel> -->
 
-    <img src="../../giphy.gif" style='width: 100%'/>
+  <video id="homeImg" class="hidden-xs hero-video" width="1280" height="548" autoplay="" loop="">
+    <source src="../../lucca.mp4" type="video/mp4">
+  </video>
 
+  <div class='col-lg-12'>
+    <h2>A Few of Our Products</h2>
+  </div>
 
-    <div>
-      <div class="homePage">
-        <h3><a>About</a></h3>
-      </div>
-      <div class="homePage">
-        <h3><a ng-click="goToProducts()">Products</a></h3>
-      </div>
-      <div class="homePage">
-        <h3>Contact</h3>
-      </div>
+  <div class="row text-center">
+    <div ng-repeat='product in allProducts | limitTo:4' class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <img src="http://placehold.it/800x500" alt="">
+            <div class="caption">
+                <h4>{{product.name}}</h4>
+                <p>{{product.description | limitTo: 15}}...</p>
+                <p>
+                   <a ng-click="getDetail(product)" class="btn btn-default">More Info</a>
+                </p>
+            </div>
+        </div>
     </div>
-
+  </div>
+<br>
 </section>

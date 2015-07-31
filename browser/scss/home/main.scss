@@ -1,4 +1,17 @@
 #home {
+	font-family: Cinzel;
+	.row{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.col-lg-12 {
+		width: 100%;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		text-align: center;
+	}
   fullstack-logo {
     padding-top: 30px;
     width: 150px;
@@ -7,6 +20,24 @@
   h1 {
     margin-top: 40px;
     text-align: center;
+  }
+  h3 {
+  	text-align: center;
+  	color: $darkRoast;
+  }
+  .thumbnail {
+  	background-color: darken($cream, 20%);
+  	font-family: Cinzel;
+  	border-radius: 5px;
+  	padding: 0px;
+  }
+  .caption {
+  	color: $darkRoast;
+  }
+  .btn {
+  	padding: 5px;
+  	background-color: $cream;
+  	font-color: $darkRoast;
   }
 }
 

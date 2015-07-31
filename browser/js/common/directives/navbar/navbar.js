@@ -27,6 +27,7 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             //     state: 'superUser.overview',
             //     auth: true
             // }
+            //is it possible to set auth to something like { isSeller: true }
             ];
 
 
