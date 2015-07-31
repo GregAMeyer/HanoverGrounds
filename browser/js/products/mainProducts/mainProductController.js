@@ -8,7 +8,16 @@ app.controller('mainProductCtrl', function($scope, $state, mainProductFactory) {
 			products.forEach(function(product){
 				mainProductFactory.getCategories(product._id)
 					.then(function(categories){
-					$scope.categories = categories			
+						//this isn't going to work. is getting the cats for one product and applying to all
+						// var cats = {};
+						// for (var key in categories){
+						// 	if (key !== "_id" && key !== "__v"){
+						// 		cats[key] = categories[key];
+						// 	}
+						// }
+						// $scope.categories = cats;
+						$scope.categories = categories;
+						console.log($scope.categories)
 			})
 		})
 	})
