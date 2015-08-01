@@ -42,7 +42,6 @@ app.factory('mainProductFactory', function($http,$state){
 		getCategories: function(id){
 			return $http.get('api/products/categories/'+ id)
 				.then(function(res){
-					console.log('1234324123423')
 					return res.data
 				})
 		}
