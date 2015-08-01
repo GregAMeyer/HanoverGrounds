@@ -14,6 +14,13 @@ app.factory('cartFactory', function($http){
 	        	.then(function(products){
 	            	return products.data
         		})
-			}
+			},
+		removeFromCart:	function(productToDelete){
+    	//product will be an object, as declared in html
+    	return $http.delete('/api/members/cart/'+productToDelete._id)
+    	.then(function(remainingProducts){
+    		return remainingProducts;
+    	}, console.log)
+    }
 	}
 })

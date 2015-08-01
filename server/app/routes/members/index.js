@@ -18,7 +18,7 @@ router.get('/', function(req, res){
 })
 //for displaying the items in the user's cart
 router.get('/cart', function(req, res){
-    console.log('in the get request route', req.user._id)
+    //console.log('in the get request route', req.user._id)
     User.findById(req.user._id).exec()
         .then(function(user){
             //user.cart is an array of ids
@@ -42,12 +42,13 @@ router.post('/cart', function(req, res){
         })
 })
 //for deleting an item in the user's cart
-router.delete('/cart', function(req, res){
-    var productToRemoveFromCart = req.body;
-    console.log('removing this product ID?: ', productToRemoveFromCart)
-    User.findByIdAndRemove(req.user._id, { $pullAll: {'cart': productToRemoveFromCart} }, function(){
-            res.end()
+router.delete('/cart/:id', function(req, res){
+    var productToRemoveFromCart = req.params.id;
+    User.findByIdAndUpdate(req.user._id, { $pull: {'cart': productToRemoveFromCart} }, function(){
+        User.findById(req.user._id).exec().then(function(user){
+            res.end();
         })
+    })
 })
 
 //from the signup page

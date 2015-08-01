@@ -10,12 +10,13 @@ app.controller("cartCtrl", function($scope, $http, AuthService, $state, cartFact
         $scope.productsInCart = prods
     });
 
-    $scope.removeProduct = function(productToDelete){
-    	//product will be an object, as declared in html
-    	return $http.delete('/api/members/cart', productToDelete)
-    	.then(function(remainingProducts){
-    		$scope.productsInCart = remainingProducts;
-    	}, console.log)
+    $scope.removeProduct = function(product){
+        cartFactory.removeFromCart(product)
+        .then(function(remainingProducts){
+            cartFactory.getProductsInCart().then(function(prods){
+                $scope.productsInCart = prods
+            })
+        })
     };
 
     // $scope.purchase = function(products){
