@@ -21,26 +21,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state,$http) {
 
     $scope.sendLogin = function (loginInfo) {
         $scope.error = null;
-        //$http.post('/api/members/loggedInUser',loginInfo).then(function(user){
-        // AuthService.getLoggedInUser().then(funciton(user){
-        //     //do AuthService.login then use the getLoggedInUser and do the conditionals there
-        // })
-        //     if(user.data.isSeller){
-        //         AuthService.login(loginInfo).then(function () {
-        //             $state.go('dashboard.overview');  
-        //         })
-        //     }
-        //     else if(user.data.isSuperUser){
-        //         AuthService.login(loginInfo).then(function () {
-        //             $state.go('superUser.overview');
-        //         })  
-        //     }
-        //     else{
-        //          AuthService.login(loginInfo).then(function () {
-        //             $state.go('home');
-        //         })
-        //     }  
-        AuthService.login().then(function(user){
+        AuthService.login(loginInfo).then(function(user){
             var user = AuthService.getLoggedInUser()
             if(user.isSeller){
                 $state.go('dashboard.overview');
