@@ -1,15 +1,13 @@
-#home {
+ #mainProduct {
 
-	.col-lg-12 {
-		margin-top: 0px;
-		margin-bottom: 0px;
-		padding-top: 15px;
-		padding-bottom: 15px;
-		text-align: center;
-    h2 {
-      color: $coffee;
-    }
-	}
+ 	.filterMenu {
+ 		padding-top: 10px;
+ 		padding-bottom: 10px;
+ 		input {
+ 			width: 150px;
+ 		}
+ 	}
+	
   .row{
     margin-left: 0px;
     margin-right: 0px;
@@ -34,6 +32,8 @@
   }
 }
 
-#homeImg {
+#bigImg {
   width: 100%;
+  margin-top: 0px;
+  margin-bottom: 10px;
 }

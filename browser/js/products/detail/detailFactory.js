@@ -23,7 +23,7 @@ app.factory('detailFactory', function($http, $state){
 		},
 		deleteReview: function(id){
 			return $http.delete('api/products/reviews/'+id)
-				.then(function(res){
+				.then(function(){
 					return 
 				})
 		}

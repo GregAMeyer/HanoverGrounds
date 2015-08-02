@@ -1,24 +1,30 @@
 <section id="mainProduct">
 
-<input type="text" placeholder="Search" ng-model='searchText'>
+	<img src='../../espresso-kickerBW.jpg' id='bigImg'><img>
 
-<select ng-repeat="category in categories">
-	<option>{{ category }}</option>
-</select>
+	<div class='filterMenu col-lg-12'>
+		<input type="text" placeholder="Search" ng-model='searchText'>
+		<select>
+			<option ng-repeat="category in categories">{{ category }}</option>
+		</select>
+		<button ng-click="allCategories()">click me</button>
+	</div>
 
-<button ng-click="allCategories()">click me</button>
-<div class="row" >
-  <div ng-click="getDetail(product)" id="products" class="col-xs-4 .col-sm-3" ng-repeat="product in productList | filter: searchText:strict">
-  	<h4>{{ product.name }}</h4>
-  	<img ng-src="{{'/images/'+product.photo[0]}}"> 
-  	<p>{{ product.categories }}</p>	
-  	<!-- <p>{{categories.roast}}</p>
-  	<p>{{categories.region}}</p>
-  	<p>{{categories.itemCategory}}</p>
-  	<p>{{categories.machine}}</p> -->
- 
-</div>
-</div>
+	<div class="row text-center">
+	    <div ng-repeat='product in productList | filter: searchText:strict' class="col-lg-4 col-md-4 col-sm-6 hero-feature">
+	        <div class="thumbnail">
+	            <img src="http://placehold.it/800x500" alt="">
+	            <div class="caption">
+	                <h4>{{product.name}}</h4>
+	                <p>{{product.description | limitTo: 15}}...</p>
+	                <p>
+	                   <a ng-click="getDetail(product)" class="btn btn-default">More Info</a>
+	                </p>
+	            </div>
+	        </div>
+	    </div>
+	  </div>
+	<br>
 
 
 </section>

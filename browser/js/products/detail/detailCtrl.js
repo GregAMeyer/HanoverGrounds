@@ -22,7 +22,7 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 	}
 	$scope.storeData = function(){
 		detailFactory.submitReview($scope.product._id, $scope.reviewData)
-		.then(function(reviews){
+		.then(function(){
 			$scope.reviews = $scope.getCurrentReviews()
 
 			$scope.resetReview();
