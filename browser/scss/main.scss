@@ -1,14 +1,16 @@
 $coffee: #371C00;
-$cream: #F0EBE6;
+$cream: #F7F4F1;
 $darkRoast: #271400;
 /*rgb(39, 20, 0)*/
 
 * {
   box-sizing: border-box;
+  font-family: Cinzel;
+  text-decoration: none;
 }
 
 body {
-  background: $cream
+  background: $cream;
 }
 
 @mixin clearfix {
@@ -20,27 +22,27 @@ body {
 }
 
 #main {
-  padding-top: 60px;
-  /*width: 1200px;*/
+  /* width: 100%; already in-line style */
   margin: 0 auto;
   display: block;
-  margin-top: 100px;
-}
-#home {
-  margin-top: -105px;
-}
-#homeImg {
-  /*width: 100%;*/
-  /*padding-top: 100px;*/
-  margin-top: -50px;
 }
 
+#bigImg {
+  margin-top: -150px;
+  height: 250px;
+  width: 100%;
+}
+
+/* navbar, dashboard, FSlogo */
 @import 'directives/main';
+
+/* others */
 @import 'home/main';
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
-
+@import 'mainProduct/main';
+@import 'detail/main';
 
 @import 'directives/dashboard';
 @import 'cart/cart';

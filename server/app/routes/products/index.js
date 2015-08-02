@@ -2,9 +2,8 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 require('../../../db/models');
 var Product = mongoose.model('Product');
-var User = mongoose.model('User');
 var Reviews = mongoose.model('Reviews');
-var Categories =  mongoose.model('Categories');
+var Categories = mongoose.model('Categories');
 //for dashboard-side products routing/////////////////////////////////
 
 //for adding new products as seller in dashboard
@@ -54,14 +53,14 @@ router.get('/:id', function(req, res, next) {
 		.then(null, next);
 });
 
-router.get('/reviews/:id', function(req,res,next){
+router.get('/reviews/:id', function(req,res){
 	Reviews.find({product:req.params.id}).exec()
 		.then(function(reviews){
 			res.json(reviews)
 		})
 })
 
-router.post('/reviews/:id', function(req,res,next){
+router.post('/reviews/:id', function(req,res){
 	Reviews.create({
 		product: req.params.id,
 		review: req.body.review
@@ -72,7 +71,7 @@ router.post('/reviews/:id', function(req,res,next){
 		
 })
 
-router.delete('/reviews/:id', function(req,res,next){
+router.delete('/reviews/:id', function(req,res){
 	Reviews.remove({_id: req.params.id})
 		.then(function(){
 			res.end()
@@ -81,10 +80,11 @@ router.delete('/reviews/:id', function(req,res,next){
 
 
 
-router.get('/categories/:id',function(req,res,next){
+router.get('/categories/:id',function(req,res){
 	Product.findById(req.params.id)
 		.populate('categories')
 		.exec(function(err, products){
+			if(err) throw new Error(err)
 			res.json(products.categories);
 		})
 })

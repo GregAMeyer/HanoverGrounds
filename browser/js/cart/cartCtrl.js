@@ -12,7 +12,7 @@ app.controller("cartCtrl", function($scope, $http, AuthService, $state, cartFact
 
     $scope.removeProduct = function(product){
         cartFactory.removeFromCart(product)
-        .then(function(remainingProducts){
+        .then(function(){
             cartFactory.getProductsInCart().then(function(prods){
                 $scope.productsInCart = prods
             })

@@ -12,22 +12,12 @@ navbar {
     max-width: 1340px;
     padding-top: 20px;
   }
-
-  fullstack-logo {
-    margin-top: 5px;
-    margin-right: 20px;
-    width: 40px;
-  }
-
   a {
     color: $cream;
     font-size: 18px;
-    font-family: Cinzel;
-    text-decoration: none;
+    
     &:hover {
-      background: none;
       color: darken($cream, 20%);
-      text-decoration: none;
     }
   }
 
@@ -46,18 +36,8 @@ navbar {
     }
   }
 
-  .login-button {
-    /*float: right;*/
-    border: 1px solid black;
-    margin-top: 10px;
-    background: none;
-    outline: none !important;
-  }
-
   .welcome {
-    /*float: right;*/
     display: inline-block;
-    /*margin-top: 12px;*/
     span {
       color: white;
     }
@@ -72,13 +52,9 @@ navbar {
   }
 }
 
-
-
 #grad {
   border-bottom: none;
-  margin-bottom: 0px;
   padding-bottom: 50px;
-  /*background: linear-gradient(to top, rgba(255,0,0,0), rgba(71,36,0,1));*/
   background: linear-gradient(to top, rgba(255,0,0,0), rgba(39,20,0,1));
 }
 

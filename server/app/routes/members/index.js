@@ -45,21 +45,19 @@ router.post('/cart', function(req, res){
 router.delete('/cart/:id', function(req, res){
     var productToRemoveFromCart = req.params.id;
     User.findByIdAndUpdate(req.user._id, { $pull: {'cart': productToRemoveFromCart} }, function(){
-        User.findById(req.user._id).exec().then(function(user){
             res.end();
-        })
     })
 })
 
 //from the signup page
 router.post('/', function(req, res){
-    User.create(req.body).then(function(createdUser){
+    User.create(req.body).then(function(){
         res.end()
     })
-    .then(null, next);
+    .then(null);
 });
 //for determing the state to go to upon login
-router.post('/loggedInUser', function(req,res,next){
+router.post('/loggedInUser', function(req,res){
     User.findOne({email: req.body.email}).exec()
         .then(function(user){
             console.log('UESR', user)
