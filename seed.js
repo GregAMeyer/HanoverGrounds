@@ -48,15 +48,15 @@ var seedCategories = function() {
 
 var seedProducts = function(users, categories) {
 
-    var products = [{
+    var products = [
+        {
         name: "Metropolis Coffee",
-
         seller: users[0]._id,
         description: "This unique cognac-like blend balances delicacy and elegance, with jasmine and orange notes giving way to buttery shortbread, and a mild caramel that ties it all together. A light and refreshing spring and summer brew with subtle yet astonishing nuances.",
         price: 15.30,
         photo: ["./images/coffeeFlipLeft.png"],
         categories: categories[0]._id
-        }, {
+    }, {
         name: "Perc Coffee",
         seller: users[1]._id,
         description: "Koke hails from Chyalalcktu village in the Kochere District of Southern Oromia. This coffee is special to us because it marks the first hybrid process Ethiopia we’ve ever offered. It’s the perfect blend of a washed and natural processed coffee. ",
@@ -68,30 +68,8 @@ var seedProducts = function(users, categories) {
         seller: users[2]._id,
         description: "This is not a loud coffee, a fruit bomb, it’s something more. Few farms in the world, let alone Guatemala are able to produce coffee of this quality this consistently. ",
         price: 13.95,
-        photo: ["./images/coffeeFlipLeft.png"],
-        categories: categories[2]._id
-    }, {
-        name: "Yum Coffee",
-        seller: users[0]._id,
-        description: "The tastiest of the tastey. ",
-        price: 25,
         photo: ["./images/coffeeFlipRight.png"],
-        categories: categories[0]._id
-    }, {
-        name: "Coffee Me",
-        seller: users[1]._id,
-        description: "Great for kids!",
-        price: 10,
-        photo: ["./images/coffeeLeftNoBG.png"],
-        categories: categories[1]._id
-
-    }, {
-        name: "The Spaziale",
-        seller: users[0]._id,
-        description: "Artisinal occupy chillwave pour-over, sartorial single-origin coffee paleo 90's selvage Intelligentsia small batch gentrify drinking vinegar tousled Thundercats mlkshk.",
-        price: 2595,
-        photo: ["./images/lucca7.png"],
-        categories: categories[0]._id
+        categories: categories[2]._id
     }, {
         name: "The Intelligentsia",
         seller: users[0]._id,
@@ -106,15 +84,14 @@ var seedProducts = function(users, categories) {
         price: 25,
         photo: ["./images/luccaNoBG3.png"],
         categories: categories[0]._id
-    },
-    {
+    }, {
         name: "The Vesuvius",
         seller: users[0]._id,
         description: "Flexitarian drinking vinegar Etsy pork belly pug. Bitters vegan chia, fingerstache fap jean shorts narwhal irony occupy aesthetic. Pug narwhal banjo, kitsch heirloom Vice cred sriracha gentrify drinking vinegar skateboard cold-pressed selvage High Life Echo Park.",
         price: 25,
         photo: ["./images/luccaNoBG5.png"],
         categories: categories[0]._id
-    },
+    }
     ];
 
 
