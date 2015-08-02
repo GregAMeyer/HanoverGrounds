@@ -13,18 +13,22 @@
     margin-right: 0px;
   }
   .thumbnail {
-  	background-color: darken($cream, 20%);
+    min-height: 400px;
+    max-height: 400px;
+  	background-color: $cream;
   	font-family: Cinzel;
-  	border-radius: 5px;
+    border: none;
+  	/*border-radius: 5px;*/
   	padding: 0px;
   }
   .caption {
+    /*background-color: darken($cream, 20%);*/
   	color: $darkRoast;
   }
   .btn {
   	padding: 5px;
-  	background-color: $cream;
-  	font-color: $darkRoast;
+  	background-color: $coffee;
+    color: $cream;
     border: 1px solid $cream;
     &:hover {
       border: 1px solid $coffee;

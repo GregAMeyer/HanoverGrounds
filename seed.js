@@ -25,17 +25,17 @@ var users = [{
 
 var seedCategories = function() {
     var categories = [{
-        itemCategory: 'Coffee Beans',
+        itemCategory: 'Coffee',
         roast: 'bold',
         region: 'Africa'
     }, 
     {
-        itemCategory: 'Coffee Beans',
+        itemCategory: 'Coffee',
         roast: 'light',
         region: 'Central America'
     },
     {
-        itemCategory: 'Coffee Beans',
+        itemCategory: 'Coffee',
         roast: 'medium',
         region: 'South America'
     },
@@ -54,38 +54,68 @@ var seedProducts = function(users, categories) {
         seller: users[0]._id,
         description: "This unique cognac-like blend balances delicacy and elegance, with jasmine and orange notes giving way to buttery shortbread, and a mild caramel that ties it all together. A light and refreshing spring and summer brew with subtle yet astonishing nuances.",
         price: 15.30,
-        photo: ["metropolis.jpg"],
+        photo: ["./images/coffeeFlipLeft.png"],
         categories: categories[0]._id
         }, {
         name: "Perc Coffee",
         seller: users[1]._id,
         description: "Koke hails from Chyalalcktu village in the Kochere District of Southern Oromia. This coffee is special to us because it marks the first hybrid process Ethiopia we’ve ever offered. It’s the perfect blend of a washed and natural processed coffee. ",
         price: 14,
-        photo: ["perc.jpeg"],
+        photo: ["./images/coffeeRightNoBG.png"],
         categories: categories[1]._id
     }, {
         name: "San Jose OCAÑA",
         seller: users[2]._id,
         description: "This is not a loud coffee, a fruit bomb, it’s something more. Few farms in the world, let alone Guatemala are able to produce coffee of this quality this consistently. ",
         price: 13.95,
-        photo: ["sanJoseOcana.jpeg"],
+        photo: ["./images/coffeeFlipLeft.png"],
         categories: categories[2]._id
     }, {
         name: "Yum Coffee",
         seller: users[0]._id,
-        description: "YUMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM ",
+        description: "The tastiest of the tastey. ",
         price: 25,
-        photo: ["sanJoseOcana.jpeg"],
+        photo: ["./images/coffeeFlipRight.png"],
         categories: categories[0]._id
     }, {
         name: "Coffee Me",
         seller: users[1]._id,
         description: "Great for kids!",
         price: 10,
-        photo: ["sanJoseOcana.jpeg", "metropolis.jpg"],
+        photo: ["./images/coffeeLeftNoBG.png"],
         categories: categories[1]._id
 
-    }];
+    }, {
+        name: "The Spaziale",
+        seller: users[0]._id,
+        description: "Artisinal occupy chillwave pour-over, sartorial single-origin coffee paleo 90's selvage Intelligentsia small batch gentrify drinking vinegar tousled Thundercats mlkshk.",
+        price: 2595,
+        photo: ["./images/lucca7.png"],
+        categories: categories[0]._id
+    }, {
+        name: "The Intelligentsia",
+        seller: users[0]._id,
+        description: "Helvetica swag Odd Future mixtape Williamsburg. Carles paleo Intelligentsia, pug polaroid Tumblr mixtape master cleanse. Cliche leggings art party stumptown viral mlkshk, Godard chambray lo-fi vegan messenger bag Odd Future Helvetica flannel. ",
+        price: 2995,
+        photo: ["./images/luccaNoBG1.png"],
+        categories: categories[0]._id
+    }, {
+        name: "The Marzocco",
+        seller: users[0]._id,
+        description: "Master cleanse mixtape viral typewriter. Neutra heirloom whatever mumblecore, mixtape roof party vegan Wes Anderson hoodie. Schlitz pickled street art, drinking vinegar tousled paleo salvia Echo Park mlkshk freegan 3 wolf moon hashtag art party craft beer taxidermy.",
+        price: 25,
+        photo: ["./images/luccaNoBG3.png"],
+        categories: categories[0]._id
+    },
+    {
+        name: "The Vesuvius",
+        seller: users[0]._id,
+        description: "Flexitarian drinking vinegar Etsy pork belly pug. Bitters vegan chia, fingerstache fap jean shorts narwhal irony occupy aesthetic. Pug narwhal banjo, kitsch heirloom Vice cred sriracha gentrify drinking vinegar skateboard cold-pressed selvage High Life Echo Park.",
+        price: 25,
+        photo: ["./images/luccaNoBG5.png"],
+        categories: categories[0]._id
+    },
+    ];
 
 
     return Product.createAsync(products);
@@ -96,12 +126,29 @@ var seedProducts = function(users, categories) {
 
 
 connectToDb.then(function() {
+
+    mongoose.connection.db.dropDatabase(function() {
+
+        console.log("Dropped old data, now inserting data");
+
+    console.log('1')
+
     User.findAsync({}).then(function(users) {
+
+        console.log('2')
+
         if (users.length === 0) {
+            console.log('3')
             return seedUsers();
         } else {
+            console.log('4')
             console.log(chalk.magenta('Seems to already be user data, exiting!'));
-            process.kill(0);
+            console.log('5')
+            //users.remove({})
+            console.log('6')
+            console.log('dropped data', users)
+            return seedUsers();
+            //process.kill(0);
         }
     })
         .then(function(users) {
@@ -113,7 +160,13 @@ connectToDb.then(function() {
                     });
                 } else {
                     console.log(chalk.magenta('Seems to already be category data, exiting!'));
-                    process.kill(0);
+                    //categories.remove()
+                    console.log('dropped data', categories)
+                    return seedCategories()
+                   .then(function(categories){
+                        return [users, categories]
+                    });
+                    //process.kill(0);
                 }
             })
         })
@@ -123,7 +176,10 @@ connectToDb.then(function() {
                     return seedProducts(array[0], array[1]);
                 } else {
                     console.log(chalk.magenta('Seems to already be product data, exiting!'));
-                    process.kill(0);
+                    //products.remove()
+                    console.log('dropped data', products)
+                    return seedProducts(array[0], array[1]);
+                    //process.kill(0);
                 }
             })
                 
@@ -135,4 +191,5 @@ connectToDb.then(function() {
                     console.error(err);
                     process.kill(1);
                 });
+            })
 })
