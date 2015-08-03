@@ -12,6 +12,7 @@ app.factory('cartFactory', function($http){
 		getProductsInCart: function(){
 	    	return $http.get('api/members/cart')
 	        	.then(function(products){
+	        		console.log('FRONT END NOT LOG DATA', products.data)
 	            	return products.data
         		})
 			},

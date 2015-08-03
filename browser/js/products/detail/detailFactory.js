@@ -14,7 +14,7 @@ app.factory('detailFactory', function($http, $state){
 			})
 		},
 		addProductToCart: function(productId){
-			console.log('this is the product id: ', productId)
+			console.log('req.session from add to cart: ')
 			return $http.post('/api/members/cart', {_id: productId})
 			.then(function(product){
 				$state.go('cart')
