@@ -47,7 +47,7 @@ router.post('/', function(req, res){
     })
     .then(null);
 });
-<<<<<<< HEAD
+
 var ensureAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();
@@ -63,14 +63,16 @@ router.get('/', function(req, res){
         .then(function(users){
             //console.log(users)
             res.json(users)
-=======
+    })
+})  
+
 //for determing the state to go to upon login
 router.post('/loggedInUser', function(req,res){
     User.findOne({email: req.body.email}).exec()
         .then(function(user){
             console.log('UESR', user)
             res.send(user)
->>>>>>> master
+
         })
 })
 //for determing the state to go to upon login
