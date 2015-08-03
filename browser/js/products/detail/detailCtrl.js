@@ -1,43 +1,75 @@
-
 app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory, mainProductFactory) {
 	$scope.product = product;
 	$scope.reviewData = "";
-	
+	$scope.showReviewBox = true;
+	$scope.aggArr;
+	$scope.getCurrentUser = function() {
+		detailFactory.getUser()
+			.then(function(user) {
+				$scope.currentUser = user.data.user;
+			})
+	};
+	$scope.getCurrentUser();
+
 	mainProductFactory.getCategories($scope.product._id)
-		.then(function(categories){
+		.then(function(categories) {
 			$scope.categories = categories;
 		})
 
-	$scope.getCurrentReviews = function(){
+
+	$scope.getCurrentReviews = function() {
 		detailFactory.getReviews($scope.product._id)
-			.then(function(reviews){
-				$scope.reviews = reviews
-			})
-	}	
+			.then(function(reviews) {
+				$scope.reviews = reviews;
+				var totalRating = 0;
+				var count = 0;
+				$scope.reviews.forEach(function(review) {
+					console.log(review.rating)
+					if (review.rating) {
+						count++;
+						totalRating += review.rating;
+					}
+				})
+				$scope.aggRating = Math.floor(totalRating / count);
+				for (var i = 0; i < $scope.aggRating; i++) {
+					$scope.aggArr.push("<i class='fa fa-coffee'></i> ");
+					// $scope.aggArr.push('HELLO');
+				}
+
+			});
+	};
+
+
 
 	$scope.getCurrentReviews();
+	$scope.rating;
 
-	$scope.resetReview = function(){
+	$scope.resetReview = function() {
 		$scope.reviewData = ""
 	}
-	$scope.storeData = function(){
-		detailFactory.submitReview($scope.product._id, $scope.reviewData)
-		.then(function(){
-			$scope.reviews = $scope.getCurrentReviews()
+	$scope.storeData = function() {
+		$scope.hideDelButton = false;
+		$scope.showReviewBox = false;
+		detailFactory.submitReview($scope.product._id, $scope.reviewData, $scope.rating)
+			.then(function() {
+				$scope.reviews = $scope.getCurrentReviews()
+				$scope.resetReview();
 
-			$scope.resetReview();
-		})
-	}	
+			})
+	}
 	$scope.addProductToCart = detailFactory.addProductToCart;
 
-	$scope.deleteData = function(id){
-		console.log('THE ID DELETE',id)
+	$scope.deleteData = function(id) {
+		$scope.showReviewBox = true;
 		detailFactory.deleteReview(id)
-			.then(function(){
+			.then(function() {
 				$scope.reviews = $scope.getCurrentReviews();
 			})
 	}
+
+
+
 })
-	// $scope.editData = function(id){
-	// 	detailFactory.editReview(id)
-	// }
+// $scope.editData = function(id){
+// 	detailFactory.editReview(id)
+// }

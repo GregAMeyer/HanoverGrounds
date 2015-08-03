@@ -1,3 +1,5 @@
+
+
 <section id="detail">
 
     <img src='../../images/NowRoasting.jpg' id='bigImg'><img>
@@ -10,25 +12,39 @@
             </slide>
         </carousel>
     </div>
-
     <div class='col-lg-6 col-md-6 details'>
         <h2>{{ product.name }}</h2>
+   
+       <p ng-repeat="element in aggArr">{{ element }}</p>
+              
         <h4>{{ product.description }}</h4>
-        <p>Categories:{{categories}}</p>
+        <p>Categories: {{categories.itemCategory}}, {{categories.roast}}, {{categories.region}}</p>
+        <button class='btn' ng-click="addProductToCart(product._id)">Add to Cart</button>
         <h1>Reviews</h1>
         <div ng-repeat="review in reviews">
-            <div>
-                {{review.user}} {{review.review}} {{review.rating}}
+               {{ review.user }}: {{review.review}} 
+            <div ng-show='{{ currentUser.isSuperUser || (currentUser.email === review.user) }}'>
                 <!-- <button ng-click="editData(review.id)">EDIT</button> -->
                 <button ng-click="deleteData(review._id)">DELETE</button>
             </div>
         </div>
-        <button class='btn' ng-click="addProductToCart(product._id)">Add to Cart</button>
         <!-- WE ARE GOING TO HIDE THIS FORM FOR UNAUTHENTICATED USERS -->
+        <div ng-click='rate(rating)'>
+            <rating ng-model="rating" max=5 
+            readonly="isReadonly" 
+            on-hover="hoveringOver(value)" 
+            on-leave="overStar = null">
+
+        </div>    
         <form>
-            <textarea ng-model="reviewData"></textarea>
+        <div ng-show='showReviewBox'> 
+            <br>
+            <textarea ng-model="reviewData" ></textarea>
+            <br>
             <button class='btn' ng-click="storeData()">Submit</button>
+        </div>
         </form>
+    
     </div>
 
 </section>

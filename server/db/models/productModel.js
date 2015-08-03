@@ -7,7 +7,7 @@ var product = new mongoose.Schema({
 	},
 	seller: {
 		type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+		ref: "User"
 	},
 	description: {
 		type: String,
@@ -28,7 +28,6 @@ var product = new mongoose.Schema({
 		ref: 'Categories'
 	}
 })
-
 
 mongoose.model('Product', product);
 
