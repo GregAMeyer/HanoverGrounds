@@ -9,35 +9,61 @@ var User = mongoose.model('User');
 
 //for displaying the items in the user's cart
 router.get('/cart', function(req, res){
-    //console.log('in the get request route', req.user._id)
-    User.findById(req.user._id).exec()
-        .then(function(user){
-            //user.cart is an array of ids
-            //Product.find each id
-            return Product.find({
-                '_id': {
-                    $in: user.cart
-                }
-            }).exec()
-        }).then(function(productsInUsersCart){
-            res.send(productsInUsersCart)
-        })
+    if(req.isAuthenticated()){
+        User.findById(req.user._id).exec()
+            .then(function(user){
+                //user.cart is an array of ids
+                //Product.find each id
+                return Product.find({
+                    '_id': {
+                        $in: user.cart
+                    }
+                }).exec()
+            }).then(function(productsInUsersCart){
+                res.send(productsInUsersCart)
+            })
+        }
+    else{
+        Product.find({
+                    '_id': {
+                        $in: req.session.cart
+                    }
+                }).exec()
+                .then(function(productsInUsersCart){
+                    res.send(productsInUsersCart)
+            })
+    }
 })
 //for displaying the items in the user's cart
 router.post('/cart', function(req, res){
-    var productToAddToCart = req.body;
-    console.log('adding this product ID?: ', productToAddToCart)
-    console.log('adding to this user iD?: ', req.user._id)
-    User.findByIdAndUpdate(req.user._id, { $push: {'cart': productToAddToCart} }, function(){
-            res.end()
-        })
+    if(req.isAuthenticated()){
+        var productToAddToCart = req.body;
+        User.findByIdAndUpdate(req.user._id, { $push: {'cart': productToAddToCart} }, function(){
+                res.end()
+            })
+    }
+    else{
+        //for NOT logged in users
+        // req.session.cart mut be made the second a visitor gets to the site
+        req.session.cart.push(req.body)
+        res.end();
+    }
 })
 //for deleting an item in the user's cart
 router.delete('/cart/:id', function(req, res){
     var productToRemoveFromCart = req.params.id;
-    User.findByIdAndUpdate(req.user._id, { $pull: {'cart': productToRemoveFromCart} }, function(){
-            res.end();
-    })
+    if(req.isAuthenticated()){
+        User.findByIdAndUpdate(req.user._id, { $pull: {'cart': productToRemoveFromCart} }, function(){
+                req.session.cart = []
+                res.end();
+        })
+    }
+    else{
+        req.session.cart.forEach(function(ele, idx){
+            req.session.cart.splice(idx,1);
+            res.end()
+        })
+    }
 })
 
 //from the signup page
@@ -58,10 +84,8 @@ var ensureAuthenticated = function (req, res, next) {
 router.use('/',ensureAuthenticated)
 //for showing all users who have accounts
 router.get('/', function(req, res){
-    //console.log('in the get request route')
     User.find().exec()
         .then(function(users){
-            //console.log(users)
             res.json(users)
     })
 })  
@@ -70,7 +94,6 @@ router.get('/', function(req, res){
 router.post('/loggedInUser', function(req,res){
     User.findOne({email: req.body.email}).exec()
         .then(function(user){
-            console.log('UESR', user)
             res.send(user)
 
         })
@@ -79,7 +102,6 @@ router.post('/loggedInUser', function(req,res){
 // router.post('/loggedInUser', function(req,res,next){
 //     User.findOne({email: req.body.email}).exec()
 //         .then(function(user){
-//             console.log('UESR', user)
 //             res.send(user)
 //         })
 // })
