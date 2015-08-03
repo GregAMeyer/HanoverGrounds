@@ -38,10 +38,6 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             ];
 
 
-            
-            //AuthService.isAuthenticatedSuperUser()
-
-
 
             function checkSeller(){
                scope.items.forEach(function(ele){
