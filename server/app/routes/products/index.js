@@ -2,7 +2,6 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 require('../../../db/models');
 var Product = mongoose.model('Product');
-var User = mongoose.model('User');
 var Reviews = mongoose.model('Reviews');
 var Categories =  mongoose.model('Categories');
 
@@ -18,6 +17,9 @@ var ensureAuthenticated = function (req, res, next) {
 
 //for dashboard-side products routing////////////////////////////////
 
+
+
+//for dashboard-side products routing/////////////////////////////////
 
 
 //for adding new products as seller in dashboard
@@ -57,6 +59,7 @@ router.get('/', function(req, res, next) {
 		})
 		.then(null, next);
 });
+
 router.get('/:id', function(req, res, next) {
 	//console.log(req.params)
 	Product.findById(req.params.id).exec()
@@ -66,12 +69,13 @@ router.get('/:id', function(req, res, next) {
 		.then(null, next);
 });
 
-router.get('/reviews/:id', function(req,res,next){
+router.get('/reviews/:id', function(req,res){
 	Reviews.find({product:req.params.id}).exec()
 		.then(function(reviews){
 			res.json(reviews)
 		})
 })
+
 router.get('/categories/:id',function(req,res,next){
 	Categories.find({product: req.params.id})
 		.then(function(categories){
@@ -79,7 +83,7 @@ router.get('/categories/:id',function(req,res,next){
 		})
 })
 router.use('/', ensureAuthenticated)
-router.post('/reviews/:id', function(req,res,next){
+router.post('/reviews/:id', function(req,res){
 	Reviews.create({
 		product: req.params.id,
 		review: req.body.review
@@ -90,10 +94,21 @@ router.post('/reviews/:id', function(req,res,next){
 		
 })
 
-router.delete('/reviews/:id', function(req,res,next){
+router.delete('/reviews/:id', function(req,res){
 	Reviews.remove({_id: req.params.id})
 		.then(function(){
 			res.end()
+		})
+})
+
+
+
+router.get('/categories/:id',function(req,res){
+	Product.findById(req.params.id)
+		.populate('categories')
+		.exec(function(err, products){
+			if(err) throw new Error(err)
+			res.json(products.categories);
 		})
 })
 

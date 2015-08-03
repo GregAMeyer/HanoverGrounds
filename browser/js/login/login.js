@@ -14,38 +14,21 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state,$http) {
+app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
     $scope.login = {};
     $scope.error = null;
 
     $scope.sendLogin = function (loginInfo) {
         $scope.error = null;
-        //$http.post('/api/members/loggedInUser',loginInfo).then(function(user){
-        // AuthService.getLoggedInUser().then(funciton(user){
-        //     //do AuthService.login then use the getLoggedInUser and do the conditionals there
-        // })
-        //     if(user.data.isSeller){
-        //         AuthService.login(loginInfo).then(function () {
-        //             $state.go('dashboard.overview');  
-        //         })
-        //     }
-        //     else if(user.data.isSuperUser){
-        //         AuthService.login(loginInfo).then(function () {
-        //             $state.go('superUser.overview');
-        //         })  
-        //     }
-        //     else{
-        //          AuthService.login(loginInfo).then(function () {
-        //             $state.go('home');
-        //         })
-        //     }  
+
         AuthService.login(loginInfo).then(function(user){
-            var user = AuthService.getLoggedInUser();
-            if(user.isSeller){
+            var userLoggedIn = AuthService.getLoggedInUser()
+            if(userLoggedIn.isSeller){
+
                 $state.go('dashboard.overview');
             }
-            else if(user.isSuperUser){
+            else if(userLoggedIn.isSuperUser){
                 $state.go('superUser.overview');
             }
             else {
@@ -65,8 +48,8 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state, $http) {
 
     $scope.sendSignup = function (loginInfo) {
         //make a new user
-        $http.post('/api/members', loginInfo).then(function(createdUser){
-            AuthService.login(loginInfo).then(function () {
+        $http.post('/api/members', loginInfo).then(function(){
+            AuthService.login(loginInfo).then(function() {
                 $state.go('home');
             }).catch(function () {
                 $scope.error = 'Invalid login credentials.';
@@ -77,7 +60,7 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state, $http) {
         //make a new user
         var adminLoginInfo = loginInfo
         adminLoginInfo.isSeller = true;
-        $http.post('/api/members', adminLoginInfo).then(function(createdUser){
+        $http.post('/api/members', adminLoginInfo).then(function(){
             AuthService.login(adminLoginInfo).then(function () {
                 $state.go('dashboard.overview');
             }).catch(function () {

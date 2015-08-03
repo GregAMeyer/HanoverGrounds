@@ -7,10 +7,15 @@ app.config(function ($stateProvider) {
 });
 
 
-app.controller('homeCtrl', function($scope, sliderPics, $state){
-	$scope.images = _.shuffle(sliderPics);
-	$scope.goToProducts = function(){
-		//console.log("im working")
-		$state.go('mainProductState');
-	}
+app.controller('homeCtrl', function($scope, sliderPics, $state, mainProductFactory){
+
+	mainProductFactory.getAll().then(function(products){
+		$scope.allProducts = products
+	})
+
+	$scope.getDetail = function(product) {
+		$state.go('detailState', {
+			id: product._id
+		});
+	};
 })

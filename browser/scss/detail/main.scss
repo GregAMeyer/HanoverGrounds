@@ -1,0 +1,23 @@
+#detail {
+
+  .details {
+  	background-color: white;
+    min-height: 450px;
+    border: 1px solid $coffee;
+  }
+  .btn {
+  	padding: 5px;
+  	background-color: $cream;
+  	font-color: $darkRoast;
+    border: 1px solid $cream;
+    &:hover {
+      border: 1px solid $coffee;
+    }
+  }
+}
+
+#bigImg {
+  width: 100%;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}

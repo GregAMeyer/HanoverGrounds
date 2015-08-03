@@ -9,10 +9,6 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
 
         link: function(scope) {
 
-            // scope.isSuperUser = function(){
-            //     return AuthService.isAuthenticated();
-            // }
-
             scope.items = [{
                 label: 'Home',
                 state: 'home',

@@ -1,0 +1,43 @@
+ #mainProduct {
+
+ 	.filterMenu {
+ 		padding-top: 10px;
+ 		padding-bottom: 10px;
+ 		input {
+ 			width: 150px;
+ 		}
+ 	}
+	
+  .row{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .thumbnail {
+    min-height: 400px;
+    max-height: 400px;
+  	background-color: $cream;
+  	font-family: Cinzel;
+    border: none;
+  	/*border-radius: 5px;*/
+  	padding: 0px;
+  }
+  .caption {
+    /*background-color: darken($cream, 20%);*/
+  	color: $darkRoast;
+  }
+  .btn {
+  	padding: 5px;
+  	background-color: $coffee;
+    color: $cream;
+    border: 1px solid $cream;
+    &:hover {
+      border: 1px solid $coffee;
+    }
+  }
+}
+
+#bigImg {
+  width: 100%;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
