@@ -3,8 +3,24 @@ var mongoose = require('mongoose');
 require('../../../db/models');
 var Product = mongoose.model('Product');
 var Reviews = mongoose.model('Reviews');
-var Categories = mongoose.model('Categories');
+var Categories =  mongoose.model('Categories');
+
+
+var ensureAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.status(401).end();
+    }
+};
+
+
+//for dashboard-side products routing////////////////////////////////
+
+
+
 //for dashboard-side products routing/////////////////////////////////
+
 
 //for adding new products as seller in dashboard
 router.post('/', function(req, res){
@@ -60,6 +76,13 @@ router.get('/reviews/:id', function(req,res){
 		})
 })
 
+router.get('/categories/:id',function(req,res,next){
+	Categories.find({product: req.params.id})
+		.then(function(categories){
+			res.json(categories)
+		})
+})
+router.use('/', ensureAuthenticated)
 router.post('/reviews/:id', function(req,res){
 	Reviews.create({
 		product: req.params.id,
@@ -89,7 +112,9 @@ router.get('/categories/:id',function(req,res){
 		})
 })
 
+
 ////////////////////////////////////////////////////////////////////////
+
 
 
 module.exports = router;

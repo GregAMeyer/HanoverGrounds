@@ -61,7 +61,18 @@
         // Uses the session factory to see if an
         // authenticated user is currently registered.
         this.isAuthenticated = function () {
+            console.log('SESSION USER!!!',Session.user)
             return !!Session.user;
+        };
+
+        this.isAuthenticatedSeller = function(){
+            if(Session.user.isSuperUser) return true 
+            return Session.user.isSeller
+        };
+
+        this.isAuthenticatedSuperUser = function(){
+            //console.log('SUPERUSER',Session.user.isSuperUser)
+            return Session.user.isSuperUser
         };
 
         this.getLoggedInUser = function (fromServer) {
@@ -88,7 +99,6 @@
         };
 
         this.login = function (credentials) {
-
             return $http.post('/login', credentials)
                 .then(onSuccessfulLogin)
                 // .then(function(){console.log(Session)})

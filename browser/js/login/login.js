@@ -21,9 +21,11 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
     $scope.sendLogin = function (loginInfo) {
         $scope.error = null;
+
         AuthService.login(loginInfo).then(function(user){
             var userLoggedIn = AuthService.getLoggedInUser()
             if(userLoggedIn.isSeller){
+
                 $state.go('dashboard.overview');
             }
             else if(userLoggedIn.isSuperUser){
