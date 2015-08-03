@@ -41,6 +41,9 @@ module.exports = function (app) {
 
             // req.logIn will establish our session.
             req.logIn(user, function (loginErr) {
+                User.findByIdAndUpdate(req.user._id, {$set: {'cart': req.session.cart}}, function(){
+                    res.end()
+                })
                 if (loginErr) return next(loginErr);
                 // We respond with a response object that has user with _id and email.
                 res.status(200).send({

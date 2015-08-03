@@ -17,8 +17,9 @@ app.factory('detailFactory', function($http, $state) {
 					return res.data;
 				})
 		},
+
 		addProductToCart: function(productId) {
-			console.log('this is the product id: ', productId)
+			console.log('req.session from add to cart: ')
 			return $http.post('/api/members/cart', {
 					_id: productId
 				})
@@ -26,6 +27,7 @@ app.factory('detailFactory', function($http, $state) {
 					$state.go('cart')
 					return product.data;
 				})
+
 		},
 		deleteReview: function(id) {
 			return $http.delete('api/products/reviews/' + id)
