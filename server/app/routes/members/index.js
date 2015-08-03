@@ -7,15 +7,6 @@ var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 var User = mongoose.model('User');
 
-//for showing all users who have accounts
-router.get('/', function(req, res){
-    //console.log('in the get request route')
-    User.find().exec()
-        .then(function(users){
-            //console.log(users)
-            res.json(users)
-        })
-})
 //for displaying the items in the user's cart
 router.get('/cart', function(req, res){
     console.log('in the get request route', req.user._id)
@@ -48,23 +39,34 @@ router.post('/', function(req, res, next){
     })
     .then(null, next);
 });
-//for determing the state to go to upon login
-router.post('/loggedInUser', function(req,res,next){
-    User.findOne({email: req.body.email}).exec()
-        .then(function(user){
-            console.log('UESR', user)
-            res.send(user)
+var ensureAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.status(401).end();
+    }
+};
+router.use('/',ensureAuthenticated)
+//for showing all users who have accounts
+router.get('/', function(req, res){
+    //console.log('in the get request route')
+    User.find().exec()
+        .then(function(users){
+            //console.log(users)
+            res.json(users)
         })
 })
+//for determing the state to go to upon login
+// router.post('/loggedInUser', function(req,res,next){
+//     User.findOne({email: req.body.email}).exec()
+//         .then(function(user){
+//             console.log('UESR', user)
+//             res.send(user)
+//         })
+// })
 
 
-// var ensureAuthenticated = function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//         next();
-//     } else {
-//         res.status(401).end();
-//     }
-// };
+
 //////////////////////example to follow/////////////////////
 
 

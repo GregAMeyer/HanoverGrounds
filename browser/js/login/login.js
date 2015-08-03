@@ -40,8 +40,8 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state,$http) {
         //             $state.go('home');
         //         })
         //     }  
-        AuthService.login().then(function(user){
-            var user = AuthService.getLoggedInUser()
+        AuthService.login(loginInfo).then(function(user){
+            var user = AuthService.getLoggedInUser();
             if(user.isSeller){
                 $state.go('dashboard.overview');
             }
@@ -66,7 +66,7 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state, $http) {
     $scope.sendSignup = function (loginInfo) {
         //make a new user
         $http.post('/api/members', loginInfo).then(function(createdUser){
-            AuthService.login(adminLoginInfo).then(function () {
+            AuthService.login(loginInfo).then(function () {
                 $state.go('home');
             }).catch(function () {
                 $scope.error = 'Invalid login credentials.';

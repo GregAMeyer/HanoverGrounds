@@ -9,29 +9,68 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
 
         link: function(scope) {
 
+            // scope.isSuperUser = function(){
+            //     return AuthService.isAuthenticated();
+            // }
+
             scope.items = [{
                 label: 'Home',
-                state: 'home'
+                state: 'home',
+                auth: true
             }, {
                 label: 'About',
-                state: 'about'
+                state: 'about',
+                auth: true
             },{
                 label: 'Products',
-                state: 'mainProductState'
+                state: 'mainProductState',
+                auth: true
             }, 
-            // {
-            //     label: 'Seller Dashboard',
-            //     state: 'dashboard.overview'
-            // }, {
-            //     label: 'Admin Dashboard',
-            //     state: 'superUser.overview',
-            //     auth: true
-            // }
+            {
+                label: 'Seller Dashboard',
+                state: 'dashboard.overview',
+                needAuth: true,
+                auth: false
+            }, 
+            {
+                label: 'Admin Dashboard',
+                state: 'superUser.overview',
+                type: 'admin',
+                needAuth: true,
+                auth: false
+            }
             ];
 
 
-            scope.user = null;
+            
+            //AuthService.isAuthenticatedSuperUser()
 
+
+
+            function checkSeller(){
+               scope.items.forEach(function(ele){
+                    console.log('IS SELLER SELLER SELLER?',req.session)
+                    
+               })      
+            }
+
+            function falsifyNeedAuth(){
+                scope.items.forEach(function(ele){
+                    if(ele.needAuth){
+                        ele.auth = false
+                    }
+                })
+            }
+
+            $rootScope.$on(AUTH_EVENTS.logoutSuccess, falsifyNeedAuth);
+
+            //$rootScope.$on(AUTH_EVENTS.loginSuccess, checkSeller)
+
+            scope.isShowable = function(item){
+                if(item.auth === 'seller'){
+                    return AuthService.isAuthenticatedSeller()
+                }
+            }
             scope.isLoggedIn = function() {
                 return AuthService.isAuthenticated();
             };
@@ -50,6 +89,7 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
 
             var removeUser = function() {
                 scope.user = null;
+                scope.isSeller = false;
             };
 
             setUser();
