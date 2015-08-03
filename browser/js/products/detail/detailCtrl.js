@@ -1,43 +1,45 @@
-
 app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory, mainProductFactory) {
 	$scope.product = product;
 	$scope.reviewData = "";
-	
+
 	mainProductFactory.getCategories($scope.product._id)
-		.then(function(categories){
+		.then(function(categories) {
 			$scope.categories = categories;
 		})
 
-	$scope.getCurrentReviews = function(){
+	$scope.getCurrentReviews = function() {
 		detailFactory.getReviews($scope.product._id)
-			.then(function(reviews){
-				$scope.reviews = reviews
-			})
-	}	
+			.then(function(reviews) {
+				$scope.reviews = reviews;
+			});
+	};
 
 	$scope.getCurrentReviews();
+	$scope.rating;
 
-	$scope.resetReview = function(){
+	$scope.resetReview = function() {
 		$scope.reviewData = ""
 	}
-	$scope.storeData = function(){
-		detailFactory.submitReview($scope.product._id, $scope.reviewData)
-		.then(function(){
-			$scope.reviews = $scope.getCurrentReviews()
-
-			$scope.resetReview();
-		})
-	}	
+	$scope.storeData = function() {
+		detailFactory.submitReview($scope.product._id, $scope.reviewData, $scope.rating)
+			.then(function() {
+				$scope.reviews = $scope.getCurrentReviews()
+				$scope.resetReview();
+				
+			})
+	}
 	$scope.addProductToCart = detailFactory.addProductToCart;
 
-	$scope.deleteData = function(id){
-		console.log('THE ID DELETE',id)
+	$scope.deleteData = function(id) {
+		console.log('THE ID DELETE', id)
 		detailFactory.deleteReview(id)
-			.then(function(){
+			.then(function() {
 				$scope.reviews = $scope.getCurrentReviews();
 			})
 	}
+
+
 })
-	// $scope.editData = function(id){
-	// 	detailFactory.editReview(id)
-	// }
+// $scope.editData = function(id){
+// 	detailFactory.editReview(id)
+// }
