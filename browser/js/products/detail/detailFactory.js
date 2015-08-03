@@ -41,4 +41,5 @@ app.factory('detailFactory', function($http, $state) {
 				})
 		}
 	}
+
 })

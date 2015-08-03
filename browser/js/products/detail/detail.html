@@ -1,3 +1,5 @@
+
+
 <section id="detail">
 
     <img src='../../images/NowRoasting.jpg' id='bigImg'><img>
@@ -10,16 +12,18 @@
             </slide>
         </carousel>
     </div>
-
     <div class='col-lg-6 col-md-6 details'>
         <h2>{{ product.name }}</h2>
+   
+       <p ng-repeat="element in aggArr">{{ element }}</p>
+              
         <h4>{{ product.description }}</h4>
         <p>Categories: {{categories.itemCategory}}, {{categories.roast}}, {{categories.region}}</p>
         <button class='btn' ng-click="addProductToCart(product._id)">Add to Cart</button>
         <h1>Reviews</h1>
         <div ng-repeat="review in reviews">
-            <div>
                {{ review.user }}: {{review.review}} 
+            <div ng-show='{{ currentUser.isSuperUser || (currentUser.email === review.user) }}'>
                 <!-- <button ng-click="editData(review.id)">EDIT</button> -->
                 <button ng-click="deleteData(review._id)">DELETE</button>
             </div>

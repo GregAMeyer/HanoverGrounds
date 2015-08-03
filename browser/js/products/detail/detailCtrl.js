@@ -2,11 +2,11 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 	$scope.product = product;
 	$scope.reviewData = "";
 	$scope.showReviewBox = true;
+	$scope.aggArr;
 	$scope.getCurrentUser = function() {
 		detailFactory.getUser()
 			.then(function(user) {
 				$scope.currentUser = user.data.user;
-				console.log("USERRRR", $scope.currentUser);
 			})
 	};
 	$scope.getCurrentUser();
@@ -16,12 +16,30 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 			$scope.categories = categories;
 		})
 
+
 	$scope.getCurrentReviews = function() {
 		detailFactory.getReviews($scope.product._id)
 			.then(function(reviews) {
 				$scope.reviews = reviews;
+				var totalRating = 0;
+				var count = 0;
+				$scope.reviews.forEach(function(review) {
+					console.log(review.rating)
+					if (review.rating) {
+						count++;
+						totalRating += review.rating;
+					}
+				})
+				$scope.aggRating = Math.floor(totalRating / count);
+				for (var i = 0; i < $scope.aggRating; i++) {
+					$scope.aggArr.push("<i class='fa fa-coffee'></i> ");
+					// $scope.aggArr.push('HELLO');
+				}
+
 			});
 	};
+
+
 
 	$scope.getCurrentReviews();
 	$scope.rating;
