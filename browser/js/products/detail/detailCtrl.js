@@ -1,6 +1,15 @@
 app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory, mainProductFactory) {
 	$scope.product = product;
 	$scope.reviewData = "";
+	$scope.showReviewBox = true;
+	$scope.getCurrentUser = function() {
+		detailFactory.getUser()
+			.then(function(user) {
+				$scope.currentUser = user.data.user;
+				console.log("USERRRR", $scope.currentUser);
+			})
+	};
+	$scope.getCurrentUser();
 
 	mainProductFactory.getCategories($scope.product._id)
 		.then(function(categories) {
@@ -21,22 +30,25 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 		$scope.reviewData = ""
 	}
 	$scope.storeData = function() {
+		$scope.hideDelButton = false;
+		$scope.showReviewBox = false;
 		detailFactory.submitReview($scope.product._id, $scope.reviewData, $scope.rating)
 			.then(function() {
 				$scope.reviews = $scope.getCurrentReviews()
 				$scope.resetReview();
-				
+
 			})
 	}
 	$scope.addProductToCart = detailFactory.addProductToCart;
 
 	$scope.deleteData = function(id) {
-		console.log('THE ID DELETE', id)
+		$scope.showReviewBox = true;
 		detailFactory.deleteReview(id)
 			.then(function() {
 				$scope.reviews = $scope.getCurrentReviews();
 			})
 	}
+
 
 
 })

@@ -104,16 +104,32 @@ router.post('/reviews/:id', function(req, res) {
 
 })
 
-router.delete('/reviews/:id', function(req, res) {
-	Reviews.remove({
+router.delete('/reviews/:id', function(req, res, next) {
+	Reviews.findOne({
 		_id: req.params.id
-	})
-		.then(function() {
-			res.end()
+
+	}).exec()
+		.then(function(review) {
+			//console.log(review)
+			console.log(review.user, req.user.email);
+			if (review.user === req.user.email || req.user.isSuperUser) {
+				return;
+
+			} else throw new Error();
 		})
+		.then(function() {
+			return Reviews.remove({
+				_id: req.params.id
+			});
+		})
+
+	.then(function() {
+		console.log('Im here')
+		res.end()
+	})
+
+
 });
-
-
 
 ////////////////////////////////////////////////////////////////////////
 

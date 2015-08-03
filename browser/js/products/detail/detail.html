@@ -19,7 +19,7 @@
         <h1>Reviews</h1>
         <div ng-repeat="review in reviews">
             <div>
-               {{ review.user }} {{review.review}} {{review.rating}}
+               {{ review.user }}: {{review.review}} 
                 <!-- <button ng-click="editData(review.id)">EDIT</button> -->
                 <button ng-click="deleteData(review._id)">DELETE</button>
             </div>
@@ -33,18 +33,12 @@
 
         </div>    
         <form>
-          <!--   <div class="rating" ng-style="myStyle">
-                <span ng-click='rate(5)' ng-click="rating={'content':'\2605'}" >☆</span>
-                <span ng-click='rate(4)'>☆</span>
-                <span ng-click='rate(3)'>☆</span>
-                <span ng-click='rate(2)'>☆</span>
-                <span ng-click='rate(1)'>☆</span>
-            </div>
- -->
+        <div ng-show='showReviewBox'> 
             <br>
-            <textarea ng-model="reviewData"></textarea>
+            <textarea ng-model="reviewData" ></textarea>
             <br>
             <button class='btn' ng-click="storeData()">Submit</button>
+        </div>
         </form>
     
     </div>

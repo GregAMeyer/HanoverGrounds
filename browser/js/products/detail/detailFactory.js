@@ -3,12 +3,12 @@ app.factory('detailFactory', function($http, $state) {
 		getReviews: function(id) {
 			return $http.get('api/products/reviews/' + id)
 				.then(function(res) {
+					console.log('RES', res.data);
 					return res.data;
 				})
 		},
 
 		submitReview: function(id, review, rating) {
-			console.log("RATING", rating);
 			return $http.post('api/products/reviews/' + id, {
 					review: review,
 					rating: rating
@@ -31,6 +31,13 @@ app.factory('detailFactory', function($http, $state) {
 			return $http.delete('api/products/reviews/' + id)
 				.then(function() {
 					return;
+				})
+		},
+
+		getUser: function() {
+			return $http.get('/session')
+				.then(function(user) {
+					return user;
 				})
 		}
 	}
