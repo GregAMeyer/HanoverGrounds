@@ -8,10 +8,6 @@ var cartSchema = new mongoose.Schema({
             quantity: {
                 type: Number,
                 default: 1
-            },
-            random: {
-                type: Number,
-                default: 1
             }
         })
 
@@ -41,10 +37,8 @@ var userSchema = new mongoose.Schema({
         ref: "Product"
     },
     productsForSale: {
-        //in dashboard, this is the array we need to edit
         type: [mongoose.Schema.Types.ObjectId],
         ref: "Product"
-        //type: String
     },
     salt: {
         type: String
@@ -60,6 +54,10 @@ var userSchema = new mongoose.Schema({
     },
     google: {
         id: String,
+    },
+    orderHistory: {
+        type:[mongoose.Schema.Types.ObjectId],
+        ref: 'Order'
     }
 })
 

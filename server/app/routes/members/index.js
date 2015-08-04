@@ -6,6 +6,7 @@ module.exports = router;
 var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 var User = mongoose.model('User');
+var Order = mongoose.model('Order');
 
 //for displaying the items in the user's cart
 router.get('/cart', function(req, res){
@@ -32,7 +33,6 @@ router.post('/cart', function(req, res){
     var newCartQuantity;
     if(req.isAuthenticated()){
         var productToAddToCart = req.body;
-        console.log('CHECKING CART',productToAddToCart)
         User.findById(req.user._id).exec()
             .then(function(user){
                 var itemArr = user.cart.filter(function(item, idx){
@@ -54,9 +54,7 @@ router.post('/cart', function(req, res){
                         }
                     })
                 }
-
             return user.save()
-            
         })
         .then(function(user){
             res.json(user)
@@ -64,7 +62,7 @@ router.post('/cart', function(req, res){
     }
     else{
         //for NOT logged in users
-        // req.session.cart mut be made the second a visitor gets to the site
+        // req.session.cart must be made the second a visitor gets to the site
         req.session.cart.push(req.body)
         res.end();
     }
@@ -73,10 +71,9 @@ router.post('/cart', function(req, res){
 router.delete('/cart/:id', function(req, res){
     var productToRemoveFromCart = req.params.id;
     if(req.isAuthenticated()){
-        console.log('CART REMOVE ITEM',productToRemoveFromCart)
         User.findByIdAndUpdate(req.user._id, { $pull: {'cart': {product: productToRemoveFromCart}} }, function(){
-                req.session.cart = []
-                res.end();
+            req.session.cart = []
+            res.end();
         })
     }
     else{
@@ -116,6 +113,79 @@ router.put('/cart/:id', function(req, res){
     }
 })
 
+
+
+//CHECKING OUT CART
+
+router.post('/checkout', function(req,res){
+    Order.create({
+        buyer: req.user._id
+    }).then(function(order){
+        req.body.forEach(function(item){
+            order.products.push({
+                checkoutItem: item.product._id,
+                quantity: item.quantity,
+                unitPrice: item.product.price,
+                name: item.product.name,
+                photo: item.product.photo,
+                unitTotalPrice: (item.product.price * item.quantity)
+            })
+        })
+        return order.save()
+        //we need to put the order in the buyer's orderHistory
+        //and in the sellers saleHistory
+        // we need to email the order receipt or something
+    })
+    // .then(function(order){
+    //     console.log('order save.then order: ', order)
+    //     console.log('order save.then req.user.orderHistory: ', req.user.orderHistory)
+    //     //res.json(order)
+    // })
+    .then(function(order){
+        console.log('before user find by id update')
+        User.findById(req.user._id).exec().then(function(user){
+            console.log('do we have order?: ', order)
+            user.orderHistory.push(order)
+            return user.save()
+        })
+        .then(function(user){
+            // res.json(user.orderHistory[user.orderHistory.length-1])
+            res.end()
+        })
+        // User.findByIdAndUpdate(req.user._id, { $push: {'orderHistory': order }}, function(){
+        //     //res.end();  
+        //     console.log('insdide the find by id and update')  
+        //     console.log('order save.then update req.user.orderHistory: ', req.user.orderHistory)
+        // })
+    })
+})
+
+router.get('/checkout', function(req, res){
+    console.log('BEFORE ALL CHECKOUT')
+    User.findById(req.user._id).exec()
+        .then(function(user){
+            console.log('USER BEFORE CART EMPY', user.cart)
+            user.cart = []
+            return user.save()
+        })
+        .then(function(user){
+            return Order.findById(user.orderHistory[user.orderHistory.length-1]).exec()
+        })
+        .then(function(order){
+            console.log('order from the get, called orderLast on scope', order)
+            res.json(order)
+        })
+            // res.json(user)
+            //res.json(user.orderHistory[user.orderHistory.length-1])
+
+
+        //})
+    // Order.find({buyer: req.user._id}).exec()
+    //     .then(function(order){
+    //         res.json(order)
+    //     })
+
+})
 
 //from the signup page
 router.post('/', function(req, res){

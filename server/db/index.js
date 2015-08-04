@@ -12,7 +12,9 @@ var db = mongoose.connect(DATABASE_URI).connection;
 // so the rest of the application can simply call mongoose.model('User')
 // anywhere the User model needs to be used.
 require('./models');
-// require('./models/productModel');
+//why do we eed this???????????????????????////////////
+//it didn't work without requireing the model, but shouldnt gulp do that for us?
+require('./models/orderModel');
 // require('./models/userModel');
 // require('./models/reviewModel');
 // require('./models/categoriesModel');

@@ -61,7 +61,6 @@
         // Uses the session factory to see if an
         // authenticated user is currently registered.
         this.isAuthenticated = function () {
-            console.log('SESSION USER!!!',Session.user)
             return !!Session.user;
         };
 

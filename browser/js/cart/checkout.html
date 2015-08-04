@@ -1,0 +1,31 @@
+ <h1>Your Order Has Been Received</h1>
+
+<div class='col-lg-4'>
+  <h2>Your Cart is Now Empty</h2>
+</div>
+
+<div class='col-lg-8'>
+  <div class="panel panel-default">
+    <div class="panel-heading">Items</div>
+    <table class="table">
+    	<thead>
+        <tr>
+          <th>Name</th>
+          <th>Photo</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='item in orderLast'>
+          <td><p>{{item.name}}</p></td>
+          <td><img src='{{item.photo}}' style="width: 50px"></td>
+          <!-- <td><p>{{item.unitPrice * item.quantity | currency}}</p></td> -->
+          <td><p>{{item.unitPrice}}</p></td>
+          <td><p>{{item.quantity}}</p></td>
+        </tr>
+        <tr><td><button class='btn purchase' ui-sref='home'>Continue Shopping</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
