@@ -14,7 +14,10 @@
 	    <div id='products' ng-repeat='product in productList | filter: searchText ' class="col-lg-4 col-md-4 col-sm-6 hero-feature">
 	        <div class="thumbnail">
 	            <!-- <img src="http://placehold.it/800x500" alt=""> -->
+	            <div class="productPhoto">
 	            <img src='{{product.photo[0]}}'>
+	            </div>
+
 	            <div class="caption">
 	                <h4>{{product.name}}</h4>
 	                <p>{{product.description | limitTo: 15}}...</p>
