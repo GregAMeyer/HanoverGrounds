@@ -38,12 +38,6 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 					// $scope.aggArr.push('HELLO');
 				}
 
-				// showCups = function(num) {
-				// 	if (num === $scope.aggRating) return true;
-				// 	return false;
-				// }
-
-				// console.log("showCups", showCups(1), showCups(2), showCups(3), showCups(4), showCups(5))
 
 			});
 	};
