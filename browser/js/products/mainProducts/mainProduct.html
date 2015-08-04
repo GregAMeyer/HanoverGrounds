@@ -1,5 +1,5 @@
 <section id="mainProduct">
-    <img src='../../espresso-kickerBW.jpg' id='bigImg'><img>
+    <img src='../../espresso-kickerBW.jpg' class='bigImg'><img>
     <div class='filterMenu col-lg-12'>
         <input type="text" placeholder="Search" ng-model='searchText'>
     </div>
@@ -13,7 +13,7 @@
                     <h4>{{product.name}}</h4>
                     <p>{{product.description | limitTo: 15}}...</p>
                     <p>{{ showCategories(product) }} </p>
-                    <a ui-sref="detailState({id: product._id})" class="btn btn-default">More Info</a>
+                    <a ui-sref="detailState({id: product._id})" class="btn btn-default">More Info</a>     
                 </div>
             </div>
         </div>

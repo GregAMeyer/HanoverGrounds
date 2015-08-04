@@ -13,10 +13,6 @@ body {
   background: $cream;
 }
 
-#grad {
-  position: relative;
-}
-
 @mixin clearfix {
   &:after {
     content: "";
@@ -31,10 +27,10 @@ body {
   display: block;
 }
 
-#bigImg {
+.bigImg {
   margin-top: -150px;
-  height: 250px;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 /* navbar, dashboard, FSlogo */

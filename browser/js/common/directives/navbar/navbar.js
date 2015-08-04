@@ -14,10 +14,6 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 state: 'home',
                 auth: true
             }, {
-                label: 'About',
-                state: 'about',
-                auth: true
-            }, {
                 label: 'Products',
                 state: 'mainProductState',
                 auth: true
