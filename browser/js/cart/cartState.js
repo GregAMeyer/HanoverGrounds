@@ -5,30 +5,12 @@ app.config(function($stateProvider) {
 			templateUrl: "js/cart/cart.html",
 			controller: "cartCtrl"
 		})
+	//keeping this in here because you can only get to this state from the checkout state
+	//they are inherently linked
+	.state("orderSuccess", {
+	url: "/checkout",
+	templateUrl:"js/cart/checkout.html",
+	controller: "successCtrl"
+		})
 });
 
-app.factory('cartFactory', function($http){
-	return{
-		getProductsInCart: function(){
-	    	return $http.get('api/members/cart')
-	        	.then(function(products){
-	        		console.log('FRONT END NOT LOG DATA', products.data)
-	            	return products.data
-        		})
-			},
-		removeFromCart:	function(productToDelete){
-	    	//product will be an object, as declared in html
-	    	return $http.delete('/api/members/cart/'+productToDelete._id)
-	    	.then(function(remainingProducts){
-	    		return remainingProducts;
-	    	}, console.log)
-    	},
-    	updateQtyFactory:	function(prodToUpdate){
-    		//product will be an object, as declared in html
-	    	return $http.put('/api/members/cart/'+prodToUpdate.product._id, prodToUpdate)
-	    	.then(function(remainingProducts){
-	    		return remainingProducts;
-	    	}, console.log)
-		}
-	}
-})

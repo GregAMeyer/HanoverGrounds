@@ -21,12 +21,12 @@
         <tr ng-repeat='item in cart'>
           <td><p>{{item.product.name}}</p></td>
           <td><img src='{{item.product.photo[0]}}' style="width: 50px"></td>
-          <td><p>{{item.product.price | currency}}</p></td>
+          <td><p>{{item.product.price * item.quantity | currency}}</p></td>
           <td><input type="text" ng-model='item.quantity'></input></td>
           <td><button class='btn' ng-click='updateQty(item)'>Update Qty</button></td>
   		    <td><button class='btn' ng-click='removeProduct(item.product)'>Remove</button></td>
         </tr>
-        <tr><button class='btn purchase' ng-click='purchase(cart)'>Purchase</button></tr>
+        <tr><td><button class='btn purchase' ng-click='purchase(cart)'>Checkout</button></td></tr>
       </tbody>
     </table>
   </div>
