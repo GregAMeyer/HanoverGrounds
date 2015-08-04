@@ -1,20 +1,30 @@
 var mongoose = require("mongoose");
 var crypto = require('crypto')
+var cartSchema = new mongoose.Schema({
+            product:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product'
+            },
+            quantity: {
+                type: Number,
+                default: 1
+            },
+            random: {
+                type: Number,
+                default: 1
+            }
+        })
 
 var userSchema = new mongoose.Schema({
 	password: {
-		type: String,
+		type: String
         //required: true
 	},
 	email: {
-		type: String,
+		type: String
         //required: true
 	},
-	cart: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Product"
-        //type: String
-    },
+	cart: [cartSchema],
 	isSeller: {
 		type: Boolean,
 		default: false

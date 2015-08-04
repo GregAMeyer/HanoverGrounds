@@ -16,7 +16,7 @@ var product = new mongoose.Schema({
 	photo: {
 		type: [String],
 	},
-	quantity: {
+	stock: {
 		type: Number,
 		//default: 1
 	},
