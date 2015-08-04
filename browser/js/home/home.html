@@ -16,7 +16,7 @@
                 <h4>{{product.name}}</h4>
                 <p>{{product.description | limitTo: 15}}...</p>
                 <p>
-                   <a ng-click="getDetail(product)" class="btn btn-default">More Info</a>
+                     <a ui-sref="detailState({id: product._id})" class="btn btn-default">More Info</a>  
                 </p>
             </div>
         </div>
