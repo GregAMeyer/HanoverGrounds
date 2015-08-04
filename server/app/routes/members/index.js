@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 var User = mongoose.model('User');
 var Order = mongoose.model('Order');
-
+var Cart = mongoose.model('Cart')
 //for displaying the items in the user's cart
 router.get('/cart', function(req, res){
     if(req.isAuthenticated()){
@@ -17,22 +17,15 @@ router.get('/cart', function(req, res){
             })
     }
     else{
-        Product.find({
-                    '_id': {
-                        $in: req.session.cart
-                    }
-                }).exec()
-                .then(function(productsInUsersCart){
-                    res.send(productsInUsersCart)
-            })
+        res.json(req.session.cart)
     }
 })
 //for adding items to cart, checking if already in cart also
 router.post('/cart', function(req, res){
     var cartIdx;
     var newCartQuantity;
+    var productToAddToCart = req.body;
     if(req.isAuthenticated()){
-        var productToAddToCart = req.body;
         User.findById(req.user._id).exec()
             .then(function(user){
                 var itemArr = user.cart.filter(function(item, idx){
@@ -63,8 +56,43 @@ router.post('/cart', function(req, res){
     else{
         //for NOT logged in users
         // req.session.cart must be made the second a visitor gets to the site
-        req.session.cart.push(req.body)
-        res.end();
+        //BUT FIRST MAKE EACH ITEM WITHING PRODUCT PROPERTY
+        //CHECK IF ITEM IN CART ALREADY
+        //IF IT IS UPDATE QUANTITY 
+        //ELSE GIVE IT A QUANTITY PROPERTY VALUE 1
+        console.log('NOT LOGGED IN REQ DOT BODY',req.body)
+        var itemArr = req.session.cart.filter(function(item, idx){
+                    // console.log('ITEM', item.product._id)
+                    // console.log('PROD', productToAddToCart.product)
+                    // console.log('TEST', item.product._id == productToAddToCart.product)
+                    if(item.product._id == productToAddToCart.product){
+                        cartIdx = idx
+                    }
+                    return item.product._id == productToAddToCart.product 
+                })
+                //if the filter returns an empty array because there were no exisiting same products in the cart
+                if(!itemArr[0]){
+                    Cart.create(req.body)
+                        .then(function(cartItem){
+                            Cart.findById(cartItem._id).populate('product').exec()
+                            // cartItem.populate('product').exec()
+                                .then(function(populatedCartItem){
+                                    req.session.cart.push(populatedCartItem)
+                                    res.json(req.session);
+                                })
+                            })
+                } else{   
+                    //THIS IS WHERE IT STOP WORKING FOR SURE?? MAYBE maybe....
+                    //ITEM IS ALREADY IN CART
+                    req.session.cart.forEach(function(item){
+                        //THIS IS WHERE WE FIXED THE HELL OUT OF IT
+                        if(item.product._id == productToAddToCart.product){
+                            item.quantity++
+                        }
+                    })
+                    res.json(req.session)
+                }
+
     }
 })
 //for deleting an item in the user's cart
@@ -78,7 +106,7 @@ router.delete('/cart/:id', function(req, res){
     }
     else{
         req.session.cart.forEach(function(ele, idx){
-            if(ele._id === req.params.id){
+            if(ele.product._id == req.params.id){
                 req.session.cart.splice(idx,1);
                 res.end()
             }
@@ -108,8 +136,27 @@ router.put('/cart/:id', function(req, res){
     else{
         //for NOT logged in users
         // req.session.cart mut be made the second a visitor gets to the site
-        req.session.cart.push(req.body)
-        res.end();
+        // req.session.cart.push(req.body)
+        // res.end();
+        var productToUpdate = req.params.id;
+        //console.log('REQ PARAMS UPDATE ID NOT LOGED IN', req.session.cart)
+        Cart.find().exec()
+            .then(function(items){
+                console.log('Item array', items)
+                req.session.cart.forEach(function(item){
+                    console.log('UPDATE QUANT NOT LOGGED IN',item)
+                    //console.log('NOT LOGGED IN REQ BODY', productToUpdate)
+                    //THIS IS WHERE WE FIXED THE HELL OUT OF IT
+                    console.log('ITEM', item.product._id)
+                    console.log('PROD', productToUpdate)
+                    console.log('TEST', item.product._id == productToUpdate)
+                    if(item.product._id == productToUpdate){
+                        item.quantity = req.body.quantity
+                        console.log('AFTER IF QUANTITY OF ITEM', item)
+                    }
+                })
+            res.json(req.session.cart)
+        })
     }
 })
 
@@ -142,9 +189,7 @@ router.post('/checkout', function(req,res){
     //     //res.json(order)
     // })
     .then(function(order){
-        console.log('before user find by id update')
         User.findById(req.user._id).exec().then(function(user){
-            console.log('do we have order?: ', order)
             user.orderHistory.push(order)
             return user.save()
         })
@@ -161,10 +206,8 @@ router.post('/checkout', function(req,res){
 })
 
 router.get('/checkout', function(req, res){
-    console.log('BEFORE ALL CHECKOUT')
     User.findById(req.user._id).exec()
         .then(function(user){
-            console.log('USER BEFORE CART EMPY', user.cart)
             user.cart = []
             return user.save()
         })
@@ -172,8 +215,7 @@ router.get('/checkout', function(req, res){
             return Order.findById(user.orderHistory[user.orderHistory.length-1]).exec()
         })
         .then(function(order){
-            console.log('order from the get, called orderLast on scope', order)
-            res.json(order)
+            res.json(order.toObject({virtuals:true}))
         })
             // res.json(user)
             //res.json(user.orderHistory[user.orderHistory.length-1])

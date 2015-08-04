@@ -23,6 +23,7 @@ app.factory('detailFactory', function($http, $state) {
 			return $http.post('/api/members/cart', {product: productId})
 			.then(function(product){
 				$state.go('cart')
+				console.log('NOT LOGGED USER CART FRONT END',product.data)
 				return product.data;
 			})
 

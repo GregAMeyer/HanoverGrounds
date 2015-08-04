@@ -3,9 +3,17 @@ app.factory('cartFactory', function($http){
 		getProductsInCart: function(){
 	    	return $http.get('api/members/cart')
 	        	.then(function(products){
+	 				console.log('NOT LOGGED FACT PRODS', products)
 	            	return products.data
         		})
 			},
+		getTotalForCart: function(cart){
+			var total = 0;
+			cart.forEach(function(item){
+				total = total + (item.quantity * item.product.price)
+			})
+			return total
+		},
 		removeFromCart:	function(productToDelete){
 	    	//product will be an object, as declared in html
 	    	return $http.delete('/api/members/cart/'+productToDelete._id)

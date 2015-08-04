@@ -5,3 +5,5 @@ require('./userModel');
 require('./productModel');
 require('./reviewModel');
 require('./categoriesModel');
+require('./orderModel');
+require('./cartModel');

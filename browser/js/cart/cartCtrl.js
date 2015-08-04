@@ -24,6 +24,7 @@ app.controller("cartCtrl", function($scope, $http, AuthService, $state, cartFact
             })
     };
 
+    $scope.getTotal = cartFactory.getTotalForCart;
     //$rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser); $rootScope inject
     //$rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser); AUTH_EVENTS inject
 
@@ -31,6 +32,6 @@ app.controller("cartCtrl", function($scope, $http, AuthService, $state, cartFact
 app.controller('successCtrl', function($scope, $http, AuthService, $state, cartFactory){
     cartFactory.getLastOrder()
         .then(function(order){
-            $scope.orderLast = order.products
+            $scope.orderLast = order
         })
 })
