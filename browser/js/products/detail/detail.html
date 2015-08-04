@@ -2,32 +2,31 @@
 
 <section id="detail">
 
+
     <img src='../../images/NowRoasting.jpg' id='bigImg'><img>
 
-    <div class='col-lg-6 col-md-6'>
-        <carousel style="padding: 0px;" interval="3000">
-            <slide ng-repeat="photo in product.photo">
-                <!-- <img ng-src="{{'/images/'+photo}}" /> -->
-                <img src="http://placehold.it/800x500" alt="">
-            </slide>
-        </carousel>
+
+    <div class='col-lg-6 col-md-6' id='photo'>
+         <img src="{{product.photo[0]}}" alt="">
     </div>
+ 
+
     <div class='col-lg-6 col-md-6 details'>
         <h2>{{ product.name }}</h2>
-   
-    <p ng-repeat="element in aggArr">
-        <i class='fa fa-coffee'></i> 
-    </p>
- <!--      <i class='fa fa-coffee' ng-show={{ showCups(1)||showCups(2)||showCups(3)||showCups(4)||showCups(5) }}></i><i class='fa fa-coffee' ng-show={{ showCups(2)||showCups(3)||showCups(4)||showCups(5) }}></i><i class='fa fa-coffee' ng-show={{ showCups(3)||showCups(4)||showCups(5) }}></i><i class='fa fa-coffee' ng-show={{ showCups(4)||showCups(5) }}></i><i class='fa fa-coffee' ng-show={{ showCups(5) }}></i> -->
-              
+
+        <div>
+            <i ng-repeat="element in aggArr" class='fa fa-coffee fa-lg'></i> 
+        </div>
+        <br>
         <h4>{{ product.description }}</h4>
+    
         <p>Categories: {{categories.itemCategory}}, {{categories.roast}}, {{categories.region}}</p>
         <button class='btn' ng-click="addProductToCart(product._id)">Add to Cart</button>
-        <h1>Reviews</h1>
+        <h2>Reviews</h2>
       
         <div ng-repeat="review in reviews">
             <div>
-               {{ review.user }}:   {{review.review}} 
+               {{ review.user }}  <span id="reviewed"> {{review.review}} </span>
                 <button ng-show='{{ currentUser.isSuperUser || (currentUser.email === review.user) }}' class=" btn btn-xs" id="delete" ng-click="deleteData(review._id)">X</button>
             </div>
       
@@ -36,25 +35,25 @@
     
     
        
-        <div ng-click='rate(rating)'>
+        <div ng-show='showReviewBox' ng-click='rate(rating)'>
+           
             <rating ng-model="rating" max=5 
             readonly="isReadonly" 
+            state-on='"fa fa-coffee fa-lg"'
+            state-off='"fa fa-coffee"'
             on-hover="hoveringOver(value)" 
-            on-leave="overStar = null">
+            on-leave="overStar = null"> </rating>
 
         </div>    
         <form>
-        <div ng-show='showReviewBox'> 
-            <br>
-            <textarea ng-model="reviewData" ></textarea>
-            <br>
-            <button class='btn' ng-click="storeData()">Submit</button>
-        </div>
+            <div ng-show='showReviewBox'> 
+                <br>
+                <textarea ng-model="reviewData" ></textarea>
+                <br>
+                <button class='btn' ng-click="storeData()">Submit</button>
+            </div>
         </form>
     
     </div>
 
 </section>
-
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br>

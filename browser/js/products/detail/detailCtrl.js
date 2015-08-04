@@ -3,7 +3,6 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 	$scope.reviewData = "";
 	$scope.showReviewBox = true;
 	$scope.aggArr = [];
-	var showCups = false;
 	$scope.getCurrentUser = function() {
 		detailFactory.getUser()
 			.then(function(user) {
@@ -25,14 +24,12 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 				var totalRating = 0;
 				var count = 0;
 				$scope.reviews.forEach(function(review) {
-					console.log(review.rating)
 					if (review.rating) {
 						count++;
 						totalRating += review.rating;
 					}
 				})
 				$scope.aggRating = Math.floor(totalRating / count);
-				console.log("RATING", $scope.aggRating);
 				for (var i = 0; i < $scope.aggRating; i++) {
 					$scope.aggArr.push(i);
 					// $scope.aggArr.push('HELLO');
@@ -51,6 +48,7 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 		$scope.reviewData = ""
 	}
 	$scope.storeData = function() {
+		$scope.aggArr = [];
 		$scope.hideDelButton = false;
 		$scope.showReviewBox = false;
 		detailFactory.submitReview($scope.product._id, $scope.reviewData, $scope.rating)

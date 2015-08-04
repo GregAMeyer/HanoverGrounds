@@ -1,23 +1,43 @@
 #detail {
 
+  height: 100vh;
+
+  #photo{
+    text-align: center;
+     img {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    }
+  }
+
+  #reviewed {
+    font-weight: bold;
+  }
+
   .details {
-  	background-color: white;
+    background-color: white;
     min-height: 450px;
     border: 1px solid $coffee;
     box-sizing: border-box;
+    margin-top: 30px;
+    //margin-right: 2px;
   }
   #delete{
    display: inline;
-   // float: left;
-   // position: relative;
-   // height: 20 px;
-   // width: 20 px;
-   // margin-right: 100px;
   }
 
+i {
+  float: left;
+}
+
+h4 {
+  margin-top: 10px;
+}
 
   .btn {
     padding: 5px;
+    margin-bottom: 5px;
     background-color: $cream;
     font-color: $darkRoast;
     border: 1px solid $cream;
