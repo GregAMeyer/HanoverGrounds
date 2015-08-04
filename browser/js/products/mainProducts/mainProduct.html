@@ -6,7 +6,6 @@
     <div class="row text-center">
         <div id='products' ng-repeat='product in productList | filter: searchText ' class="col-lg-4 col-md-4 col-sm-6 hero-feature">
             <div class="thumbnail">
-                <!-- <img src="http://placehold.it/800x500" alt=""> -->
                 <div class="productPhoto">
                     <img src='{{product.photo[0]}}'>
                 </div>
@@ -14,7 +13,7 @@
                     <h4>{{product.name}}</h4>
                     <p>{{product.description | limitTo: 15}}...</p>
                     <p>{{ showCategories(product) }} </p>
-                    <a ng-click="getDetail(product)" class="btn btn-default">More Info</a>
+                    <a ui-sref="detailState({id: product._id})" class="btn btn-default">More Info</a>
                 </div>
             </div>
         </div>
