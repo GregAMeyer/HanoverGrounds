@@ -7,17 +7,18 @@ app.controller("cartCtrl", function($scope, $http, AuthService, $state, cartFact
     };
     //to display the user's productForSale array items
     cartFactory.getProductsInCart().then(function(prods){
-        $scope.productsInCart = prods
+        $scope.cart = prods
     });
 
     $scope.removeProduct = function(product){
         cartFactory.removeFromCart(product)
         .then(function(){
             cartFactory.getProductsInCart().then(function(prods){
-                $scope.productsInCart = prods
+                $scope.cart = prods
             })
         })
     };
+    $scope.updateQty = cartFactory.updateQtyFactory;
 
     // $scope.purchase = function(products){
     //     //make stripe work here

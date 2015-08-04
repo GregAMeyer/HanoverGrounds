@@ -17,11 +17,18 @@ app.factory('cartFactory', function($http){
         		})
 			},
 		removeFromCart:	function(productToDelete){
-    	//product will be an object, as declared in html
-    	return $http.delete('/api/members/cart/'+productToDelete._id)
-    	.then(function(remainingProducts){
-    		return remainingProducts;
-    	}, console.log)
-    }
+	    	//product will be an object, as declared in html
+	    	return $http.delete('/api/members/cart/'+productToDelete._id)
+	    	.then(function(remainingProducts){
+	    		return remainingProducts;
+	    	}, console.log)
+    	},
+    	updateQtyFactory:	function(prodToUpdate){
+    		//product will be an object, as declared in html
+	    	return $http.put('/api/members/cart/'+prodToUpdate.product._id, prodToUpdate)
+	    	.then(function(remainingProducts){
+	    		return remainingProducts;
+	    	}, console.log)
+		}
 	}
 })

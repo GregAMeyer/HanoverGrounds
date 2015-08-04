@@ -34,6 +34,11 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 type: 'admin',
                 needAuth: true,
                 auth: false
+            },
+            {
+                label: 'Cart',
+                state: 'cart',
+                auth: true
             }
             ];
 
