@@ -1,9 +1,18 @@
-app.controller('detailCtrl', function($scope, product, user, $rootScope, detailFactory, mainProductFactory) {
+app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory, mainProductFactory) {
 	$scope.product = product;
 	$scope.reviewData = "";
-	$scope.showReviewBox = true;
+	$scope.showReviewBox = false;
 	$scope.aggArr = [];
-	$scope.currentUser = user.data.user;
+
+	$scope.getCurrentUser = function() {
+		detailFactory.getUser()
+			.then(function(user) {
+				$scope.showReviewBox = true;
+				$scope.currentUser = user.data.user;
+			})
+
+	};
+	$scope.getCurrentUser();
 
 	mainProductFactory.getCategories($scope.product._id)
 		.then(function(categories) {

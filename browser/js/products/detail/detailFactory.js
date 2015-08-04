@@ -3,7 +3,6 @@ app.factory('detailFactory', function($http, $state) {
 		getReviews: function(id) {
 			return $http.get('api/products/reviews/' + id)
 				.then(function(res) {
-					console.log('RES', res.data);
 					return res.data;
 				});
 		},

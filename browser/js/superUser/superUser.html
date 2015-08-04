@@ -1,25 +1,25 @@
-<!--.sidebar -->
+<img src='http://www.georgehowellcoffee.com/wp-content/uploads/2015/07/1186x386-guatemala-landscape-feb2015.jpg' class='bigImg'>
+<img>
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-		<br> 
-		<ul class="nav menu dashboard row">
-			<li ui-sref-active="active"><a class='dashButton' ui-sref="superUser.overview">
-				<span class="glyphicon glyphicon-heart"></span> Overview</a>
-			</li>
-			<li ui-sref-active="active"><a class='dashButton' ui-sref="superUser.editUser">
-				<span class="glyphicon glyphicon-pencil"></span> Edit A User</a>
-			</li>
-			<li ui-sref-active="active"><a class='dashButton' ui-sref="superUser.allProducts">
-				<span class="glyphicon glyphicon-pencil"></span> Edit Products</a>
-			</li>
-		</ul>
-	</div>
-<!--/.sidebar		-->
-		<div >
-			<!-- <div ui-view class='col-lg-10 col-sm-9'></div> -->
-			<ui-view class='col-lg-10 col-sm-9'></ui-view>
-		</div>
+    <br>
+    <ul class="nav menu dashboard row">
+        <li ui-sref-active="active">
+            <a class='dashButton' ui-sref="superUser.overview">
+                <span class="glyphicon glyphicon-heart"></span> Overview</a>
+        </li>
+        <li ui-sref-active="active">
+            <a class='dashButton' ui-sref="superUser.editUser">
+                <span class="glyphicon glyphicon-pencil"></span> Edit A User</a>
+        </li>
+        <li ui-sref-active="active">
+            <a class='dashButton' ui-sref="superUser.allProducts">
+                <span class="glyphicon glyphicon-pencil"></span> Edit Products</a>
+        </li>
+    </ul>
+</div>
+<div>
+    <ui-view class='col-lg-10 col-sm-9'></ui-view>
+</div>
 </div>
 <script src="/scripts/jquery.min.js"></script>
 </body>
-<!-- 
-</html> -->
