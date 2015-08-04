@@ -14,7 +14,7 @@ var db = mongoose.connect(DATABASE_URI).connection;
 require('./models');
 //why do we eed this???????????????????????////////////
 //it didn't work without requireing the model, but shouldnt gulp do that for us?
-require('./models/orderModel');
+// require('./models/orderModel');
 // require('./models/userModel');
 // require('./models/reviewModel');
 // require('./models/categoriesModel');

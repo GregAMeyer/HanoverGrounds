@@ -49,42 +49,42 @@ var seedProducts = function(users, categories) {
         name: "Metropolis Coffee",
         seller: users[0]._id,
         description: "This unique cognac-like blend balances delicacy and elegance, with jasmine and orange notes giving way to buttery shortbread, and a mild caramel that ties it all together. A light and refreshing spring and summer brew with subtle yet astonishing nuances.",
-        price: 15.30,
+        price: 1530,
         photo: ["./images/coffeeFlipLeft.png"],
         categories: categories[0]._id
     }, {
         name: "Perc Coffee",
         seller: users[1]._id,
         description: "Koke hails from Chyalalcktu village in the Kochere District of Southern Oromia. This coffee is special to us because it marks the first hybrid process Ethiopia we’ve ever offered. It’s the perfect blend of a washed and natural processed coffee. ",
-        price: 14,
+        price: 1400,
         photo: ["./images/coffeeRightNoBG.png"],
         categories: categories[1]._id
     }, {
         name: "San Jose OCAÑA",
         seller: users[2]._id,
         description: "This is not a loud coffee, a fruit bomb, it’s something more. Few farms in the world, let alone Guatemala are able to produce coffee of this quality this consistently. ",
-        price: 13.95,
+        price: 1395,
         photo: ["./images/coffeeFlipRight.png"],
         categories: categories[2]._id
     }, {
         name: "The Intelligentsia",
         seller: users[0]._id,
         description: "Helvetica swag Odd Future mixtape Williamsburg. Carles paleo Intelligentsia, pug polaroid Tumblr mixtape master cleanse. Cliche leggings art party stumptown viral mlkshk, Godard chambray lo-fi vegan messenger bag Odd Future Helvetica flannel. ",
-        price: 2995,
+        price: 299500,
         photo: ["./images/luccaNoBG1.png"],
         categories: categories[3]._id
     }, {
         name: "The Marzocco",
         seller: users[0]._id,
         description: "Master cleanse mixtape viral typewriter. Neutra heirloom whatever mumblecore, mixtape roof party vegan Wes Anderson hoodie. Schlitz pickled street art, drinking vinegar tousled paleo salvia Echo Park mlkshk freegan 3 wolf moon hashtag art party craft beer taxidermy.",
-        price: 25,
+        price: 248000,
         photo: ["./images/luccaNoBG3.png"],
         categories: categories[3]._id
     }, {
         name: "The Vesuvius",
         seller: users[0]._id,
         description: "Flexitarian drinking vinegar Etsy pork belly pug. Bitters vegan chia, fingerstache fap jean shorts narwhal irony occupy aesthetic. Pug narwhal banjo, kitsch heirloom Vice cred sriracha gentrify drinking vinegar skateboard cold-pressed selvage High Life Echo Park.",
-        price: 25,
+        price: 1999000,
         photo: ["./images/luccaNoBG5.png"],
         categories: categories[3]._id
     }];

@@ -38,21 +38,6 @@ router.put('/seller/:id', function(req, res) {
 		})
 })
 
-router.get('/', function(req, res, next) {
-	Product.find({}).exec()
-		.then(function(products) {
-			res.json(products);
-		})
-		.then(null, next);
-});
-
-router.get('/:id', function(req, res, next) {
-	Product.findById(req.params.id).exec()
-		.then(function(product) {
-			res.json(product);
-		})
-		.then(null, next);
-});
 
 router.get('/reviews/:id', function(req, res) {
 	Reviews.find({
@@ -71,6 +56,23 @@ router.get('/categories/:id', function(req, res) {
 			res.json(products.categories);
 		})
 })
+
+router.get('/:id', function(req, res, next) {
+	Product.findById(req.params.id).exec()
+		.then(function(product) {
+			res.json(product);
+		})
+		.then(null, next);
+});
+
+router.get('/', function(req, res, next) {
+	Product.find({}).exec()
+		.then(function(products) {
+			res.json(products);
+		})
+		.then(null, next);
+});
+
 router.use('/', ensureAuthenticated)
 router.post('/reviews/:id', function(req, res) {
 	Reviews.create({
@@ -107,7 +109,6 @@ router.delete('/reviews/:id', function(req, res) {
 
 
 });
-
 
 
 module.exports = router;

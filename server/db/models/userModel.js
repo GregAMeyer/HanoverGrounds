@@ -20,7 +20,10 @@ var userSchema = new mongoose.Schema({
 		type: String
         //required: true
 	},
-	cart: [cartSchema],
+	cart: {
+        type: [cartSchema]
+        // ref: "Cart"
+    },
 	isSeller: {
 		type: Boolean,
 		default: false
@@ -84,5 +87,5 @@ userSchema.statics.encryptPassword = encryptPassword;
 userSchema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
-
+mongoose.model('Cart', cartSchema);
 mongoose.model('User', userSchema);

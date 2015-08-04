@@ -18,13 +18,13 @@ app.factory('detailFactory', function($http, $state) {
 		},
 
 		addProductToCart: function(productId) {
-			return $http.post('/api/members/cart', {
-					product: productId
-				})
-				.then(function(product) {
-					$state.go('cart')
-					return product.data;
-				})
+			console.log('req.session from add to cart: ')
+			return $http.post('/api/members/cart', {product: productId})
+			.then(function(product){
+				$state.go('cart')
+				console.log('NOT LOGGED USER CART FRONT END',product.data)
+				return product.data;
+			})
 
 		},
 		deleteReview: function(id) {
