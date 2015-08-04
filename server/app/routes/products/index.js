@@ -3,8 +3,6 @@ var mongoose = require('mongoose');
 require('../../../db/models');
 var Product = mongoose.model('Product');
 var Reviews = mongoose.model('Reviews');
-var Categories = mongoose.model('Categories');
-
 
 var ensureAuthenticated = function(req, res, next) {
 	if (req.isAuthenticated()) {
@@ -14,25 +12,14 @@ var ensureAuthenticated = function(req, res, next) {
 	}
 };
 
-
-//for dashboard-side products routing////////////////////////////////
-
-
-
-//for dashboard-side products routing/////////////////////////////////
-
-
-//for adding new products as seller in dashboard
 router.post('/', function(req, res) {
-	//should authenticate here based on isSeller before making post to DB
 	var productToAdd = req.body;
-	console.log('ROUTER USER', req.user)
 	productToAdd.seller = req.user._id
 	Product.create(productToAdd).then(function(createdProduct) {
 		res.json(createdProduct)
 	})
 })
-//for showing products for sale by seller in dashboard
+
 router.get('/seller', function(req, res) {
 	Product.find({
 		seller: req.user._id
@@ -41,8 +28,7 @@ router.get('/seller', function(req, res) {
 			res.json(products);
 		})
 })
-//for editing exisiting products as seller in dashboard
-//should authenticate here based on isSeller before making post to DB
+
 router.put('/seller/:id', function(req, res) {
 	Product.findOneAndUpdate({
 		_id: req.params.id
@@ -51,11 +37,7 @@ router.put('/seller/:id', function(req, res) {
 			res.send(updatedProduct)
 		})
 })
-///////////////////////////////////////////////////////////////////////
 
-
-
-//for user-side and superUser-side products routing///////////////////////////////////////
 router.get('/', function(req, res, next) {
 	Product.find({}).exec()
 		.then(function(products) {
@@ -65,7 +47,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-	//console.log(req.params)
 	Product.findById(req.params.id).exec()
 		.then(function(product) {
 			res.json(product);
@@ -104,17 +85,14 @@ router.post('/reviews/:id', function(req, res) {
 
 })
 
-router.delete('/reviews/:id', function(req, res, next) {
+router.delete('/reviews/:id', function(req, res) {
 	Reviews.findOne({
 		_id: req.params.id
 
 	}).exec()
 		.then(function(review) {
-			//console.log(review)
-			console.log(review.user, req.user.email);
 			if (review.user === req.user.email || req.user.isSuperUser) {
 				return;
-
 			} else throw new Error();
 		})
 		.then(function() {
@@ -124,14 +102,11 @@ router.delete('/reviews/:id', function(req, res, next) {
 		})
 
 	.then(function() {
-		console.log('Im here')
 		res.end()
 	})
 
 
 });
-
-////////////////////////////////////////////////////////////////////////
 
 
 
