@@ -1,10 +1,12 @@
+<section class="login">
+
 <div class='col-lg-6'>
     <form id="login-form" name="loginForm" ng-submit="sendSignup(login)">
 
         <alert type="danger" ng-show="error">
             {{ error }}
         </alert>
-    <p>SIGN UPPPP AS USER</p>
+    <p class="title">SIGN UP AS USER</p>
         <div class="form-group">
             <label for="email">Email address</label>
             <input type="text" ng-model="login.email" class="form-control" id="email" placeholder="Enter email">
@@ -23,7 +25,7 @@
         <alert type="danger" ng-show="error">
             {{ error }}
         </alert>
-    <p>SIGN UPPPP AS SELLER</p>
+    <p class="title">SIGN UP AS SELLER</p>
         <div class="form-group">
             <label for="email">Email address</label>
             <input type="text" ng-model="loginAdmin.email" class="form-control" id="email" placeholder="Enter email">
@@ -40,5 +42,5 @@
     </form>
 </div>
 
-
+</section>
 <!-- loginForm.$valid &&  on lines 2 and 21-->

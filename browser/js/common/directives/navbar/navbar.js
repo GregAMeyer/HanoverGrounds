@@ -26,14 +26,14 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 label: 'Seller Dashboard',
                 state: 'dashboard.overview',
                 needAuth: true,
-                auth: false
+                auth: true
             }, 
             {
                 label: 'Admin Dashboard',
                 state: 'superUser.overview',
                 type: 'admin',
                 needAuth: true,
-                auth: false
+                auth: true
             },
             {
                 label: 'Cart',
