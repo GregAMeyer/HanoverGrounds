@@ -15,20 +15,27 @@
     <div class='col-lg-6 col-md-6 details'>
         <h2>{{ product.name }}</h2>
    
-       <p ng-repeat="element in aggArr">{{ element }}</p>
+    <p ng-repeat="element in aggArr">
+        <i class='fa fa-coffee'></i> 
+    </p>
+ <!--      <i class='fa fa-coffee' ng-show={{ showCups(1)||showCups(2)||showCups(3)||showCups(4)||showCups(5) }}></i><i class='fa fa-coffee' ng-show={{ showCups(2)||showCups(3)||showCups(4)||showCups(5) }}></i><i class='fa fa-coffee' ng-show={{ showCups(3)||showCups(4)||showCups(5) }}></i><i class='fa fa-coffee' ng-show={{ showCups(4)||showCups(5) }}></i><i class='fa fa-coffee' ng-show={{ showCups(5) }}></i> -->
               
         <h4>{{ product.description }}</h4>
         <p>Categories: {{categories.itemCategory}}, {{categories.roast}}, {{categories.region}}</p>
         <button class='btn' ng-click="addProductToCart(product._id)">Add to Cart</button>
         <h1>Reviews</h1>
+      
         <div ng-repeat="review in reviews">
-               {{ review.user }}: {{review.review}} 
-            <div ng-show='{{ currentUser.isSuperUser || (currentUser.email === review.user) }}'>
-                <!-- <button ng-click="editData(review.id)">EDIT</button> -->
-                <button ng-click="deleteData(review._id)">DELETE</button>
+            <div>
+               {{ review.user }}:   {{review.review}} 
+                <button ng-show='{{ currentUser.isSuperUser || (currentUser.email === review.user) }}' class=" btn btn-xs" id="delete" ng-click="deleteData(review._id)">X</button>
             </div>
+      
+       
         </div>
-        <!-- WE ARE GOING TO HIDE THIS FORM FOR UNAUTHENTICATED USERS -->
+    
+    
+       
         <div ng-click='rate(rating)'>
             <rating ng-model="rating" max=5 
             readonly="isReadonly" 

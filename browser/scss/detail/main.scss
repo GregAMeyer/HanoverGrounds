@@ -4,17 +4,29 @@
   	background-color: white;
     min-height: 450px;
     border: 1px solid $coffee;
+    box-sizing: border-box;
   }
+  #delete{
+   display: inline;
+   // float: left;
+   // position: relative;
+   // height: 20 px;
+   // width: 20 px;
+   // margin-right: 100px;
+  }
+
+
   .btn {
-  	padding: 5px;
-  	background-color: $cream;
-  	font-color: $darkRoast;
+    padding: 5px;
+    background-color: $cream;
+    font-color: $darkRoast;
     border: 1px solid $cream;
     &:hover {
       border: 1px solid $coffee;
     }
   }
 }
+
 
 .rating {
   unicode-bidi: bidi-override;

@@ -2,7 +2,8 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 	$scope.product = product;
 	$scope.reviewData = "";
 	$scope.showReviewBox = true;
-	$scope.aggArr;
+	$scope.aggArr = [];
+	var showCups = false;
 	$scope.getCurrentUser = function() {
 		detailFactory.getUser()
 			.then(function(user) {
@@ -31,10 +32,18 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 					}
 				})
 				$scope.aggRating = Math.floor(totalRating / count);
+				console.log("RATING", $scope.aggRating);
 				for (var i = 0; i < $scope.aggRating; i++) {
-					$scope.aggArr.push("<i class='fa fa-coffee'></i> ");
+					$scope.aggArr.push(i);
 					// $scope.aggArr.push('HELLO');
 				}
+
+				// showCups = function(num) {
+				// 	if (num === $scope.aggRating) return true;
+				// 	return false;
+				// }
+
+				// console.log("showCups", showCups(1), showCups(2), showCups(3), showCups(4), showCups(5))
 
 			});
 	};
