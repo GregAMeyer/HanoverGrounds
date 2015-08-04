@@ -5,7 +5,7 @@ app.factory('detailFactory', function($http, $state) {
 				.then(function(res) {
 					console.log('RES', res.data);
 					return res.data;
-				})
+				});
 		},
 
 		submitReview: function(id, review, rating) {
@@ -15,7 +15,7 @@ app.factory('detailFactory', function($http, $state) {
 				})
 				.then(function(res) {
 					return res.data;
-				})
+				});
 		},
 
 		addProductToCart: function(productId) {

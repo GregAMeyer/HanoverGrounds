@@ -1,21 +1,14 @@
-app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory, mainProductFactory) {
+app.controller('detailCtrl', function($scope, product, user, $rootScope, detailFactory, mainProductFactory) {
 	$scope.product = product;
 	$scope.reviewData = "";
 	$scope.showReviewBox = true;
 	$scope.aggArr = [];
-	$scope.getCurrentUser = function() {
-		detailFactory.getUser()
-			.then(function(user) {
-				$scope.currentUser = user.data.user;
-			})
-	};
-	$scope.getCurrentUser();
+	$scope.currentUser = user.data.user;
 
 	mainProductFactory.getCategories($scope.product._id)
 		.then(function(categories) {
 			$scope.categories = categories;
 		})
-
 
 	$scope.getCurrentReviews = function() {
 		detailFactory.getReviews($scope.product._id)
@@ -32,14 +25,9 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 				$scope.aggRating = Math.floor(totalRating / count);
 				for (var i = 0; i < $scope.aggRating; i++) {
 					$scope.aggArr.push(i);
-					// $scope.aggArr.push('HELLO');
 				}
-
-
 			});
 	};
-
-
 
 	$scope.getCurrentReviews();
 	$scope.rating;
@@ -68,9 +56,4 @@ app.controller('detailCtrl', function($scope, product, $rootScope, detailFactory
 			})
 	}
 
-
-
 })
-// $scope.editData = function(id){
-// 	detailFactory.editReview(id)
-// }

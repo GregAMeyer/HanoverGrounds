@@ -17,43 +17,30 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 label: 'About',
                 state: 'about',
                 auth: true
-            },{
+            }, {
                 label: 'Products',
                 state: 'mainProductState',
                 auth: true
-            }, 
-            {
+            }, {
                 label: 'Seller Dashboard',
                 state: 'dashboard.overview',
                 needAuth: true,
                 auth: true
-            }, 
-            {
+            }, {
                 label: 'Admin Dashboard',
                 state: 'superUser.overview',
                 type: 'admin',
                 needAuth: true,
                 auth: true
-            },
-            {
+            }, {
                 label: 'Cart',
                 state: 'cart',
                 auth: true
-            }
-            ];
+            }];
 
-
-
-            function checkSeller(){
-               scope.items.forEach(function(ele){
-                    console.log('IS SELLER SELLER SELLER?',req.session)
-                    
-               })      
-            }
-
-            function falsifyNeedAuth(){
-                scope.items.forEach(function(ele){
-                    if(ele.needAuth){
+            function falsifyNeedAuth() {
+                scope.items.forEach(function(ele) {
+                    if (ele.needAuth) {
                         ele.auth = false
                     }
                 })
@@ -61,10 +48,8 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
 
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, falsifyNeedAuth);
 
-            //$rootScope.$on(AUTH_EVENTS.loginSuccess, checkSeller)
-
-            scope.isShowable = function(item){
-                if(item.auth === 'seller'){
+            scope.isShowable = function(item) {
+                if (item.auth === 'seller') {
                     return AuthService.isAuthenticatedSeller()
                 }
             }
