@@ -1,35 +1,23 @@
 <section id="mainProduct">
-
-	<img src='../../espresso-kickerBW.jpg' id='bigImg'><img>
-
-	<div class='filterMenu col-lg-12'>
-		<input type="text" placeholder="Search" ng-model='searchText'>
-	<!-- 	<select ng-repeat="category in categories">
-			<option >{{ category }}</option>
-		</select> -->
-		
-	</div>
-
-	<div class="row text-center">
-	    <div id='products' ng-repeat='product in productList | filter: searchText ' class="col-lg-4 col-md-4 col-sm-6 hero-feature">
-	        <div class="thumbnail">
-	            <!-- <img src="http://placehold.it/800x500" alt=""> -->
-	            <div class="productPhoto">
-	            <img src='{{product.photo[0]}}'>
-	            </div>
-
-	            <div class="caption">
-	                <h4>{{product.name}}</h4>
-	                <p>{{product.description | limitTo: 15}}...</p>
-	                <p>{{ product.categories }}</p>	
-	                <p>
-	                   <a ng-click="getDetail(product)" class="btn btn-default">More Info</a>
-	                </p>
-	            </div>
-	        </div>
-	    </div>
-	  </div>
-	<br>
-
-
+    <img src='../../espresso-kickerBW.jpg' id='bigImg'><img>
+    <div class='filterMenu col-lg-12'>
+        <input type="text" placeholder="Search" ng-model='searchText'>
+    </div>
+    <div class="row text-center">
+        <div id='products' ng-repeat='product in productList | filter: searchText ' class="col-lg-4 col-md-4 col-sm-6 hero-feature">
+            <div class="thumbnail">
+                <!-- <img src="http://placehold.it/800x500" alt=""> -->
+                <div class="productPhoto">
+                    <img src='{{product.photo[0]}}'>
+                </div>
+                <div class="caption">
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.description | limitTo: 15}}...</p>
+                    <p>{{ showCategories(product) }} </p>
+                    <a ng-click="getDetail(product)" class="btn btn-default">More Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 </section>
