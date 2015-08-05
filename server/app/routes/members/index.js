@@ -123,7 +123,7 @@ router.put('/cart/:id', function(req, res) {
         User.findById(req.user._id).exec()
             .then(function(user) {
                 user.cart.forEach(function(item) {
-                    if (item.product === productToUpdate) {
+                    if (item.product == productToUpdate) {
                         item.quantity = req.body.quantity
                     }
                 })
@@ -207,6 +207,14 @@ router.get('/checkout', function(req, res){
             res.json(order.toObject({virtuals:true}))
         })
 
+})
+
+router.get('/orderhistory', function(req,res){
+    User.findById(req.user._id).populate('orderHistory').exec()
+        .then(function(orderHistory){
+            console.log(orderHistory)
+            res.json(orderHistory)
+        })
 })
 
 

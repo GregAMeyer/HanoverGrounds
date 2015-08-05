@@ -38,9 +38,15 @@ app.factory('cartFactory', function($http){
 		getLastOrder: function(){
 			return $http.get('api/members/checkout')
 						.then(function(order){
-							console.log('AFTER GET, res.json order.data.products', order.data.products)
 							return order.data
 			})
+		},
+		getOrderHistory: function(){
+			return $http.get('api/members/orderhistory')
+				.then(function(pastOrders){
+					console.log('your past orders', pastOrders)
+					return pastOrders.data
+				})
 		}
 	}
 })
