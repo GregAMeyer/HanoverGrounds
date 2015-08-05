@@ -3,20 +3,27 @@
  	.filterMenu {
  		padding-top: 10px;
  		padding-bottom: 10px;
+    margin-bottom: 10px;
 
     span {
-      float: right;
       margin-right: auto;
+      margin-left: 20px;
     }
- 		input{	
+
+ 		input {	
       width: 300px;
       height: 40px;
       margin: 5px;
       border-radius: 10px;
       padding-left: 20px;
     }
- 	}
-	
+    a {
+        color: red;
+        &:hover {
+            color: red;
+        }
+    }
+  }
   .row{
     margin-left: 0px;
     margin-right: 0px;
