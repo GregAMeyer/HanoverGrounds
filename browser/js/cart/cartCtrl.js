@@ -1,8 +1,11 @@
-app.controller("cartCtrl", function($scope, $http, AuthService, $state, cartFactory) {
-
+app.controller("cartCtrl", function($scope, priceFactory, $http, AuthService, $state, cartFactory) {
     cartFactory.getProductsInCart().then(function(prods) {
         $scope.cart = prods
-    });
+        return prods;
+    })
+    .then(function(prods){
+        priceFactory.price = getTotalPrice(prods);
+    })
 
     $scope.updateQty = cartFactory.updateQtyFactory;
 
@@ -15,10 +18,20 @@ app.controller("cartCtrl", function($scope, $http, AuthService, $state, cartFact
             })
     };
 
+    function getTotalPrice(cart){
+            var total = 0;
+            cart.forEach(function(item){
+                total += (item.quantity * item.product.price)
+            })
+            return total;
+    }
+
+
+
     $scope.purchase = function(cart) {
         cartFactory.checkOutCart(cart)
             .then(function() {
-                $state.go('orderSuccess')
+                $state.go('stripe')
             })
     };
 

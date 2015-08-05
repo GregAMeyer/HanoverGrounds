@@ -14,10 +14,10 @@ app.use('/api', require('./routes'));
  This allows for proper 404s instead of the wildcard '/*' catching
  URLs that bypass express.static because the given file does not exist.
  */
-app.use(function (req, res, next) {
-	if(!req.session.cart){
-		req.session.cart = [];
-	}
+app.use(function(req, res, next) {
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
     if (path.extname(req.path).length > 0) {
         res.status(404).end();
     } else {
@@ -25,12 +25,30 @@ app.use(function (req, res, next) {
     }
 });
 
-app.get('/*', function (req, res) {
+
+app.post('/stripe/submit', function(req, res) {
+    var stripe = require("stripe")('sk_test_UGVAMqSjJ9PCpTD6LNJCFDsQ');
+    var stripeToken = req.body.card.id;
+    var charge = stripe.charges.create({
+        amount: req.body.price,
+        currency: "usd",
+        source: stripeToken,
+        description: "Example charge"
+    }, function(err, charge) {
+        console.log('error ', err);
+        console.log('charge ', charge)
+        if (err && err.type === 'StripeCardError') {
+            // The card has been declined
+        }
+    })
+})
+
+app.get('/*', function(req, res) {
     res.sendFile(app.get('indexHTMLPath'));
 });
 
 // Error catching endware.
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     console.error(err, typeof next);
     res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
