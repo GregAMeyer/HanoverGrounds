@@ -1,19 +1,22 @@
+<section id="stripe">
+
 <img src='http://www.georgehowellcoffee.com/wp-content/uploads/2015/07/1186x386-coffee-jute-bags.jpg' class='bigImg'><img>
 
+<div class='credit'>
 <form ng-submit="checkoutStripe(card, price)" id="payment-form">
   <span class="payment-errors"></span>
 
   <div class="form-row">
     <label>
       <span>Card Number</span>
-      <input ng-model="card.number" type="text" size="20" data-stripe="number"/>
+      <input id='cardNum' ng-model="card.number" type="text" size="20" data-stripe="number"/>
     </label>
   </div>
 
   <div class="form-row">
     <label>
       <span>CVC</span>
-      <input ng-model="card.cvc" type="text" size="4" data-stripe="cvc"/>
+      <input id='cvcNum' ng-model="card.cvc" type="text" size="4" data-stripe="cvc"/>
     </label>
   </div>
 
@@ -27,5 +30,8 @@
     type="text" size="4" data-stripe="exp-year"/>
   </div>
 
-  <button type="submit">Submit Payment</button>
+  <button style="margin-top: 10px" ui-sref="orderSuccess" type="submit">Submit Payment</button>
 </form>
+</div>
+
+</section>
