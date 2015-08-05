@@ -65,7 +65,7 @@
         };
 
         this.isAuthenticatedSeller = function(){
-            if(Session.user.isSuperUser) return true 
+            // if(Session.user.isSuperUser) return true 
             return Session.user.isSeller
         };
 

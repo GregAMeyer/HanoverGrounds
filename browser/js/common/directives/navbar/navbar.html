@@ -1,9 +1,10 @@
-<nav class="navbar navbar-fixed-top" id='grad'>
+<section id='grad'>
+<nav class="navbar navbar-fixed-top"  scroll ng-class="{min:boolChangeClass}">
     <div class="container">
-        <div class="navbar-header">
-            <a ui-sref='home'><h2>Hanover<img id='logoImg' src="../../images/mugLogo.png"/>Grounds</h2></a>
+        <div class="navbar-header" ng-class="{pad:boolChangeClass}">
+            <!-- <a ui-sref='home'> --><h2 ui-sref='home'>Hanover<img id='logoImg' src="../../images/mugLogo.png"/>Grounds</h2><!-- </a> -->
         </div>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" ng-class="{pad:boolChangeClass}">
             <li ng-repeat="item in items" ng-show="item.auth">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
@@ -13,5 +14,7 @@
         </li>
         </ul>
     </div>
+
 </nav>
 
+</section>

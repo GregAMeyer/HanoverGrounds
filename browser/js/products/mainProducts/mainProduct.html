@@ -1,7 +1,7 @@
 <section id="mainProduct">
     <img src='../../espresso-kickerBW.jpg' class='bigImg'><img>
     <div class='filterMenu col-lg-12'>
-        <input type="text" placeholder="Search" ng-model='searchText'>
+        <span class='glyphicon glyphicon-search'><input type="text" placeholder="Search" ng-model='searchText'></span>
     </div>
     <div class="row text-center">
         <div id='products' ng-repeat='product in productList | filter: searchText ' class="col-lg-4 col-md-4 col-sm-6 hero-feature">

@@ -1,17 +1,23 @@
-.sidebar {
-	height: 100vh;
-	width: 20vw;
-	background-color: #72685E;
-}
-.dashButton {
-	color: #D7D4D1;
-	font-size: 120%;
-}
+.dashBoard {
+	.sidebar {
+		height: 100vh;
+		width: 20vw;
+		background-color: #72685E;
+	}
+	.dashButton {
+		color: #D7D4D1;
+		font-size: 120%;
+	}
 
-.col-lg-10{
-	width: 80vw;
-}
+	.col-lg-10{
+		width: 80vw;
+	}
 
-td input{
-	width: 110px !important;
+	td input{
+		width: 110px !important;
+	}
+
+	#bigImg {
+	  width: 100%;
+	}	
 }

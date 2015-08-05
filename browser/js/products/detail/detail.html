@@ -3,7 +3,7 @@
 <section id="detail">
 
 
-    <img src='../../images/NowRoasting.jpg' id='bigImg'><img>
+    <img src='../../images/NowRoasting.jpg' class='bigImg'><img>
 
 
     <div class='col-lg-6 col-md-6' id='photo'>
@@ -13,7 +13,6 @@
 
     <div class='col-lg-6 col-md-6 details'>
         <h2>{{ product.name }}</h2>
-
         <div>
             <i ng-repeat="element in aggArr" class='fa fa-coffee fa-lg'></i> 
         </div>
@@ -21,6 +20,7 @@
         <h4>{{ product.description }}</h4>
     
         <p>Categories: {{categories.itemCategory}}, {{categories.roast}}, {{categories.region}}</p>
+        <p>{{product.price / 100 | currency}}</p>
         <button class='btn' ng-click="addProductToCart(product._id)">Add to Cart</button>
         <h2>Reviews</h2>
       
