@@ -47,3 +47,9 @@ app.controller('successCtrl', function($scope, $http, AuthService, $state, cartF
             $scope.orderLast = order
         })
 })
+app.controller('orderHistoryCtrl',function($scope, $http, AuthService, $state, cartFactory) {
+    cartFactory.getOrderHistory()
+        .then(function(pastOrders){
+            $scope.orderHistory = pastOrders
+        })
+})

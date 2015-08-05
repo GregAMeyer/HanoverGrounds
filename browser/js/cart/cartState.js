@@ -12,5 +12,10 @@ app.config(function($stateProvider) {
 	templateUrl:"js/cart/checkout.html",
 	controller: "successCtrl"
 		})
+	.state('orderHistory',{
+		url:"/orderHistory",
+		templateUrl: "js/cart/orderHistory.html",
+		controller: "orderHistoryCtrl"
+	})
 });
 

@@ -39,6 +39,13 @@ app.factory('cartFactory', function($http){
 						.then(function(order){
 							return order.data
 			})
+		},
+		getOrderHistory: function(){
+			return $http.get('api/members/orderhistory')
+				.then(function(pastOrders){
+					console.log('your past orders', pastOrders)
+					return pastOrders.data.cart
+				})
 		}
 	}
 })
