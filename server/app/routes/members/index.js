@@ -183,10 +183,12 @@ router.post('/checkout', function(req, res) {
     // })
     .then(function(order){
         User.findById(req.user._id).exec().then(function(user){
+            console.log('RECENT ORDER',order)
             user.orderHistory.push(order)
             return user.save()
         })
         .then(function(user){
+            console.log('PURCHASING USER', user)
             // res.json(user.orderHistory[user.orderHistory.length-1])
             res.end()
         })
@@ -210,10 +212,10 @@ router.get('/checkout', function(req, res){
 })
 
 router.get('/orderhistory', function(req,res){
-    User.findById(req.user._id).populate('orderHistory').exec()
-        .then(function(orderHistory){
-            console.log(orderHistory)
-            res.json(orderHistory)
+    User.findById(req.user._id).populate('cart.product').exec()
+        .then(function(history){
+            console.log('ONE ORDER HISROTY', history)
+            res.json(history)
         })
 })
 

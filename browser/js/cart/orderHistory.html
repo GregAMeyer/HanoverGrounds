@@ -1,3 +1,4 @@
+<img src='../../images/field.jpg' class='bigImg'><img>
 <div class='col-lg-8'>
   <div class="panel panel-default">
     <div class="panel-heading">Items</div>
@@ -12,10 +13,10 @@
       </thead>
       <tbody>
         <tr ng-repeat='item in orderHistory'>
-          <td><p>{{item.name}}</p></td>
+          <td><p>{{item.product.name}}</p></td>
           <td><img src='{{item.photo}}' style="width: 50px"></td>
           <!-- <td><p>{{item.unitPrice * item.quantity | currency}}</p></td> -->
-          <td><p>{{item.unitTotalPrice / 100 | currency}}</p></td>
+          <td><p>{{item.product.price * item.quantity / 100 | currency}}</p></td>
           <td><p>{{item.quantity}}</p></td>
         </tr>
         <tr>
@@ -26,3 +27,4 @@
     </table>
   </div>
 </div>
+      {{user}}

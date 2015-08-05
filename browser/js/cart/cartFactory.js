@@ -44,7 +44,7 @@ app.factory('cartFactory', function($http){
 			return $http.get('api/members/orderhistory')
 				.then(function(pastOrders){
 					console.log('your past orders', pastOrders)
-					return pastOrders.data
+					return pastOrders.data.cart
 				})
 		}
 	}
