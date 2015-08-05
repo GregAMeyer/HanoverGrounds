@@ -31,16 +31,20 @@ app.factory('cartFactory', function($http){
 		checkOutCart: function(cart){
 			return $http.post('/api/members/checkout', cart)
 				.then(function(order){
-					console.log('AFTER POST, creating order')
 					return order
 				})
 		},
 		getLastOrder: function(){
 			return $http.get('api/members/checkout')
 						.then(function(order){
-							console.log('AFTER GET, res.json order.data.products', order.data.products)
 							return order.data
 			})
 		}
+	}
+})
+
+app.factory('priceFactory', function(){
+	return {
+		price: 0
 	}
 })
