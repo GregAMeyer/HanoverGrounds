@@ -27,17 +27,17 @@ router.post('/cart', function(req, res) {
         User.findById(req.user._id).exec()
             .then(function(user) {
                 var itemArr = user.cart.filter(function(item, idx) {
-                    if (item.product === productToAddToCart.product) {
+                    if (item.product == productToAddToCart.product) {
                         cartIdx = idx
                     }
-                    return item.product === productToAddToCart.product
+                    return item.product == productToAddToCart.product
                 })
 
                 if (!itemArr[0]) {
                     user.cart.push(productToAddToCart)
                 } else {
                     user.cart.forEach(function(item) {
-                        if (item.product === productToAddToCart.product) {
+                        if (item.product == productToAddToCart.product) {
                             item.quantity++
                         }
                     })

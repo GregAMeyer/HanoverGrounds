@@ -17,3 +17,28 @@ input {
 #cart {
 	height: 80vh;
 }
+
+.credit {
+  width: 400px;
+  height: 200px;
+  padding-left: 20px;
+  padding-top: 20px;
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -50px;
+  font-size: 20px
+}
+
+#stripe {
+	height: 90vh;
+}
+
+#cardNum {
+	width: 200px;
+}
+
+#cvcNum {
+	width: 40px;
+}

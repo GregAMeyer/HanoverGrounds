@@ -2,10 +2,9 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
 
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+        },
         templateUrl: 'js/common/directives/navbar/navbar.html',
-
-
 
         link: function(scope) {
 
@@ -21,13 +20,13 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 label: 'Seller Dashboard',
                 state: 'dashboard.overview',
                 needAuth: true,
-                auth: true
+                auth: false
             }, {
                 label: 'Admin Dashboard',
                 state: 'superUser.overview',
                 type: 'admin',
                 needAuth: true,
-                auth: true
+                auth: false
             }, {
                 label: 'Cart',
                 state: 'cart',
@@ -41,8 +40,20 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                     }
                 })
             }
+            function checkAuth() {
+                scope.items.forEach(function(ele) {
+                    if (ele.label == 'Seller Dashboard' && AuthService.isAuthenticatedSeller() ){
+                        ele.auth = true
+                    }
+                    if (ele.label == 'Admin Dashboard' && AuthService.isAuthenticatedSuperUser() ){
+                        ele.auth = true
+                    }
+                })
+            }
 
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, falsifyNeedAuth);
+
+            $rootScope.$on(AUTH_EVENTS.loginSuccess, checkAuth);
 
             scope.isShowable = function(item) {
                 if (item.auth === 'seller') {
@@ -76,6 +87,9 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
 
+        },
+        controller: function($scope) {
+            $scope.scroll = 0;
         }
 
     };

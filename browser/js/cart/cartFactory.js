@@ -31,7 +31,6 @@ app.factory('cartFactory', function($http){
 		checkOutCart: function(cart){
 			return $http.post('/api/members/checkout', cart)
 				.then(function(order){
-					console.log('AFTER POST, creating order')
 					return order
 				})
 		},
@@ -48,5 +47,11 @@ app.factory('cartFactory', function($http){
 					return pastOrders.data
 				})
 		}
+	}
+})
+
+app.factory('priceFactory', function(){
+	return {
+		price: 0
 	}
 })
