@@ -1,5 +1,5 @@
 # HanoverGrounds
-TODO: First project of Fullstack Academy Senior Phase
+First project of Fullstack Academy Senior Phase
 An e-commerce website.
 Customers view and purchase products.
 Dashboards for administrators, sellers, and customers.
