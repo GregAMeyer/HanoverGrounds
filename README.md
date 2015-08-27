@@ -1,9 +1,9 @@
 # HanoverGrounds
-First project of Fullstack Academy Senior Phase
-An e-commerce website.
-Customers view and purchase products.
-Dashboards for administrators, sellers, and customers.
-Stripe payments, Multi-tennancy, oAuth.
+First project of Fullstack Academy Senior Phase <br />
+An e-commerce website. <br />
+Customers view and purchase products. <br />
+Dashboards for administrators, sellers, and customers. <br />
+Stripe payments, Multi-tennancy, oAuth. <br />
 MEAN Stack CRUD application.
 
 ## Contributing
